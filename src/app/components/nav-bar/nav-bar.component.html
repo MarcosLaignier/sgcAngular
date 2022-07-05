@@ -1,0 +1,53 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark w-100 NavBar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" id="btn"><img src="#" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <fa-icon [icon]="i_Hamburguer" class="icons_white" (click)="clicou()">t</fa-icon>
+        </span>
+      </button>
+      <div>
+        <fa-icon [icon]="i_Hamburguer" class="icons_white" (click)="clicou()" ></fa-icon>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav d-flex">
+          <li class="nav-item d-flex align-items-center">
+            <a class="nav-link active " aria-current="page" href="#">Icon Sistema </a>
+          </li>
+          <li class="nav-item d-flex align-items-center ">
+            <a class="nav-link active " aria-current="page" href="#">Sistemas</a>
+            <fa-icon [icon]="i_ArrowDown" class="icons_white "></fa-icon>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <a class="nav-link active " aria-current="page" href="#">Janelas</a>
+            <fa-icon [icon]="i_ArrowDown" class="icons_white"></fa-icon>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <a class="nav-link active " aria-current="page" href="#">Localizar</a>
+            <fa-icon [icon]="i_ArrowDown" class="icons_white"></fa-icon>
+
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="collapse navbar-collapse d-flex justify-content-end " id="navbarNavDropdown">
+        <ul class="navbar-nav ">
+          <li class="nav-item d-flex align-items-center">
+            <fa-icon [icon]="i_User" class="icons_white"></fa-icon>
+            <a class="nav-link active " aria-current="page" href="#">Marcos Leao</a>
+            <fa-icon [icon]="i_ArrowDown" class="icons_white"></fa-icon>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </nav>
+</header>
+
+<div>
+  <app-left-bar [clickActive]="active"></app-left-bar>
+</div>

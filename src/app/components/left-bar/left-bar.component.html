@@ -1,0 +1,104 @@
+<aside [ngStyle]="{'background-color': bckColor}" class="leftBar d-flex flex-column float-left justify-content-between "
+    [ngClass]="{leftBar_active:clickActive ==true}">
+    <div>
+        <ul class="d-flex flex-column p-0 align-items-center pt-4" [ngClass]="{leftBarUl_active:clickActive==true}">
+            <img src="" alt="Logo Sistema Cemiterio" class="logoSistema">
+            <li (click)=" idButton= 'CadInicial';openSubMenu();openAside()">
+                <fa-icon [icon]="i_Cemiterio" class="icons_Menu" ></fa-icon>
+                <span *ngIf="clickActive" class="textMenuLeftBar" id="CadInicial">Cadastros Iniciais</span>
+            </li>
+            <li (click)=" idButton= 'CadComum';openSubMenu();openAside()">
+                <fa-icon [icon]="i_Person" class="icons_Menu"></fa-icon>
+                <span *ngIf="clickActive" class="textMenuLeftBar">Cadastros</span>
+            </li>
+            <li (click)=" idButton= 'CadMovimentacoes';openSubMenu();openAside()">
+                <fa-icon [icon]="i_Sepul" class="icons_Menu"></fa-icon>
+                <span *ngIf="clickActive" class="textMenuLeftBar">Movimentacoes</span>
+            </li>
+            <li (click)=" idButton= 'Relatorios';openSubMenu();openAside()">
+                <fa-icon [icon]="i_Relatorio" class="icons_Menu"></fa-icon>
+                <span *ngIf="clickActive" class="textMenuLeftBar">Relatorios</span>
+            </li>
+            <li (click)=" idButton= 'Config';openSubMenu();openAside()">
+                <fa-icon [icon]="i_Config" class="icons_Menu"></fa-icon>
+                <span *ngIf="clickActive" class="textMenuLeftBar">Configuracoes</span>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="leftbar d-flex p-0 m-0 align-items-center logoMunicipioUl">
+            <li class="d-flex align-items-center flex-column ">
+                <img [src]="urlLogo" alt="Logo Municipio" class=" imgLogoMunicipio">
+                <span *ngIf="clickActive">Prefeitura Pedro Leopoldo</span>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<aside [ngStyle]="{'background-color': submenuColor}"
+    class="leftBar-submenu d-flex flex-column float-left justify-content-between border border-light"
+    *ngIf="openSideSubMenu">
+    <div *ngIf="menuCadastrosIniciais" class="w-100">
+        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
+            <span>Cemiterios</span>
+            <li>
+                <span class="textMenuLeftBar">Cemiterio</span>
+            </li>
+            <li>
+                <span class="textMenuLeftBar">Sepulturas</span>
+            </li>
+        </ul>
+        <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+            <span>Funerarias</span>
+            <li>
+                <span class="textMenuLeftBar">Funeraria</span>
+            </li>
+
+        </ul>
+    </div>
+
+    <div *ngIf="menuCadComum" class="w-100">
+        <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+            <span>Falecidos</span>
+            <li>
+                <span class="textMenuLeftBar">Pessoa</span>
+            </li>
+           
+        </ul>
+    </div>
+
+    <div *ngIf="menuCadMovimentacoes" class="w-100">
+        <ul class="d-flex flex-column pt-4 pl-2">
+            <span>Cadastros</span>
+            <li>
+                <span class="textMenuLeftBar">Sepultamento</span>
+            </li>
+            
+        </ul>
+    </div>
+
+    <div *ngIf="menuRelatorio" class="w-100">
+        <ul class="d-flex flex-column pt-4 pl-2">
+            <span>Relatorio Cadastros Iniciais</span>
+            <li>
+                <span class="textMenuLeftBar">Cemiterio</span>
+            </li>
+            <li>
+                <span class="textMenuLeftBar">Sepulturas</span>
+            </li>
+            <li>
+                <span class="textMenuLeftBar">Funerarias</span>
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="menuConfig" class="w-100">
+        <ul class="d-flex flex-column pt-4 pl-2">
+            <span>Configuracoes</span>
+            <li>
+                <span class="textMenuLeftBar">Configuracao Geral</span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
