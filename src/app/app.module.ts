@@ -9,6 +9,7 @@ import { LeftBarComponent } from './components/left-bar/left-bar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListCemiteriosComponent } from './pages/list-cemiterios/list-cemiterios.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ListCemiteriosComponent } from './pages/list-cemiterios/list-cemiterios
     ToolbarComponent,
     HomeComponent,
     ListCemiteriosComponent,
+    TableComponent,
     
   ],
   imports: [

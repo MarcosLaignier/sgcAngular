@@ -29,7 +29,7 @@
 }
 
 .textMenuLeftBar{
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .logoMunicipioUl{
@@ -45,9 +45,15 @@
     width: 220px;
     height: 94vh;
     align-items: flex-start;
+    float: left;
+
 
 }
 .leftBar-subMenuUl{
     border-bottom:1px solid lightgray ;
     align-items: flex-start;
+}
+
+.iconSubMenu{
+    font-size: 0.8rem;
 }

@@ -42,15 +42,18 @@
         <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
             <span>Cemiterios</span>
             <li>
-                <span class="textMenuLeftBar">Cemiterio</span>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+                <span class="textMenuLeftBar" [routerLink]="['/listcemiterios']">Cemiterio</span>
             </li>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Sepulturas</span>
             </li>
         </ul>
         <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
             <span>Funerarias</span>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Funeraria</span>
             </li>
 
@@ -61,6 +64,7 @@
         <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
             <span>Falecidos</span>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Pessoa</span>
             </li>
            
@@ -68,9 +72,10 @@
     </div>
 
     <div *ngIf="menuCadMovimentacoes" class="w-100">
-        <ul class="d-flex flex-column pt-4 pl-2">
+        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
             <span>Cadastros</span>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Sepultamento</span>
             </li>
             
@@ -78,24 +83,28 @@
     </div>
 
     <div *ngIf="menuRelatorio" class="w-100">
-        <ul class="d-flex flex-column pt-4 pl-2">
+        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
             <span>Relatorio Cadastros Iniciais</span>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Cemiterio</span>
             </li>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Sepulturas</span>
             </li>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Funerarias</span>
             </li>
         </ul>
     </div>
 
     <div *ngIf="menuConfig" class="w-100">
-        <ul class="d-flex flex-column pt-4 pl-2">
+        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
             <span>Configuracoes</span>
             <li>
+                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
                 <span class="textMenuLeftBar">Configuracao Geral</span>
             </li>
             

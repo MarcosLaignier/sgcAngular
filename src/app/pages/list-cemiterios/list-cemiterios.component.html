@@ -1,4 +1,8 @@
-<app-toolbar></app-toolbar>
+<h5>Pesquisa de Cemiterios</h5>
+<div>
+    <span class="d-flex justify-content-center">Ocultar Filtros</span>
+</div>
+
 <form id="form_FCemiterio" class="form_SGC">
 
     <div class="row mb-1">
@@ -47,6 +51,12 @@
             </div>
         </div>
     </div>
+    
+<div >
+    <app-table class="d-flex" [colunasTable]="colunasName"></app-table>
+</div>
+        
+    
 
 </form>
 

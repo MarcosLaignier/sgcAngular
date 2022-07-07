@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { faChurch, faUserLarge, faPersonDigging, faFileLines, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faChurch, faUserLarge, faPersonDigging, faFileLines, faGear, faWindowMaximize } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,12 +14,14 @@ export class LeftBarComponent implements OnInit {
   i_Sepul = faPersonDigging;
   i_Relatorio = faFileLines;
   i_Config = faGear
+  i_SubMenu = faWindowMaximize
 
   bckColor = '#efefef';
-  submenuColor='#e8e8e8'
+  submenuColor = '#e8e8e8'
 
   urlLogo = '/assets/Images/LogoMunicipio.png';
   idButton: String = '';
+  n: String = '';
   openSideSubMenu: Boolean = false;
   menuCadastrosIniciais: Boolean = false;
   menuCadComum: Boolean = false;
@@ -34,16 +36,20 @@ export class LeftBarComponent implements OnInit {
 
   }
   openAside() {
-    this.openSideSubMenu = !this.openSideSubMenu
+  
+      this.openSideSubMenu = !this.openSideSubMenu
+   
   }
 
   openSubMenu() {
     if (this.idButton == 'CadInicial') {
       this.clearIdMenu()
       this.menuCadastrosIniciais = true
+
     } else if (this.idButton == 'CadComum') {
       this.clearIdMenu()
       this.menuCadComum = true
+
     } else if (this.idButton == 'CadMovimentacoes') {
       this.clearIdMenu()
       this.menuCadMovimentacoes = true
@@ -53,7 +59,11 @@ export class LeftBarComponent implements OnInit {
     } else if (this.idButton == 'Config') {
       this.clearIdMenu()
       this.menuConfig = true
+
+
     }
+
+
 
   }
 
