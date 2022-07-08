@@ -10,6 +10,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListCemiteriosComponent } from './pages/list-cemiterios/list-cemiterios.component';
 import { TableComponent } from './components/table/table.component';
+import { CrudToolbarComponent } from './components/crud-toolbar/crud-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TableComponent } from './components/table/table.component';
     HomeComponent,
     ListCemiteriosComponent,
     TableComponent,
+    CrudToolbarComponent,
     
   ],
   imports: [

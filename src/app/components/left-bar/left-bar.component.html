@@ -43,18 +43,18 @@
             <span>Cemiterios</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['/listcemiterios']">Cemiterio</span>
+                <span class="textMenuLeftBar" [routerLink]="['/listcemiterios']" (click)="openAside()">Cemiterio</span>
             </li>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Sepulturas</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Sepulturas</span>
             </li>
         </ul>
         <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
             <span>Funerarias</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Funeraria</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Funeraria</span>
             </li>
 
         </ul>
@@ -65,7 +65,7 @@
             <span>Falecidos</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Pessoa</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Pessoa</span>
             </li>
            
         </ul>
@@ -76,7 +76,7 @@
             <span>Cadastros</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Sepultamento</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Sepultamento</span>
             </li>
             
         </ul>
@@ -84,18 +84,18 @@
 
     <div *ngIf="menuRelatorio" class="w-100">
         <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
-            <span>Relatorio Cadastros Iniciais</span>
+            <span>Cadastros Iniciais</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Cemiterio</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Cemiterio</span>
             </li>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Sepulturas</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Sepulturas</span>
             </li>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Funerarias</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Funerarias</span>
             </li>
         </ul>
     </div>
@@ -105,7 +105,7 @@
             <span>Configuracoes</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar">Configuracao Geral</span>
+                <span class="textMenuLeftBar" (click)="openAside()">Configuracao Geral</span>
             </li>
             
         </ul>

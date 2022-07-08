@@ -1,6 +1,8 @@
+
 .icons_Menu {
     font-size: 2rem;
     width: 40px;
+    cursor: pointer;
 }
 
 .leftBar {
@@ -30,6 +32,7 @@
 
 .textMenuLeftBar{
     padding-left: 10px;
+    cursor: pointer;
 }
 
 .logoMunicipioUl{

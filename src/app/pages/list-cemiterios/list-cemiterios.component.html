@@ -1,9 +1,10 @@
-<h5>Pesquisa de Cemiterios</h5>
+<app-toolbar></app-toolbar>
+<app-crud-toolbar class="d-flex my-2"></app-crud-toolbar>
 <div>
-    <span class="d-flex justify-content-center">Ocultar Filtros</span>
+    <span class="d-flex justify-content-center m-2" id="spanFilter" (click)="visibleFilter()">Ocultar Filtros</span>
 </div>
 
-<form id="form_FCemiterio" class="form_SGC">
+<form id="form_FCemiterio" class="form_SGC" *ngIf="Filter">
 
     <div class="row mb-1">
         <div class="col-md-2">
@@ -52,11 +53,9 @@
         </div>
     </div>
     
+
+</form>
 <div >
     <app-table class="d-flex" [colunasTable]="colunasName"></app-table>
 </div>
-        
-    
-
-</form>
 
