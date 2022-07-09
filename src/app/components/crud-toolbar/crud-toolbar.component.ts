@@ -12,4 +12,7 @@ export class CrudToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  backWindow(){
+    window.history.back()
+  }
 }
