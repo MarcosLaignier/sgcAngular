@@ -1,0 +1,37 @@
+<app-toolbar></app-toolbar>
+<app-crud-toolbar class="d-flex" titlePage="Pesquisa de Falecidos"></app-crud-toolbar>
+<app-filter-visible (FilterE)="visibleFilter($event)" ></app-filter-visible>
+
+<form id="form_FFalecido" class="form_SGC" *ngIf="Filter">
+      <div class="row mb-1">
+        <div class="col-md-5">
+          <div class="form-outline">
+            <label class="form-label" for="form6Example1">Nome</label>
+            <input type="text" id="name_Falecido" class="form-control" />
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <div class="form-outline">
+            <label class="form-label" for="form6Example1">Nascimento</label>
+            <input type="date" id="form6Example1" class="form-control" />
+
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-outline">
+            <label class="form-label" for="inputSexo">Sexo</label>
+            <select id="inputSexo" class="form-control">
+              <option selected>Escolher</option>
+              <option>Masculino</option>
+              <option>Feminino</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
+
+      <app-table [colunasTable]="colunasName" class="d-flex"></app-table>

@@ -9,17 +9,20 @@ import { modelTable } from 'src/app/models/table-model';
 export class ListCemiteriosComponent implements OnInit {
 
   constructor() { }
-Filter:Boolean = true
- colunasName = [
-  {name:'ID'}, {name:'Nome'},{name:'Endereco'},{name:'Responsavel'},{name:'Ativo'}
-]
+
+  Filter: Boolean = true
+  colunasName = [
+    { name: 'ID' }, { name: 'Nome' }, { name: 'Endereco' }, { name: 'Responsavel' }, { name: 'Ativo' }
+  ]
+
+  recebeFilter(filterComponent: boolean) {
+    this.Filter = filterComponent;
+  }
+
 
   ngOnInit(): void {
- 
+
   }
 
-  visibleFilter(){
-    this.Filter = !this.Filter
-  }
 
 }

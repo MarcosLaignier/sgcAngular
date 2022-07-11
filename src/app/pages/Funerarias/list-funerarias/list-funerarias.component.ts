@@ -10,8 +10,8 @@ export class ListFunerariasComponent implements OnInit {
   colunasName = [
     { name: 'Codigo' }, { name: 'Nome' }, { name: 'Endereco' }, { name: 'Cidade' }
   ]
-  filterVisible: string = 'true';
-  receberClick(filterComponent: any) {
+  filterVisible: boolean = true;
+  receberClick(filterComponent: boolean) {
     this.filterVisible = filterComponent;
     
   }

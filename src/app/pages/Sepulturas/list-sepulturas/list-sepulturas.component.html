@@ -1,7 +1,8 @@
 <app-toolbar></app-toolbar>
 <app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Sepulturas"></app-crud-toolbar>
+<app-filter-visible (FilterE)="filterVisible($event)"></app-filter-visible>
 
-<form id="form_FSepultura" class="form_SGC">
+<form id="form_FSepultura" class="form_SGC" *ngIf="Filter">
     <div class="row mb-1">
         <div class="col-md-2">
             <div class="form-outline">

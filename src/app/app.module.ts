@@ -14,6 +14,7 @@ import { CrudToolbarComponent } from './components/crud-toolbar/crud-toolbar.com
 import { ListSepulturasComponent } from './pages/Sepulturas/list-sepulturas/list-sepulturas.component';
 import { ListFunerariasComponent } from './pages/Funerarias/list-funerarias/list-funerarias.component';
 import { FilterVisibleComponent } from './components/filter-visible/filter-visible.component';
+import { ListFalecidosComponent } from './pages/Movimentacoes/Pessoas/list-falecidos/list-falecidos.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FilterVisibleComponent } from './components/filter-visible/filter-visib
     ListSepulturasComponent,
     ListFunerariasComponent,
     FilterVisibleComponent,
+    ListFalecidosComponent,
     
   ],
   imports: [
