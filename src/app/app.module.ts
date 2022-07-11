@@ -13,6 +13,7 @@ import { TableComponent } from './components/table/table.component';
 import { CrudToolbarComponent } from './components/crud-toolbar/crud-toolbar.component';
 import { ListSepulturasComponent } from './pages/Sepulturas/list-sepulturas/list-sepulturas.component';
 import { ListFunerariasComponent } from './pages/Funerarias/list-funerarias/list-funerarias.component';
+import { FilterVisibleComponent } from './components/filter-visible/filter-visible.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ListFunerariasComponent } from './pages/Funerarias/list-funerarias/list
     CrudToolbarComponent,
     ListSepulturasComponent,
     ListFunerariasComponent,
+    FilterVisibleComponent,
     
   ],
   imports: [

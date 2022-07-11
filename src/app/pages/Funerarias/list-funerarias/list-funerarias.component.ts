@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListFunerariasComponent implements OnInit {
 
+  colunasName = [
+    { name: 'Codigo' }, { name: 'Nome' }, { name: 'Endereco' }, { name: 'Cidade' }
+  ]
+  filterVisible: string = 'true';
+  receberClick(filterComponent: any) {
+    this.filterVisible = filterComponent;
+    
+  }
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

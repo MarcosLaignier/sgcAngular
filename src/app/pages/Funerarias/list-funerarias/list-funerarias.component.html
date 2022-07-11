@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 <app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Funerarias"></app-crud-toolbar>
-
-<form id="form_FFuneraria" class="form_SGC">
+<app-filter-visible (FilterE)="receberClick($event)"></app-filter-visible>
+<form id="form_FFuneraria" class="form_SGC" *ngIf="filterVisible">
     <div class="row mb-1">
         <div class="col-md-2">
             <div class="form-outline">
@@ -36,3 +36,5 @@
     </div>
 
 </form>
+
+<app-table class="d-flex" [colunasTable]="colunasName"></app-table>

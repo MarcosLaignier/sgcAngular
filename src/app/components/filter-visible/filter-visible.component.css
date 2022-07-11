@@ -1,0 +1,10 @@
+#spanFilter{
+    background-color: #f0f0f0;
+    border: 1px solid #dfdfdf;
+    margin-bottom: 2px;
+    padding: 5px;
+    text-decoration: underline;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+}
