@@ -8,9 +8,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LeftBarComponent } from './components/left-bar/left-bar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ListCemiteriosComponent } from './pages/list-cemiterios/list-cemiterios.component';
+import { ListCemiteriosComponent } from './pages/Cemiterios/list-cemiterios/list-cemiterios.component';
 import { TableComponent } from './components/table/table.component';
 import { CrudToolbarComponent } from './components/crud-toolbar/crud-toolbar.component';
+import { ListSepulturasComponent } from './pages/Sepulturas/list-sepulturas/list-sepulturas.component';
+import { ListFunerariasComponent } from './pages/Funerarias/list-funerarias/list-funerarias.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { CrudToolbarComponent } from './components/crud-toolbar/crud-toolbar.com
     ListCemiteriosComponent,
     TableComponent,
     CrudToolbarComponent,
+    ListSepulturasComponent,
+    ListFunerariasComponent,
     
   ],
   imports: [

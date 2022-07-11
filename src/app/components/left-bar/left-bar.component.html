@@ -47,14 +47,14 @@
             </li>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" (click)="openAside()">Sepulturas</span>
+                <span class="textMenuLeftBar" [routerLink]="['/listsepulturas']" (click)="openAside()">Sepulturas</span>
             </li>
         </ul>
         <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
             <span>Funerarias</span>
             <li>
                 <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" (click)="openAside()">Funeraria</span>
+                <span class="textMenuLeftBar" [routerLink]="['listfunerarias']" (click)="openAside()">Funeraria</span>
             </li>
 
         </ul>

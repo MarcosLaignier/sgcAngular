@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-crud-toolbar',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crud-toolbar.component.css']
 })
 export class CrudToolbarComponent implements OnInit {
+
+  @Input() titlePage:String ='';
 
   constructor() { }
 
