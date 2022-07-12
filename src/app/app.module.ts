@@ -15,6 +15,8 @@ import { ListSepulturasComponent } from './pages/Sepulturas/list-sepulturas/list
 import { ListFunerariasComponent } from './pages/Funerarias/list-funerarias/list-funerarias.component';
 import { FilterVisibleComponent } from './components/filter-visible/filter-visible.component';
 import { ListFalecidosComponent } from './pages/Movimentacoes/Pessoas/list-falecidos/list-falecidos.component';
+import { ListSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/list-sepultamentos/list-sepultamentos.component';
+import { ConfiguracoesGeraisComponent } from './pages/Configuracoes/configuracoes-gerais/configuracoes-gerais.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ListFalecidosComponent } from './pages/Movimentacoes/Pessoas/list-falec
     ListFunerariasComponent,
     FilterVisibleComponent,
     ListFalecidosComponent,
+    ListSepultamentosComponent,
+    ConfiguracoesGeraisComponent,
     
   ],
   imports: [

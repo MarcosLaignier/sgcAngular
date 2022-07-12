@@ -21,12 +21,10 @@ export class LeftBarComponent implements OnInit {
 
   urlLogo = '/assets/Images/LogoMunicipio.png';
   idButton: String = '';
-  n: String = '';
   openSideSubMenu: Boolean = false;
   menuCadastrosIniciais: Boolean = false;
   menuCadComum: Boolean = false;
   menuCadMovimentacoes: Boolean = false;
-  menuRelatorio: Boolean = false;
   menuConfig: Boolean = false;
 
   @Input() clickActive: Boolean = false;
@@ -53,9 +51,6 @@ export class LeftBarComponent implements OnInit {
     } else if (this.idButton == 'CadMovimentacoes') {
       this.clearIdMenu()
       this.menuCadMovimentacoes = true
-    } else if (this.idButton == 'Relatorios') {
-      this.clearIdMenu()
-      this.menuRelatorio = true
     } else if (this.idButton == 'Config') {
       this.clearIdMenu()
       this.menuConfig = true
@@ -71,7 +66,6 @@ export class LeftBarComponent implements OnInit {
     this.menuCadastrosIniciais = false;
     this.menuCadComum = false;
     this.menuCadMovimentacoes = false;
-    this.menuRelatorio = false;
     this.menuConfig = false
   }
 
