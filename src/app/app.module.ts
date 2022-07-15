@@ -22,6 +22,7 @@ import { CadSepulturasComponent } from './pages/Sepulturas/cad-sepulturas/cad-se
 import { CadFalecidosComponent } from './pages/Movimentacoes/Pessoas/cad-falecidos/cad-falecidos.component';
 import { CadSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/cad-sepultamentos/cad-sepultamentos.component';
 import { CrudToolbarCadComponent } from './components/crud-toolbar-cad/crud-toolbar-cad.component';
+import { CadFunerariasComponent } from './pages/Funerarias/cad-funerarias/cad-funerarias.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CrudToolbarCadComponent } from './components/crud-toolbar-cad/crud-tool
     CadFalecidosComponent,
     CadSepultamentosComponent,
     CrudToolbarCadComponent,
+    CadFunerariasComponent,
     
   ],
   imports: [
