@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListSepultamentosComponent implements OnInit {
 
+  Filter:boolean = true
+
+  colunasName=[{name:"Codigo"}, {name:"Nome"}, {name:"CPF"},{name:"Nascimento"},{name:"Sepultamento"},{name:"Cemiterio"}]
+
+  recebeFilter(filterComponent: boolean) {
+    this.Filter = filterComponent;
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }

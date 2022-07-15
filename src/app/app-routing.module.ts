@@ -7,6 +7,8 @@ import { ListFunerariasComponent } from './pages/Funerarias/list-funerarias/list
 import { ListFalecidosComponent } from './pages/Movimentacoes/Pessoas/list-falecidos/list-falecidos.component';
 import { ListSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/list-sepultamentos/list-sepultamentos.component';
 import { ConfiguracoesGeraisComponent } from './pages/Configuracoes/configuracoes-gerais/configuracoes-gerais.component';
+import { CadCemiterioComponent } from './pages/Cemiterios/cad-cemiterio/cad-cemiterio.component';
+import { CadSepulturasComponent } from './pages/Sepulturas/cad-sepulturas/cad-sepulturas.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,12 @@ const routes: Routes = [
   },
   {
     path:'configuracoesgerais',component:ConfiguracoesGeraisComponent
+  },
+  {
+    path:'cadcemiterios',component:CadCemiterioComponent
+  },
+  {
+    path:'cadsepulturas',component:CadSepulturasComponent
   }
 ];
 

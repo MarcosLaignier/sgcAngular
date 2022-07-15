@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CrudToolbarComponent implements OnInit {
 
   @Input() titlePage:String ='';
+  @Input() routerNovo:String = '#';
 
   constructor() { }
 
