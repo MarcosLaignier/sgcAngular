@@ -19,6 +19,8 @@ import { ListSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/
 import { ConfiguracoesGeraisComponent } from './pages/Configuracoes/configuracoes-gerais/configuracoes-gerais.component';
 import { CadCemiterioComponent } from './pages/Cemiterios/cad-cemiterio/cad-cemiterio.component';
 import { CadSepulturasComponent } from './pages/Sepulturas/cad-sepulturas/cad-sepulturas.component';
+import { CadFalecidosComponent } from './pages/Movimentacoes/Pessoas/cad-falecidos/cad-falecidos.component';
+import { CadSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/cad-sepultamentos/cad-sepultamentos.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CadSepulturasComponent } from './pages/Sepulturas/cad-sepulturas/cad-se
     ConfiguracoesGeraisComponent,
     CadCemiterioComponent,
     CadSepulturasComponent,
+    CadFalecidosComponent,
+    CadSepultamentosComponent,
     
   ],
   imports: [
