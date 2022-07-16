@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cad-sepultamentos.component.css']
 })
 export class CadSepultamentosComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }
