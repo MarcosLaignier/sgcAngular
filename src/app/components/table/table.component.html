@@ -5,6 +5,13 @@
         </tr>
     </thead>
     <tbody id='tbody'>
+    <tr *ngFor="let dadoscols of dadosCols " id="{{dadoscols.undcodigo}}" (dblclick)="retornaId(dadoscols.undcodigo)"   >
+      <th scope="row">{{dadoscols.undcodigo}}</th>
+      <th scope="row">{{dadoscols.undnome}}</th>
+      <th scope="row">{{dadoscols.undendereco}} , {{ dadoscols.undnumero}} , {{dadoscols.undcidade}} - {{dadoscols.undestado}}</th>
+      <th scope="row">{{dadoscols.undresponsavel}}</th>
 
+
+    </tr>
     </tbody>
 </table>

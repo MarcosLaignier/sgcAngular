@@ -1,69 +1,109 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar-cad class="d-flex" titlePage="Cadastro de Cemiterio"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad class="d-flex" titlePage="Cadastro de Cemiterio" (SalvarBtn)=" salvarBtnF()" (excludeBtn)="deleteCemiterio()" (salvarFecharBtn)="salvarFecharBtnF()"></app-crud-toolbar-cad>
 
-<form id="form_CCemiterio" class="form_SGC">
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==200">
 
-    <div class="row mb-1">
-        <div class="col-md-2">
-            <div class="form-outline">
-                <label class="form-label" for="cod_Cemiterio">Codigo</label>
-                <input type="text" id="cod_Cemiterio" class="form-control" disabled />
+  <strong>Registro salvo com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
 
-            </div>
-        </div>
 
-    </div>
-    <div class="row mb-1">
-        <div class="col-md-5">
-            <div class="form-outline">
-                <label class="form-label" for="name_Cemiterio">Nome</label>
-                <input type="text" id="name_Cemiterio" class="form-control  form_I" name="name_Cemiterio" required />
+</div>
 
-            </div>
-        </div>
-    </div>
-    <div class="row mb-1">
-        <div class="col-md-3">
-            <div class="form-outline">
-                <label class="form-label" for="endereco_Cemiterio">Endereço</label>
-                <input type="text" id="endereco_Cemiterio" class="form-control" name="" required />
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==500">
 
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-outline">
-                <label class="form-label" for="number_Cemiterio">Numero</label>
-                <input type="text" id="number_Cemiterio" class="form-control" />
+  <strong>Erro Inesperado ! </strong> Entre em contato com o suporte tecnico
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
 
-            </div>
-        </div>
-    </div>
-    <div class="row mb-1">
-        <div class="col-md-3">
-            <div class="form-outline">
-                <label class="form-label" for="city_cemiterio">Cidade</label>
-                <input type="text" id="city_Cemiterio" class="form-control" />
 
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-outline">
-                <label class="form-label" for="state_Cemiterio">Estado</label>
-                <select id="state_Cemiterio" class="form-control " onclick="buscaEstados()">
-                    <option> </option>
-                </select>
+</div>
 
-            </div>
-        </div>
-    </div>
-    <div class="row mb-1">
-        <div class="col-md-5">
-            <div class="form-outline">
-                <label class="form-label" for="responsavel_Cemiterio">Responsavel</label>
-                <input type="text" id="responsavel_Cemiterio" class="form-control" />
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==202">
 
-            </div>
-        </div>
+  <strong>Registro EXCLUIDO com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+
+<form id="form_CCemiterio" class="form_SGC" [formGroup]="form">
+
+  <div class="row mb-1">
+    <div class="col-md-2">
+      <div class="form-outline">
+        <label class="form-label" for="cod_Cemiterio">Codigo</label>
+        <input type="text" id="cod_Cemiterio" class="form-control" name="codigoCemiterio"
+               [(ngModel)]="codigoCemiterio" formControlName="cod" readonly=true/>
+
+      </div>
     </div>
 
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="name_Cemiterio">Nome</label>
+        <input type="text" class="form-control" name="nameCemiterio" [(ngModel)]="nameCemiterio" formControlName="nome" />
+        <div *ngIf="form.get('nome')?.errors && clickSalvar" class="text-danger">
+          *Nome Obrigatorio
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-3">
+      <div class="form-outline">
+        <label class="form-label" for="endereco_Cemiterio">Endereço</label>
+        <input type="text" id="endereco_Cemiterio" class="form-control" name="enderecoCemiterio" [(ngModel)]="enderecoCemiterio" formControlName="endereco"/>
+        <div *ngIf="form.get('endereco')?.errors && clickSalvar" class="text-danger">
+          *Endereço Obrigatorio
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-outline">
+        <label class="form-label" for="number_Cemiterio">Numero</label>
+        <input type="text" id="number_Cemiterio" class="form-control" name="numeroCemiterio" [(ngModel)]="numeroCemiterio" formControlName="numero"/>
+        <div *ngIf="form.get('numero')?.errors && clickSalvar" class="text-danger">
+          *Numero Obrigatorio
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-3">
+      <div class="form-outline">
+        <label class="form-label" for="city_cemiterio">Cidade</label>
+        <input type="text" id="city_Cemiterio" class="form-control" name="cidadeCemiterio" [(ngModel)]="cidadeCemiterio" formControlName="cidade"/>
+        <div *ngIf="form.get('cidade')?.errors && clickSalvar" class="text-danger">
+          *Cidade Obrigatorio
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-outline">
+        <label class="form-label" for="state_Cemiterio">Estado</label>
+        <select id="state_Cemiterio" class="form-control " onclick="buscaEstados()" name="estadoCemiterio" [(ngModel)]="estadoCemiterio" formControlName="estado">
+          <option>MG</option>
+        </select>
+        <div *ngIf="form.get('estado')?.errors && clickSalvar" class="text-danger">
+          *Estado Obrigatorio
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="responsavel_Cemiterio">Responsavel</label>
+        <input type="text" id="responsavel_Cemiterio" class="form-control" name="responsavelCemiterio" [(ngModel)]="responsavelCemiterio" formControlName="responsavel"/>
+        <div *ngIf="form.get('responsavel')?.errors && clickSalvar" class="text-danger">
+          *Responsavel Obrigatorio
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
+
+<button (click)="buscaEstadosBr()">teste Estados</button>
+<button (click)="buscaEstadosBr2()">c</button>

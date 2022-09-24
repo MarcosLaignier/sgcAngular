@@ -26,6 +26,8 @@ export class LeftBarComponent implements OnInit {
   menuCadComum: Boolean = false;
   menuCadMovimentacoes: Boolean = false;
   menuConfig: Boolean = false;
+teste:String = '';
+
 
   @Input() clickActive: Boolean = false;
   constructor() { }
@@ -36,17 +38,18 @@ export class LeftBarComponent implements OnInit {
   openAside() {
   
       this.openSideSubMenu = !this.openSideSubMenu
-   
+      
   }
+  
 
   openSubMenu() {
     if (this.idButton == 'CadInicial') {
       this.clearIdMenu()
-      this.menuCadastrosIniciais = true
-
+      this.menuCadastrosIniciais = !this.menuCadastrosIniciais
+      
     } else if (this.idButton == 'CadComum') {
       this.clearIdMenu()
-      this.menuCadComum = true
+      this.menuCadComum = !this.menuCadComum
 
     } else if (this.idButton == 'CadMovimentacoes') {
       this.clearIdMenu()
@@ -67,6 +70,11 @@ export class LeftBarComponent implements OnInit {
     this.menuCadComum = false;
     this.menuCadMovimentacoes = false;
     this.menuConfig = false
+  }
+
+  tt(){
+    this.teste = this.idButton
+
   }
 
 

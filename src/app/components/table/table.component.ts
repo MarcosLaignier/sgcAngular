@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { modelTable } from 'src/app/models/table-model';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {modelTable} from 'src/app/models/table-model';
+import {cemiterioModel} from "../../models/cemiterio-model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-table',
@@ -8,14 +10,22 @@ import { modelTable } from 'src/app/models/table-model';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
-/*   @Input() colunasTable:modelTable | null=null; */
- @Input() colunasTable!:Array<{name:String}>
- 
+  /*   @Input() colunasTable:modelTable | null=null; */
+  @Input() colunasTable!: Array<{ name: String }>
+  @Input() dadosCols!: cemiterioModel[]
+  @Output() idLinha = new EventEmitter<number>();
+
+
 
   ngOnInit(): void {
-  
+
   }
+  retornaId(valor:number){
+    this.idLinha.emit(valor)
+  }
+
 
 }

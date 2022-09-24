@@ -4,9 +4,9 @@
 
     </div>
     <div class="d-flex px-4">
-        <button class="btn btn-outline-secondary mx-1">Filtrar</button>
+        <button class="btn btn-outline-secondary mx-1" (click)="FiltrarDados()">Filtrar</button>
         <button class="btn btn-outline-secondary mx-1" [routerLink]="[routerNovo]">Novo</button>
-        <button class="btn btn-outline-secondary mx-1">Limpar</button>
+        <button class="btn btn-outline-secondary mx-1" (click)="limparDados()">Limpar</button>
         <button class="btn btn-outline-secondary mx-1" (click)="backWindow()">Fechar</button>
 
     </div>

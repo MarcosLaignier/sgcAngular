@@ -1,13 +1,35 @@
 <app-toolbar ></app-toolbar>
-<app-crud-toolbar-cad titlePage="Cadastro de Sepulturas" class="d-flex"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad titlePage="Cadastro de Sepulturas" class="d-flex" (SalvarBtn)="salvarBtn()"  (excludeBtn)="deleteSep()"></app-crud-toolbar-cad>
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==200">
 
+  <strong>Registro salvo com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==500">
+
+  <strong>Erro Inesperado ! </strong> Entre em contato com o suporte tecnico
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==202">
+
+  <strong>Registro EXCLUIDO com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
 <form id="form_CSepultura" class="form_SGC">
 
     <div class="row mb-1">
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="cod_Sepultura">Codigo</label>
-          <input type="text" id="cod_Sepultura" class="form-control" disabled />
+          <input type="text" id="cod_Sepultura" class="form-control" [(ngModel)]="codSep" name="codSepultura" disabled />
 
         </div>
       </div>
@@ -18,15 +40,16 @@
       <div class="col-md-3">
         <div class="form-outline">
           <label class="form-label" for="desc_Sepultura">Nome</label>
-          <input type="text" id="desc_Sepultura" class="form-control" />
+          <input type="text" id="desc_Sepultura" class="form-control" [(ngModel)]="descSep" name="descSepultura"/>
 
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="name_Cemiterio">Cemiterio</label>
-          <select id="name_Cemiterio" class="form-control" >
-            <option> </option>
+          <select id="name_Cemiterio" class="form-control "  [(ngModel)]="cemiterioSep" name="nameCemiterio">
+            <option > </option>
+            <option *ngFor="let cem of nameCemiterios">{{cem}}</option>
           </select>
         </div>
       </div>

@@ -1,59 +1,66 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Cemiterios" routerNovo="../cadcemiterios"></app-crud-toolbar>
+<app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Cemiterios" routerNovo="../cadcemiterios"
+                  (clickE)="listarCemiterios()" (clickLimpar)="limparInput()"></app-crud-toolbar>
 <app-filter-visible (FilterE)="recebeFilter($event)"></app-filter-visible>
 
-<form id="form_FCemiterio" class="form_SGC" *ngIf="Filter" >
+<form id="form_FCemiterio" class="form_SGC" *ngIf="Filter">
 
-    <div class="row mb-1">
-        <div class="col-md-2">
-            <div class="form-outline">
-                <label class="form-label" for="cod_Cemiterio">Codigo</label>
-                <input type="text" id="cod_Cemiterio" class="form-control" />
+  <div class="row mb-1">
+    <div class="col-md-2">
+      <div class="form-outline">
+        <label class="form-label" for="cod_Cemiterio">Codigo</label>
+        <input type="text" id="cod_Cemiterio" class="form-control" name="cod_Cemiterio" [(ngModel)]="cod_Cemiterio"/>
 
-            </div>
-        </div>
-
+      </div>
     </div>
-    <div class="row mb-1">
-        <div class="col-md-5">
-            <div class="form-outline">
-                <label class="form-label" for="name_Cemiterio">Nome</label>
-                <input type="text" id="name_Cemiterio" class="form-control" />
 
-            </div>
-        </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="name_Cemiterio">Nome</label>
+        <input type="text" id="name_Cemiterio" class="form-control" name="nome_Cemiterio" [(ngModel)]="name_Cemiterio"/>
+
+      </div>
     </div>
-    
-    <div class="row mb-1">
-        <div class="col-md-5">
-            <div class="form-outline">
-                <label class="form-label" for="name_Responsavel">Responsavel</label>
-                <input type="text" id="name_Responsavel" class="form-control" />
+  </div>
 
-            </div>
-        </div>
+  <div class="row mb-1">
+    <div class="col-md-5">
+      <div class="form-outline">
+        <label class="form-label" for="name_Responsavel">Responsavel</label>
+        <input type="text" id="name_Responsavel" class="form-control" name="resp_Cemiterio" [(ngModel)]="resp_Cemiterio"/>
 
+      </div>
     </div>
-    <div class="row mb-1">
-        <div class="col-md-3">
-            <div class="form-outline">
-                <label class="form-label" for="name_Cidade">Cidade</label>
-                <input type="text" id="name_Cidade" class="form-control" />
 
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-outline">
-                <label class="form-label" for="state_Cemiterio">Estado</label>
-                
+  </div>
+  <div class="row mb-1">
+    <div class="col-md-3">
+      <div class="form-outline">
+        <label class="form-label" for="name_Cidade">Cidade</label>
+        <input type="text" id="name_Cidade" class="form-control" name="cidade_Cemiterio" [(ngModel)]="cidade_Cemiterio"/>
 
-            </div>
-        </div>
+      </div>
     </div>
-    
+    <div class="col-md-2">
+      <div class="form-outline">
+        <label class="form-label">Estado</label>
+
+
+      </div>
+    </div>
+  </div>
+
 
 </form>
-<div >
-    <app-table class="d-flex" [colunasTable]="colunasName"></app-table>
+
+<!--<button (click)="testePath(12)">tt</button>-->
+<div>
+  <app-table class="d-flex" [colunasTable]="colunasName" [dadosCols]="dadosCols" (idLinha)="recebeId_Path($event)"></app-table>
+<!--  <div class="spinner-border" role="status">-->
+<!--    <span class="visually-hidden">Loading...</span>-->
+<!--  </div>-->
 </div>
+
 

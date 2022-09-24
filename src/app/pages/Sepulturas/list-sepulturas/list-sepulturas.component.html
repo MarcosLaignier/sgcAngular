@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Sepulturas" routerNovo="../cadsepulturas"></app-crud-toolbar>
+<app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Sepulturas" routerNovo="../cadsepulturas" (click)="listSepultura()" (clickLimpar)="clearInputs()"></app-crud-toolbar>
 <app-filter-visible (FilterE)="filterVisible($event)"></app-filter-visible>
 
 <form id="form_FSepultura" class="form_SGC" *ngIf="Filter">
@@ -7,7 +7,7 @@
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="codigo_Sepultura">Codigo</label>
-                <input type="text" id="codigo_Sepultura" class="form-control" />
+                <input type="text" id="codigo_Sepultura" class="form-control" [(ngModel)]="codSepultura" name="codigo_Sepultura"/>
 
             </div>
         </div>
@@ -18,21 +18,21 @@
         <div class="col-md-3">
             <div class="form-outline">
                 <label class="form-label" for="desc_Sepultura">Descricao</label>
-                <input type="text" id="desc_Sepultura" class="form-control" />
+                <input type="text" id="desc_Sepultura" class="form-control" [(ngModel)]="descSepultura" name="desc_Sepultura"/>
 
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="name_Cemiterio">Cemiterio</label>
-                <select id="name_Cemiterio" class="form-control" >
+                <select id="name_Cemiterio" class="form-control" [(ngModel)]="cemiterioSepultura" name="name_Cemiterio" (click)="getNameCemiterios()">
                     <option> </option>
+                  <option *ngFor="let cem of this.nameCemiterios">{{cem}}</option>
                 </select>
 
             </div>
         </div>
     </div>
-
 </form>
 
-<app-table class="d-flex" [colunasTable]="colunasName"></app-table>
+<app-table-sepulturas class="d-flex" [colunasTable]="colunasName" [dadosCols]="dadosCols" (idLinha)="recebeId_Path($event)"></app-table-sepulturas>

@@ -1,0 +1,16 @@
+<table class="table table-hover ">
+  <thead>
+  <tr >
+    <th scope="col" *ngFor="let cols of colunasTable">{{cols.name}}</th>
+  </tr>
+  </thead>
+  <tbody id='tbody'>
+  <tr *ngFor="let dadoscols of dadosCols " id="{{dadoscols.sepcodigo}}" (dblclick)="retornaId(dadoscols.sepcodigo)"   >
+    <th scope="row">{{dadoscols.sepcodigo}}</th>
+    <th scope="row">{{dadoscols.sepdescricao}}</th>
+    <th scope="row">{{dadoscols.sepcemiterio}}</th>
+
+
+  </tr>
+  </tbody>
+</table>

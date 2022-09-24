@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { modelTable } from 'src/app/models/table-model';
+import {CemiteriosService} from "../service-cemiterios/cemiterios.service";
+import {Observable} from "rxjs";
+import {cemiterioModel} from "../../../models/cemiterio-model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-cemiterios',
@@ -7,22 +11,53 @@ import { modelTable } from 'src/app/models/table-model';
   styleUrls: ['./list-cemiterios.component.css']
 })
 export class ListCemiteriosComponent implements OnInit {
+  dadosCols: cemiterioModel[] = [];
 
-  constructor() { }
+  constructor(private cemiteriosService: CemiteriosService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
+  cod_Cemiterio:any;
+  name_Cemiterio:string='';
+  resp_Cemiterio:string='';
+  cidade_Cemiterio:string='';
+
+  colunasName = [
+    {name: 'ID'}, {name: 'Nome'}, {name: 'Endereco'}, {name: 'Responsavel'}, {name: 'Ativo'}
+  ]
+
 
   Filter: Boolean = true
-  colunasName = [
-    { name: 'ID' }, { name: 'Nome' }, { name: 'Endereco' }, { name: 'Responsavel' }, { name: 'Ativo' }
-  ]
 
   recebeFilter(filterComponent: boolean) {
     this.Filter = filterComponent;
   }
 
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+  }
+
+  listarCemiterios() {
+    this.cemiteriosService.listCemiterio().subscribe((recebeDados) => (this.dadosCols = recebeDados));
+    this.Filter = false;
+
+  }
+  idRec:number=0;
+
+  recebeId_Path(valor:number){
+    this.idRec=valor;
+    this.router.navigate(['/cadcemiterios',valor],)
+  }
+
+  limparInput(){
+    this.cod_Cemiterio=null;
+    this.name_Cemiterio='';
+    this.resp_Cemiterio='';
+    this.cidade_Cemiterio='';
   }
 
 
 }
+
+

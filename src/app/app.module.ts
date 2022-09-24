@@ -23,6 +23,10 @@ import { CadFalecidosComponent } from './pages/Movimentacoes/Pessoas/cad-falecid
 import { CadSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/cad-sepultamentos/cad-sepultamentos.component';
 import { CrudToolbarCadComponent } from './components/crud-toolbar-cad/crud-toolbar-cad.component';
 import { CadFunerariasComponent } from './pages/Funerarias/cad-funerarias/cad-funerarias.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { TableSepulturasComponent } from './pages/Sepulturas/Components/table-sepulturas/table-sepulturas.component';
+
 
 @NgModule({
   declarations: [
@@ -46,13 +50,19 @@ import { CadFunerariasComponent } from './pages/Funerarias/cad-funerarias/cad-fu
     CadSepultamentosComponent,
     CrudToolbarCadComponent,
     CadFunerariasComponent,
-    
+    TableComponent,
+    TableSepulturasComponent
+
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
-  ],
+    FontAwesomeModule,
+    HttpClientModule,
+    ReactiveFormsModule
+
+   ],
   providers: [],
   bootstrap: [AppComponent]
 })
