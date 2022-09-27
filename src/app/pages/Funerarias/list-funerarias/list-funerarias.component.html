@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Funerarias" routerNovo="../cadfunerarias"></app-crud-toolbar>
+<app-crud-toolbar class="d-flex my-2" titlePage="Pesquisa de Funerarias" routerNovo="../cadfunerarias" (click)="listFun()"></app-crud-toolbar>
 <app-filter-visible (FilterE)="receberClick($event)"></app-filter-visible>
 <form id="form_FFuneraria" class="form_SGC" *ngIf="filterVisible">
     <div class="row mb-1">
@@ -36,5 +36,4 @@
     </div>
 
 </form>
-
-<app-table class="d-flex" [colunasTable]="colunasName"></app-table>
+<app-table-funerarias class="d-flex" [colunasTable]="colunasName" [dadosCols]="dadosCols" (idLinha)="recebeIdPatch($event)"></app-table-funerarias>

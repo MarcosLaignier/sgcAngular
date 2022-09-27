@@ -26,6 +26,7 @@ import { CadFunerariasComponent } from './pages/Funerarias/cad-funerarias/cad-fu
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TableSepulturasComponent } from './pages/Sepulturas/Components/table-sepulturas/table-sepulturas.component';
+import { TableFunerariasComponent } from './pages/Funerarias/Components/table-funerarias/table-funerarias.component';
 
 
 @NgModule({
@@ -51,7 +52,9 @@ import { TableSepulturasComponent } from './pages/Sepulturas/Components/table-se
     CrudToolbarCadComponent,
     CadFunerariasComponent,
     TableComponent,
-    TableSepulturasComponent
+    TableSepulturasComponent,
+    TableFunerariasComponent,
+
 
   ],
   imports: [

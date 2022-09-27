@@ -29,7 +29,7 @@ export class SepulturaServiceService {
   }
 
   public alteraSepultura(id:number,dados:sepulturaModel){
-    return this.HttpClient.put(`${this.API}/alter/${id}`,dados)
+    return this.HttpClient.put(`${this.API}/alter/${id}`,dados,{observe:'response'})
   }
 
   public deleteSepulturas(id:number){

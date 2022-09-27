@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar-cad titlePage="Cadastro de Funerarias" class="d-flex"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad titlePage="Cadastro de Funerarias" class="d-flex" (SalvarBtn)="insertFun()"></app-crud-toolbar-cad>
 
 <form id="form_CFuneraria" class="form_SGC">
 
@@ -7,7 +7,7 @@
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="cod_Funeraria">Codigo</label>
-                <input type="text" id="cod_Funeraria" class="form-control" disabled />
+                <input type="text" id="cod_Funeraria" class="form-control" readonly="true" [(ngModel)]="codFun" name="codFun"/>
 
             </div>
         </div>
@@ -18,14 +18,14 @@
         <div class="col-md-3">
             <div class="form-outline">
                 <label class="form-label" for="name_Funeraria" >Nome</label>
-                <input type="text" id="name_Funeraria" class="form-control" />
+                <input type="text" id="name_Funeraria" class="form-control" [(ngModel)]="nameFun" name="nameFun"/>
 
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="city_Funeraria">Cidade</label>
-                <select id="city_Funeraria" class="form-control">
+                <select id="city_Funeraria" class="form-control" [(ngModel)]="cidadeFun" name="cidadeFun">
                     <option selected>Escolher</option>
                     <option>Lagoa Santa</option>
                     <option>Pedro Leopoldo</option>
@@ -37,22 +37,20 @@
             <div class="col-md-3">
                 <div class="form-outline">
                     <label class="form-label" for="endereco_Funeraria">Endereco</label>
-                    <input type="text" id="endereco_Funeraria" class="form-control" />
+                    <input type="text" id="endereco_Funeraria" class="form-control" [(ngModel)]="enderecoFun" name="enderecoFun"/>
 
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-outline">
                     <label class="form-label" for="number_Funeraria">Numero</label>
-                    <input type="text" id="number_Funeraria" class="form-control" />
+                    <input type="text" id="number_Funeraria" class="form-control" [(ngModel)]="numeroFun" name="numeroFun"/>
                 </div>
             </div>
 
 
         </div>
     </div>
-    
+
 </form>
-<!-- <input type="text" id="name_Funeraria" class="form-control" [(ngModel)]="nomeFun" />
-<p>{{nomeFun}}</p>
-<button (click)="saveInformations()">localStorage</button> -->
+

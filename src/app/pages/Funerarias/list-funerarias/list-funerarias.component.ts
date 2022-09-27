@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FunerariaService} from "../Services/funeraria.service";
+import {funerariaModel} from "../funerariaModel";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-funerarias',
@@ -13,12 +16,38 @@ export class ListFunerariasComponent implements OnInit {
   filterVisible: boolean = true;
   receberClick(filterComponent: boolean) {
     this.filterVisible = filterComponent;
-    
+
   }
-  constructor() { }
+
+  dadosCols:funerariaModel[]=[];
+  idUrl:number=0;
+
+  constructor(private funerariaService:FunerariaService,
+              private router:Router
+    ) { }
 
   ngOnInit(): void {
-    
+
   }
+
+  public listFun(){
+    return this.funerariaService.listFun().subscribe(
+      data =>{
+        this.dadosCols=data;
+      }
+    )
+  }
+
+
+
+  public recebeIdPatch(id:number){
+    this.idUrl=id;
+    this.router.navigate([`/cadfunerarias`,this.idUrl])
+
+  }
+
+
+
+
 
 }

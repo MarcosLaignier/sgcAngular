@@ -1,5 +1,5 @@
 <app-toolbar ></app-toolbar>
-<app-crud-toolbar-cad titlePage="Cadastro de Sepulturas" class="d-flex" (SalvarBtn)="salvarBtn()"  (excludeBtn)="deleteSep()"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad titlePage="Cadastro de Sepulturas" class="d-flex" (SalvarBtn)="salvarBtn()"  (excludeBtn)="deleteSep()" (salvarFecharBtn)="salvarFecharBtn()"></app-crud-toolbar-cad>
 <div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==200">
 
   <strong>Registro salvo com sucesso! </strong>
@@ -23,13 +23,13 @@
 
 
 </div>
-<form id="form_CSepultura" class="form_SGC">
+<form id="form_CSepultura" class="form_SGC" [formGroup]="form">
 
     <div class="row mb-1">
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="cod_Sepultura">Codigo</label>
-          <input type="text" id="cod_Sepultura" class="form-control" [(ngModel)]="codSep" name="codSepultura" disabled />
+          <input type="text" id="cod_Sepultura" class="form-control" [(ngModel)]="codSep" name="codSepultura"  formControlName="codSepultura" readonly="true"/>
 
         </div>
       </div>
@@ -40,17 +40,22 @@
       <div class="col-md-3">
         <div class="form-outline">
           <label class="form-label" for="desc_Sepultura">Nome</label>
-          <input type="text" id="desc_Sepultura" class="form-control" [(ngModel)]="descSep" name="descSepultura"/>
-
+          <input type="text" id="desc_Sepultura" class="form-control" [(ngModel)]="descSep" name="descSepultura" formControlName="descSepultura"/>
+          <div *ngIf="form.get('descSepultura')?.errors && clicaSalvar" class="text-danger">
+            *Descricao Obrigatoria
+          </div>
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="name_Cemiterio">Cemiterio</label>
-          <select id="name_Cemiterio" class="form-control "  [(ngModel)]="cemiterioSep" name="nameCemiterio">
+          <select id="name_Cemiterio" class="form-control "  [(ngModel)]="cemiterioSep" name="nameCemiterio" formControlName="nomeCemiterio">
             <option > </option>
             <option *ngFor="let cem of nameCemiterios">{{cem}}</option>
           </select>
+          <div *ngIf="form.get('nomeCemiterio')?.errors && clicaSalvar" class="text-danger">
+            *Nome do Cemiterio Obrigatorio
+          </div>
         </div>
       </div>
     </div>

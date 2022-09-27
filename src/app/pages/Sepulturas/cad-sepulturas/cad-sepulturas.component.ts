@@ -3,6 +3,7 @@ import {SepulturaServiceService} from "../services/sepultura-service.service";
 import {ActivatedRoute} from "@angular/router";
 import {sepulturaModel} from "../sepulturaModel";
 import {HttpStatusCode} from "@angular/common/http";
+import {FormBuilder, Validators} from "@angular/forms";
 
 
 @Component({
@@ -13,8 +14,16 @@ import {HttpStatusCode} from "@angular/common/http";
 export class CadSepulturasComponent implements OnInit {
 
   constructor(private sepulturaService: SepulturaServiceService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder
+  ) {
   }
+
+  form = this.formBuilder.group({
+    codSepultura: [0, [Validators.required]],
+    descSepultura: ['', [Validators.required]],
+    nomeCemiterio: ['', [Validators.required]]
+  })
 
   codSep: number = 0;
   descSep: String = '';
@@ -59,25 +68,44 @@ export class CadSepulturasComponent implements OnInit {
   }
 
   insertSep() {
-    this.sepulturaInserida.sepcodigo = this.codSep;
-    this.sepulturaInserida.sepdescricao = this.descSep;
-    this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
-    return this.sepulturaService.insertSepultura(this.sepulturaInserida).subscribe(
-      response => {
-        if (response.status == 200) {
-          this.infoStatus = HttpStatusCode.Ok;
-        } else {
-          this.infoStatus = HttpStatusCode.InternalServerError
+    if (this.form.valid) {
+      this.sepulturaInserida.sepcodigo = this.codSep;
+      this.sepulturaInserida.sepdescricao = this.descSep;
+      this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
+      return this.sepulturaService.insertSepultura(this.sepulturaInserida).subscribe(
+        response => {
+          if (response.status == 200) {
+            this.infoStatus = HttpStatusCode.Ok;
+          } else {
+            this.infoStatus = HttpStatusCode.InternalServerError
+          }
         }
-      }
-    )
+      )
+    } else {
+      return this.infoStatus = HttpStatusCode.InternalServerError
+    }
   }
 
+
   alteraSep() {
-    this.sepulturaInserida.sepcodigo = this.codSep;
-    this.sepulturaInserida.sepdescricao = this.descSep;
-    this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
-    return this.sepulturaService.alteraSepultura(this.codSep, this.sepulturaInserida).subscribe()
+    if (this.form.valid) {
+
+      this.sepulturaInserida.sepcodigo = this.codSep;
+      this.sepulturaInserida.sepdescricao = this.descSep;
+      this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
+      return this.sepulturaService.alteraSepultura(this.codSep, this.sepulturaInserida).subscribe(
+        response => {
+          if (response.status == 200) {
+            this.infoStatus = HttpStatusCode.Ok
+          } else {
+            this.infoStatus = HttpStatusCode.InternalServerError
+          }
+        }
+      )
+    } else {
+      return this.infoStatus = HttpStatusCode.InternalServerError
+
+    }
   }
 
   deleteSep() {
@@ -85,7 +113,7 @@ export class CadSepulturasComponent implements OnInit {
       response => {
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Accepted
-          setTimeout(this.backWindow,1000)
+          setTimeout(this.backWindow, 1000)
         }
       }
     );
@@ -110,10 +138,24 @@ export class CadSepulturasComponent implements OnInit {
     }
   }
 
+  salvarFecharBtn() {
+    this.clicaSalvar = true
+    if (this.idRoute == undefined || this.idRoute == 0) {
+      this.insertSep()
+      if(this.form.valid){
+      setTimeout(this.backWindow,500)
+      }
+    } else {
+      this.alteraSep()
+      if(this.form.valid){
+        setTimeout(this.backWindow,500)
+      }
+    }
+  }
+
   backWindow() {
     window.history.back();
   }
-
 
 
 }
