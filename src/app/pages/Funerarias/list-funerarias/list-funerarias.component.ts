@@ -22,6 +22,10 @@ export class ListFunerariasComponent implements OnInit {
   dadosCols:funerariaModel[]=[];
   idUrl:number=0;
 
+  codFun:any;
+  nomeFun:String='';
+  cidadeFun:String='';
+
   constructor(private funerariaService:FunerariaService,
               private router:Router
     ) { }
@@ -44,6 +48,12 @@ export class ListFunerariasComponent implements OnInit {
     this.idUrl=id;
     this.router.navigate([`/cadfunerarias`,this.idUrl])
 
+  }
+
+  public clearInput(){
+    this.codFun='';
+    this.nomeFun='';
+    this.cidadeFun=''
   }
 
 

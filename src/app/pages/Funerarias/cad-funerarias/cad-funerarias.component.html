@@ -1,13 +1,35 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar-cad titlePage="Cadastro de Funerarias" class="d-flex" (SalvarBtn)="insertFun()"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad titlePage="Cadastro de Funerarias" class="d-flex" (SalvarBtn)="btnSalvar()" (excludeBtn)="deleteFun()" (salvarFecharBtn)="btnSalvarFechar()"></app-crud-toolbar-cad>
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==200">
 
-<form id="form_CFuneraria" class="form_SGC">
+  <strong>Registro salvo com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==500">
+
+  <strong>Erro Inesperado ! </strong> Entre em contato com o suporte tecnico
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==202">
+
+  <strong>Registro EXCLUIDO com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+<form id="form_CFuneraria" class="form_SGC" [formGroup]="form">
 
     <div class="row mb-1">
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="cod_Funeraria">Codigo</label>
-                <input type="text" id="cod_Funeraria" class="form-control" readonly="true" [(ngModel)]="codFun" name="codFun"/>
+                <input type="text" id="cod_Funeraria" class="form-control" [(ngModel)]="codFun" name="codFun" formControlName="codFun" readonly="true" />
 
             </div>
         </div>
@@ -18,34 +40,44 @@
         <div class="col-md-3">
             <div class="form-outline">
                 <label class="form-label" for="name_Funeraria" >Nome</label>
-                <input type="text" id="name_Funeraria" class="form-control" [(ngModel)]="nameFun" name="nameFun"/>
-
+                <input type="text" id="name_Funeraria" class="form-control" [(ngModel)]="nameFun" name="nameFun" formControlName="nameFun"/>
             </div>
+          <div *ngIf="form.get('nameFun')?.errors && clicaSalvar" class="text-danger">
+            *Nome Obrigatorio
+          </div>
         </div>
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="city_Funeraria">Cidade</label>
-                <select id="city_Funeraria" class="form-control" [(ngModel)]="cidadeFun" name="cidadeFun">
+                <select id="city_Funeraria" class="form-control" [(ngModel)]="cidadeFun" name="cidadeFun" formControlName="cidadeFun">
                     <option selected>Escolher</option>
                     <option>Lagoa Santa</option>
                     <option>Pedro Leopoldo</option>
                     <option>Vespasiano</option>
                 </select>
             </div>
+          <div *ngIf="form.get('cidadeFun')?.errors && clicaSalvar" class="text-danger">
+            *Cidade Obrigatoria
+          </div>
         </div>
         <div class="row mb-1">
             <div class="col-md-3">
                 <div class="form-outline">
                     <label class="form-label" for="endereco_Funeraria">Endereco</label>
-                    <input type="text" id="endereco_Funeraria" class="form-control" [(ngModel)]="enderecoFun" name="enderecoFun"/>
-
+                    <input type="text" id="endereco_Funeraria" class="form-control" [(ngModel)]="enderecoFun" name="enderecoFun" formControlName="enderecoFun"/>
                 </div>
+              <div *ngIf="form.get('enderecoFun')?.errors && clicaSalvar" class="text-danger">
+                *Endereco Obrigatorio
+              </div>
             </div>
             <div class="col-md-2">
                 <div class="form-outline">
                     <label class="form-label" for="number_Funeraria">Numero</label>
-                    <input type="text" id="number_Funeraria" class="form-control" [(ngModel)]="numeroFun" name="numeroFun"/>
+                    <input type="text" id="number_Funeraria" class="form-control" [(ngModel)]="numeroFun" name="numeroFun" formControlName="numeroFun"/>
                 </div>
+              <div *ngIf="form.get('numeroFun')?.errors && clicaSalvar" class="text-danger">
+                *Numero Obrigatorio
+              </div>
             </div>
 
 

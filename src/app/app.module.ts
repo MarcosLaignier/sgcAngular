@@ -27,6 +27,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TableSepulturasComponent } from './pages/Sepulturas/Components/table-sepulturas/table-sepulturas.component';
 import { TableFunerariasComponent } from './pages/Funerarias/Components/table-funerarias/table-funerarias.component';
+import { TablePessoaComponent } from './pages/Movimentacoes/Pessoas/Components/table-pessoa/table-pessoa.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { TableFunerariasComponent } from './pages/Funerarias/Components/table-fu
     TableComponent,
     TableSepulturasComponent,
     TableFunerariasComponent,
+    TablePessoaComponent,
 
 
   ],

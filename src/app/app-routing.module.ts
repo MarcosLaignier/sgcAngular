@@ -57,6 +57,9 @@ const routes: Routes = [
   },
   {
     path:'cadfunerarias/:id',component:CadFunerariasComponent
+  },
+  {
+    path:'cadfalecidos/:id',component:CadFalecidosComponent
   }
 ];
 

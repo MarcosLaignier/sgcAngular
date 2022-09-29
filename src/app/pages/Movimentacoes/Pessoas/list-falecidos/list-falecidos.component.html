@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar class="d-flex" titlePage="Pesquisa de Falecidos" routerNovo="../cadfalecidos"></app-crud-toolbar>
+<app-crud-toolbar class="d-flex" titlePage="Pesquisa de Falecidos" routerNovo="../cadfalecidos" (clickE)="getPessoa()"></app-crud-toolbar>
 <app-filter-visible (FilterE)="visibleFilter($event)" ></app-filter-visible>
 
 <form id="form_FFalecido" class="form_SGC" *ngIf="Filter">
@@ -33,5 +33,5 @@
           </div>
         </div>
       </div>
-
-      <app-table [colunasTable]="colunasName" class="d-flex"></app-table>
+</form>
+      <app-table-pessoa [colunasTable]="colunasName" class="d-flex" [dadosCols]="dadosCols" (idLinha)="retornaIdUrl($event)"></app-table-pessoa>
