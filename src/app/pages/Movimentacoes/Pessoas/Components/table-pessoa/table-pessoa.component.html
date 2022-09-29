@@ -1,0 +1,19 @@
+<table class="table table-hover ">
+  <thead>
+  <tr >
+    <th scope="col" *ngFor="let cols of colunasTable">{{cols.name}}</th>
+  </tr>
+  </thead>
+  <tbody id='tbody'>
+  <tr *ngFor="let dadoscols of dadosCols " id="{{dadoscols.falcodigo}}" (dblclick)="retornaId(dadoscols.falcodigo)"   >
+    <th scope="row">{{dadoscols.falcodigo}}</th>
+    <th scope="row">{{dadoscols.falnome}}</th>
+    <th scope="row">{{dadoscols.falcpf}} </th>
+    <th scope="row">{{dadoscols.falsexo}}</th>
+    <th scope="row">{{dadoscols.falnascimento}}</th>
+    <th scope="row">{{dadoscols.falfalecimento}}</th>
+
+
+  </tr>
+  </tbody>
+</table>
