@@ -3,7 +3,8 @@ const PROXY_CONFIG = [{
   // target:'http://localhost:8080/',
   target:'http://ec2-54-86-171-218.compute-1.amazonaws.com:8080/',
   secure:false,
-  logLevel:'debug'
+  logLevel:'debug',
+  changeOrigin:true
 }];
 
 module.exports = PROXY_CONFIG;
