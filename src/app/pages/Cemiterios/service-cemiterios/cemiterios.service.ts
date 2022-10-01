@@ -11,7 +11,7 @@ export class CemiteriosService {
   constructor(private httpClient: HttpClient) {
   }
 
-  private API = 'api/cemiterios/';
+  private API = 'http://ec2-54-86-171-218.compute-1.amazonaws.com:8080/api/cemiterios/';
 
   listCemiterio() {
     return this.httpClient.get<cemiterioModel[]>(this.API).pipe(
