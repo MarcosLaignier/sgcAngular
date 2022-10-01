@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar-cad titlePage="Cadastro de Falecidos" class="d-flex" (SalvarBtn)="salvarBtn()" (excludeBtn)="deletePessoa()" (salvarFecharBtn)="includePessoa()"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad titlePage="Cadastro de Falecidos" class="d-flex" (SalvarBtn)="salvarBtn()" (excludeBtn)="deletePessoa()" (salvarFecharBtn)="salvarFecharBtn()"></app-crud-toolbar-cad>
 <div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==200">
 
   <strong>Registro salvo com sucesso! </strong>
@@ -23,13 +23,13 @@
 
 
 </div>
-<form id="form_CFalecido" class="form_SGC">
+<form id="form_CFalecido" class="form_SGC" [formGroup]="form">
 
   <div class="row mb-1">
     <div class="col-md-2">
       <div class="form-outline">
         <label class="form-label" for="cod_Falecido">Codigo</label>
-        <input type="text" id="cod_Falecido" class="form-control" [(ngModel)]="codFal" name="codFal" readonly="true" />
+        <input type="text" id="cod_Falecido" class="form-control" [(ngModel)]="codFal" name="codFal" formControlName="falcodigo" readonly="true" />
 
       </div>
     </div>
@@ -52,8 +52,10 @@
       <div class="col-md-5">
         <div class="form-outline">
           <label class="form-label" for="name_Falecido">Nome</label>
-          <input type="text" id="name_Falecido" class="form-control" [(ngModel)]="nomeFal" name="nomeFal"/>
-
+          <input type="text" id="name_Falecido" class="form-control" [(ngModel)]="nomeFal" name="nomeFal" formControlName="falnome"/>
+        </div>
+        <div *ngIf="form.get('falnome')?.errors && clicaSalvar" class="text-danger">
+          *Nome Obrigatorio
         </div>
       </div>
 
@@ -62,20 +64,23 @@
       <div class="col-md-3">
         <div class="form-outline">
           <label class="form-label" for="name_Falecido">Sexo</label>
-          <select id="sexo_Falecido" class="form-control" [(ngModel)]="sexoFal" name="sexoFal">
+          <select id="sexo_Falecido" class="form-control" [(ngModel)]="sexoFal" name="sexoFal" formControlName="falsexo">
             <option selected>Escolher</option>
             <option>Masculino</option>
             <option>Feminino</option>
           </select>
-
+        </div>
+        <div *ngIf="form.get('falsexo')?.errors && clicaSalvar" class="text-danger">
+          *Sexo Obrigatorio
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="nascimento_Falecido">Nascimento</label>
-          <input type="date-local" id="nascimento_Falecido" class="form-control" [(ngModel)]="nascFal" name="nascFal"/>
-
-
+          <input type="date-local" id="nascimento_Falecido" class="form-control" [(ngModel)]="nascFal" name="nascFal" formControlName="falnascimento"/>
+        </div>
+        <div *ngIf="form.get('falnascimento')?.errors && clicaSalvar" class="text-danger">
+          *Nascimento Obrigatorio
         </div>
       </div>
     </div>
@@ -83,20 +88,25 @@
       <div class="col-md-3">
         <div class="form-outline">
           <label class="form-label" for="naturalidade_Falecido">Nacionalidade</label>
-          <select id="naturalidade_Falecido" class="form-control state" [(ngModel)]="nacionalidadeFal" name="nacionalidadeFal">
+          <select id="naturalidade_Falecido" class="form-control state" [(ngModel)]="nacionalidadeFal" name="nacionalidadeFal" formControlName="falnaturalidade">
             <option selected> </option>
             <option>Brasileira</option>
             <option>Estrangeira</option>
           </select>
-
+        </div>
+        <div *ngIf="form.get('falnaturalidade')?.errors && clicaSalvar" class="text-danger">
+          *Nacionalidade Obrigatoria
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-outline">
-          <label class="form-label" for="data_Falecidmento">Falecimento</label>
-          <input type="date-local" id="date_Falecimento" class="form-control" [(ngModel)]="falecimentoFal" name="falecimentoFal"/>
+          <label class="form-label" for="date_Falecimento">Falecimento</label>
+          <input type="date-local" id="date_Falecimento" class="form-control" [(ngModel)]="falecimentoFal" name="falecimentoFal" formControlName="falfalecimento"/>
 
 
+        </div>
+        <div *ngIf="form.get('falfalecimento')?.errors && clicaSalvar" class="text-danger">
+          *Falecimento Obrigatorio
         </div>
       </div>
     </div>
@@ -110,14 +120,16 @@
         <div class="form-outline">
           <label class="form-label" for="name_Falecido">CPF</label>
           <input type="text" id="cpf_Falecido" class="form-control" maxlength="11" minlength="11"
-            placeholder="000.000.000-00"  [(ngModel)]="cpfFal" name="cpfFal"/>
-
+            placeholder="000.000.000-00"  [(ngModel)]="cpfFal" name="cpfFal" formControlName="falcpf"/>
+        </div>
+        <div *ngIf="form.get('falcpf')?.errors && clicaSalvar" class="text-danger">
+          *CPF Obrigatorio
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="name_Falecido">RG</label>
-          <input type="text" id="RG_Falecido" class="form-control" maxlength="11" minlength="11" />
+          <input type="text" id="RG_Falecido" class="form-control" maxlength="11" minlength="11" formControlName="falRG" name="falRG"/>
 
         </div>
       </div>
@@ -128,8 +140,8 @@
     <div class="row mb-1">
       <div class="col-md-5">
         <div class="form-outline">
-          <label class="form-label" for="medico_Falecido">Causa Mortis</label>
-          <input type="text" id="medico_Falecido" class="form-control" />
+          <label class="form-label" for="causa_Mortis">Causa Mortis</label>
+          <input type="text" id="causa_Mortis" class="form-control" formControlName="falCausaMortis" name="falCausaMortis"/>
 
         </div>
       </div>
@@ -138,8 +150,10 @@
       <div class="col-md-5">
         <div class="form-outline">
           <label class="form-label" for="medico_Falecido">Medico Responsavel</label>
-          <input type="text" id="medico_Falecido" class="form-control" [(ngModel)]="medResponsavel" name="medResponsavel" />
-
+          <input type="text" id="medico_Falecido" class="form-control" [(ngModel)]="medResponsavel" name="medResponsavel" formControlName="falmedresp"/>
+          <div *ngIf="form.get('falmedresp')?.errors && clicaSalvar" class="text-danger">
+            *Medico Obrigatorio
+          </div>
         </div>
       </div>
     </div>

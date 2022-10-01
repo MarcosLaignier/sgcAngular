@@ -67,7 +67,6 @@ export class CadFunerariasComponent implements OnInit {
   }
 
   public insertFun() {
-    this.clicaSalvar = true
     if (this.form.valid) {
       this.funeraria.funcodigo = this.codFun
       this.funeraria.fundescricao = this.nameFun
@@ -90,7 +89,6 @@ export class CadFunerariasComponent implements OnInit {
   }
 
   public alterFun() {
-    this.clicaSalvar = true
     if (this.form.valid) {
       this.funeraria.funcodigo = this.codFun
       this.funeraria.fundescricao = this.nameFun
@@ -126,6 +124,7 @@ export class CadFunerariasComponent implements OnInit {
   }
 
   public btnSalvar() {
+    this.clicaSalvar = true
     if (this.idUrl == undefined || this.idUrl == 0) {
       this.insertFun()
     } else {
@@ -134,6 +133,8 @@ export class CadFunerariasComponent implements OnInit {
   }
 
   public btnSalvarFechar() {
+    this.clicaSalvar = true
+
     if (this.idUrl == undefined || this.idUrl == 0) {
       this.insertFun()
       if (this.form.valid) {

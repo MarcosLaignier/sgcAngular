@@ -3,6 +3,7 @@ import {PessoaService} from "../Service/pessoa.service";
 import {ActivatedRoute} from "@angular/router";
 import {pessoaModel} from "../Model/pessoaModel";
 import {HttpStatusCode} from "@angular/common/http";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-cad-falecidos',
@@ -35,11 +36,28 @@ export class CadFalecidosComponent implements OnInit {
     falnaturalidade: ''
   }
 
+  form = this.formBuilder.group({
+    falcodigo: [0, [Validators.required]],
+    falnome: ['', [Validators.required]],
+    falsexo: ['', [Validators.required]],
+    falnascimento: [Date, [Validators.required]],
+    falnaturalidade: ['', [Validators.required]],
+    falcpf: ['', [Validators.required]],
+    falRG: [''],
+    falfalecimento: [Date, [Validators.required]],
+    falmedresp: ['', [Validators.required]],
+    falCausaMortis: ['']
+  })
+
+
   idUrl: number = 0;
   infoStatus: HttpStatusCode | undefined
+  clicaSalvar: boolean = false;
+
 
   constructor(private pessoaService: PessoaService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder
   ) {
   }
 
@@ -83,31 +101,59 @@ export class CadFalecidosComponent implements OnInit {
     )
   }
 
-  recebeIdUrl() {
-    this.route.params.subscribe(params => this.idUrl = params['id'])
+  includePessoa() {
+    this.clicaSalvar = true
+    if (this.form.valid) {
+      this.pessoa.falcodigo = this.codFal
+      this.pessoa.falnome = this.nomeFal
+      this.pessoa.falsexo = this.sexoFal
+      this.pessoa.falfalecimento = this.falecimentoFal
+      this.pessoa.falnaturalidade = this.nacionalidadeFal
+      this.pessoa.falnascimento = this.nascFal
+      this.pessoa.falcpf = this.cpfFal
+      this.pessoa.falmedresp = this.medResponsavel
+      return this.pessoaService.includePessoa(this.pessoa).subscribe(
+        response => {
+          console.log(response.status)
+          if (response.status == 200) {
+            this.infoStatus = HttpStatusCode.Ok
+          } else {
+            this.infoStatus = HttpStatusCode.InternalServerError
+          }
+        }
+      )
+    } else {
+      return this.infoStatus = HttpStatusCode.InternalServerError
+    }
   }
 
 
   alteraPessoa() {
-    this.pessoa.falcodigo = this.codFal
-    this.pessoa.falnome = this.nomeFal
-    this.pessoa.falsexo = this.sexoFal
-    this.pessoa.falfalecimento = this.falecimentoFal
-    this.pessoa.falnaturalidade = this.nacionalidadeFal
-    this.pessoa.falnascimento = this.nascFal
-    this.pessoa.falcpf = this.cpfFal
-    this.pessoa.falmedresp = this.medResponsavel
-    this.pessoaService.alterPessoa(this.codFal, this.pessoa).subscribe(
-      response => {
-        console.log(response.status)
-        if (response.status == 200) {
-          this.infoStatus = HttpStatusCode.Ok
-        } else {
-          this.infoStatus = HttpStatusCode.InternalServerError
+    this.clicaSalvar = true
+    if (this.form.valid) {
+      this.pessoa.falcodigo = this.codFal
+      this.pessoa.falnome = this.nomeFal
+      this.pessoa.falsexo = this.sexoFal
+      this.pessoa.falfalecimento = this.falecimentoFal
+      this.pessoa.falnaturalidade = this.nacionalidadeFal
+      this.pessoa.falnascimento = this.nascFal
+      this.pessoa.falcpf = this.cpfFal
+      this.pessoa.falmedresp = this.medResponsavel
+      this.pessoaService.alterPessoa(this.codFal, this.pessoa).subscribe(
+        response => {
+          console.log(response.status)
+          if (response.status == 200) {
+            this.infoStatus = HttpStatusCode.Ok
+          } else {
+            this.infoStatus = HttpStatusCode.InternalServerError
+          }
         }
-      }
-    )
+      )
+    } else {
+      this.infoStatus = HttpStatusCode.InternalServerError
+    }
   }
+
 
   deletePessoa() {
     return this.pessoaService.deletePessoa(this.codFal).subscribe(
@@ -115,7 +161,7 @@ export class CadFalecidosComponent implements OnInit {
         console.log(response.status)
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Accepted
-          setTimeout(this.backWindow,1000)
+          setTimeout(this.backWindow, 1000)
         } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
@@ -123,25 +169,8 @@ export class CadFalecidosComponent implements OnInit {
     )
   }
 
-  includePessoa() {
-    this.pessoa.falcodigo = this.codFal
-    this.pessoa.falnome = this.nomeFal
-    this.pessoa.falsexo = this.sexoFal
-    this.pessoa.falfalecimento = this.falecimentoFal
-    this.pessoa.falnaturalidade = this.nacionalidadeFal
-    this.pessoa.falnascimento = this.nascFal
-    this.pessoa.falcpf = this.cpfFal
-    this.pessoa.falmedresp = this.medResponsavel
-    return this.pessoaService.includePessoa(this.pessoa).subscribe(
-      response => {
-        console.log(response.status)
-        if (response.status == 200) {
-          this.infoStatus = HttpStatusCode.Ok
-        } else {
-          this.infoStatus = HttpStatusCode.InternalServerError
-        }
-      }
-    )
+  recebeIdUrl() {
+    this.route.params.subscribe(params => this.idUrl = params['id'])
   }
 
   getLastCod() {
@@ -166,7 +195,25 @@ export class CadFalecidosComponent implements OnInit {
     }
   }
 
-  backWindow(){
+  salvarFecharBtn() {
+    if (this.idUrl == 0 || this.idUrl == undefined) {
+      this.includePessoa()
+      if (this.form.valid) {
+        setTimeout(this.backWindow, 1000)
+
+      }
+    } else {
+      this.alteraPessoa()
+      if (this.form.valid) {
+        setTimeout(this.backWindow, 1000)
+
+      }
+    }
+
+
+  }
+
+  backWindow() {
     window.history.back()
   }
 }
