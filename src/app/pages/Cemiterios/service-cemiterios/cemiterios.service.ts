@@ -47,7 +47,7 @@ export class CemiteriosService {
   }
 
   getEstadosBrasil(){
-    return this.httpClient.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+    return this.httpClient.get<JSON>("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome",)
   }
 
 }

@@ -83,8 +83,9 @@
     <div class="col-md-2">
       <div class="form-outline">
         <label class="form-label" for="state_Cemiterio">Estado</label>
-        <select id="state_Cemiterio" class="form-control " onclick="buscaEstados()" name="estadoCemiterio" [(ngModel)]="estadoCemiterio" formControlName="estado">
-          <option>MG</option>
+        <select id="state_Cemiterio" class="form-control " onclick="buscaEstados()" name="estadoCemiterio" [(ngModel)]="estadoCemiterio" formControlName="estado" >
+          <option value=""> </option>
+          <option *ngFor="let est of estados">{{est.sigla}} </option>
         </select>
         <div *ngIf="form.get('estado')?.errors && clickSalvar" class="text-danger">
           *Estado Obrigatorio
@@ -105,5 +106,3 @@
   </div>
 </form>
 
-<button (click)="buscaEstadosBr()">teste Estados</button>
-<button (click)="buscaEstadosBr2()">c</button>

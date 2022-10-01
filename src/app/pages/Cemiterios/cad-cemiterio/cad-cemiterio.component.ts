@@ -4,7 +4,7 @@ import {cemiterioModel} from "../../../models/cemiterio-model";
 import {ActivatedRoute} from "@angular/router";
 import {HttpStatusCode} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {delay} from "rxjs";
+import {delay, map} from "rxjs";
 
 @Component({
   selector: 'app-cad-cemiterio',
@@ -19,12 +19,12 @@ export class CadCemiterioComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
-      cod:[0,[Validators.required]],
+      cod: [0, [Validators.required]],
       nome: ['', [Validators.required]],
       endereco: ['', [Validators.required]],
       numero: [0, [Validators.required]],
       cidade: ['', [Validators.required]],
-      estado: ['',[Validators.required]],
+      estado: ['', [Validators.required]],
       responsavel: ['', [Validators.required]]
 
     })
@@ -35,14 +35,14 @@ export class CadCemiterioComponent implements OnInit {
   ngOnInit(): void {
     this.recebeIdUrl()
     this.buscaCodCemiterio()
-
+    this.buscaEstadosBr()
 
   }
 
   form: FormGroup;
   infoStatus: HttpStatusCode | undefined;
   idUrl: number = 0;
-  clickSalvar:boolean=false;
+  clickSalvar: boolean = false;
 
   codigoCemiterio: number = 0;
   nameCemiterio: String = '';
@@ -51,6 +51,7 @@ export class CadCemiterioComponent implements OnInit {
   cidadeCemiterio: String = '';
   estadoCemiterio: String = '';
   responsavelCemiterio: String = '';
+  estados: any;
 
   cemiterioInserido: cemiterioModel = {
     undcodigo: 0,
@@ -88,7 +89,7 @@ export class CadCemiterioComponent implements OnInit {
       response => {
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Accepted;
-          setTimeout(this.backWindow,1000)
+          setTimeout(this.backWindow, 1000)
         } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
@@ -137,64 +138,63 @@ export class CadCemiterioComponent implements OnInit {
   }
 
 
-
   salvarBtnF() {
-    this.clickSalvar=true;
+    this.clickSalvar = true;
     if (this.form.valid == true) {
-      if (this.idUrl == undefined || this.idUrl ==0) {
+      if (this.idUrl == undefined || this.idUrl == 0) {
         this.insertCemiterio();
 
       } else {
         this.alterCemiterio()
       }
-    }else{
+    } else {
       this.infoStatus = HttpStatusCode.InternalServerError
     }
   }
+
   salvarFecharBtnF() {
-    this.clickSalvar=true;
+    this.clickSalvar = true;
     if (this.form.valid == true) {
-      if (this.idUrl == undefined || this.idUrl ==0) {
+      if (this.idUrl == undefined || this.idUrl == 0) {
         this.insertCemiterio();
-        setTimeout(this.backWindow,700)
+        setTimeout(this.backWindow, 700)
       } else {
         this.alterCemiterio()
         this.backWindow()
 
       }
-    }else{
+    } else {
       this.infoStatus = HttpStatusCode.InternalServerError
     }
   }
 
 
-  buscaCodCemiterio(){
+  buscaCodCemiterio() {
     return this.cemiteriosService.getCodigo().subscribe(
-      data=>{
-        if (typeof data === "number" && (this.idUrl ==0||this.idUrl == undefined)) {
-          this.codigoCemiterio = data+1
+      data => {
+        if (typeof data === "number" && (this.idUrl == 0 || this.idUrl == undefined)) {
+          this.codigoCemiterio = data + 1
         }
       }
     )
   }
 
-  buscaEstadosBr(){
+
+  buscaEstadosBr() {
     return this.cemiteriosService.getEstadosBrasil().subscribe(
-      data=>{
-        console.log(data)
-      }
-
-    )
-  }
-
-  buscaEstadosBr2(){
-    return this.cemiteriosService.getEstadosBrasil().subscribe(
-      value => {
-
+      dados => {
+        this.estados = dados
+        // this.estados.sort(function (x: any, y: any) {
+        //   return x.sigla == y.sigla ? 0 : x.sigla > y.sigla ? 1 : -1
+        //
+        // })
       }
     )
+
   }
-  backWindow(){
+
+
+  backWindow() {
     window.history.back()
   }
 
