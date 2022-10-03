@@ -28,6 +28,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TableSepulturasComponent } from './pages/Sepulturas/Components/table-sepulturas/table-sepulturas.component';
 import { TableFunerariasComponent } from './pages/Funerarias/Components/table-funerarias/table-funerarias.component';
 import { TablePessoaComponent } from './pages/Movimentacoes/Pessoas/Components/table-pessoa/table-pessoa.component';
+import { TableSepultamentoComponent } from './pages/Movimentacoes/Sepultamentos/Components/table-sepultamento/table-sepultamento.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { TablePessoaComponent } from './pages/Movimentacoes/Pessoas/Components/t
     TableSepulturasComponent,
     TableFunerariasComponent,
     TablePessoaComponent,
+    TableSepultamentoComponent,
 
 
   ],
