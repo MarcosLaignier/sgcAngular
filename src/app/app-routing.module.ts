@@ -63,7 +63,7 @@ const routes: Routes = [
   },
   {
     path:'cadsepultamentos/:id',component:CadSepultamentosComponent
-  }
+  },
 ];
 
 @NgModule({

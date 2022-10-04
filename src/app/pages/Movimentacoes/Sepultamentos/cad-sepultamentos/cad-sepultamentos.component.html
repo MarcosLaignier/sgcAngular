@@ -1,6 +1,28 @@
 <app-toolbar></app-toolbar>
-<app-crud-toolbar-cad titlePage="Cadastro de Sepultamentos" class="d-flex"></app-crud-toolbar-cad>
+<app-crud-toolbar-cad titlePage="Cadastro de Sepultamentos" class="d-flex" (SalvarBtn)="salvarBtn()" (excludeBtn)="excludeSepul()" (salvarFecharBtn)="alteraSepul()"></app-crud-toolbar-cad>
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==200">
 
+  <strong>Registro salvo com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==500">
+
+  <strong>Erro Inesperado ! </strong> Entre em contato com o suporte tecnico
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
+
+<div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==202">
+
+  <strong>Registro EXCLUIDO com sucesso! </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
+
+
+</div>
 <form id="form_CSepultamento" class="form_SGC" autocomplete="off" [formGroup]="form">
 
     <div class="row mb-1">
@@ -18,12 +40,12 @@
         <div class="col-md-3">
             <div class="form-outline">
                 <label class="form-label" for="name_Pessoa">Pessoa</label>
-                <input type="text" id="name_Pessoa" class="form-control" [(ngModel)]="idPessoa" name="sepulFalecido" formControlName="sepulFalecido" oninput="populaCadFalNome()"
-                    autocomplete="off" (keyup)="dadosFalecidos()"/>
+                <input type="text" id="name_Pessoa" class="form-control" [(ngModel)]="sepulFalecido" name="sepulFalecido" formControlName="sepulFalecido"
+                    (keyup)="dadosFalecidos()"/>
                 <div>
-                    <ul style="width: 339px;  list-style: none; position: absolute; background-color: darkgrey;"
-                        id="name_fal">
-                        <li></li>
+                    <ul style="width: 339px;  list-style: none; position: absolute; border: 1px solid;background-color: aliceblue;border-radius: 0.20rem"
+                        id="name_fal" *ngIf="sepulFalecido != '' ">
+                        <li *ngFor="let names of namesPessoas" id="{{names.falcodigo}}" (click)="selectFalecido(names.falcodigo)">{{names.falnome}}</li>
                     </ul>
                 </div>
             </div>
@@ -71,7 +93,7 @@
         <div class="col-md-2">
             <div class="form-outline">
                 <label class="form-label" for="date_Falecimento">Falecimento</label>
-                <input type="date" id="date_Falecimento" class="form-control" [(ngModel)]="sepulFale" name="sepultFal" formControlName="sepulFale" readonly="true" />
+                <input type="date"  id="date_Falecimento" class="form-control" [(ngModel)]="sepulFale" name="sepultFal" formControlName="sepulFale" readonly="true" />
 
 
             </div>

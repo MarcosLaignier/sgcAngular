@@ -36,4 +36,8 @@ export class PessoaService {
     return this.Httpclient.delete(`${this.API}/${falcodigo}`,{observe:'response'})
   }
 
+  public getByNome(falnome:String){
+    return this.Httpclient.get<pessoaModel[]>(`${this.API}/nameFal?falnome=${falnome}`)
+  }
+
 }

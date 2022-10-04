@@ -13,7 +13,7 @@ export class ListSepultamentosComponent implements OnInit {
   Filter:boolean = true
   idUrl : number | undefined;
 
-  colunasName=[{name:"Codigo"}, {name:"Nome"}, {name:"CPF"},{name:"Nascimento"},{name:"Sepultamento"},{name:"Cemiterio"}]
+  colunasName=[{name:"Codigo"}, {name:"Nome"}, {name:"CPF"},{name:"Falecimento"},{name:"Sepultamento"},{name:"Cemiterio"}]
   dadosCols:SepultamentoModel[]=[]
   recebeFilter(filterComponent: boolean) {
     this.Filter = filterComponent;
