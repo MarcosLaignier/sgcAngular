@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SepultamentoService} from "../Service/sepultamento.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, Validators} from "@angular/forms";
+import {Form, FormBuilder, Validators} from "@angular/forms";
 import {PessoaService} from "../../Pessoas/Service/pessoa.service";
 import {pessoaModel} from "../../Pessoas/Model/pessoaModel";
 import {SepultamentoModel} from "../Model/sepultamentoModel";
@@ -15,7 +15,8 @@ import {HttpStatusCode} from "@angular/common/http";
 export class CadSepultamentosComponent implements OnInit {
 
   idUrl: number = 1
-  infoStatus:HttpStatusCode | undefined;
+  infoStatus: HttpStatusCode | undefined;
+  clicaSalvar:boolean = false;
 
   form = this.formBuilder.group({
     sepulCodigo: [0, [Validators.required]],
@@ -43,6 +44,7 @@ export class CadSepultamentosComponent implements OnInit {
   funNames: String[] = []
   cemNames: String[] = []
 
+
   sepultamento: SepultamentoModel = {
     sepulcodigo: 0,
     sepulfalecido: '',
@@ -58,16 +60,16 @@ export class CadSepultamentosComponent implements OnInit {
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private pessoaService: PessoaService,
-              private router: Router
+              private router: Router,
   ) {
 
   }
 
 
   ngOnInit(): void {
-    this.getById()
     this.populaFuneraria()
     this.populaCemiterio()
+    this.getById()
     this.lastCod()
   }
 
@@ -88,52 +90,64 @@ export class CadSepultamentosComponent implements OnInit {
   }
 
   insertSepul() {
-    this.sepultamento.sepulcodigo = this.sepulCodigo;
-    this.sepultamento.sepulfalecido = this.sepulFalecido;
-    this.sepultamento.sepulcpffal = this.sepulCPF;
-    this.sepultamento.sepdatasepultamento = this.sepulData;
-    this.sepultamento.sepdatafalecimento = this.sepulFale;
-    this.sepultamento.sepulcemiterio = this.sepulCemiterio;
-    this.sepultamento.sepulfuneraria = this.sepulFuneraria
-    this.sepultamento.sepulsepultura = this.sepulSepultura;
-    return this.sepultamentoService.insertSepultamento(this.sepultamento).subscribe(
-      response =>{
-        if(response.status == 200){
-          this.infoStatus = HttpStatusCode.Ok
-        }else{
-          this.infoStatus = HttpStatusCode.InternalServerError
+    this.clicaSalvar = true
+    if (this.form.valid) {
+      this.sepultamento.sepulcodigo = this.sepulCodigo;
+      this.sepultamento.sepulfalecido = this.sepulFalecido;
+      this.sepultamento.sepulcpffal = this.sepulCPF;
+      this.sepultamento.sepdatasepultamento = this.sepulData;
+      this.sepultamento.sepdatafalecimento = this.sepulFale;
+      this.sepultamento.sepulcemiterio = this.sepulCemiterio;
+      this.sepultamento.sepulfuneraria = this.sepulFuneraria
+      this.sepultamento.sepulsepultura = this.sepulSepultura;
+      return this.sepultamentoService.insertSepultamento(this.sepultamento).subscribe(
+        response => {
+          if (response.status == 200) {
+            this.infoStatus = HttpStatusCode.Ok
+          } else {
+            this.infoStatus = HttpStatusCode.InternalServerError
+          }
         }
-      }
-    )
+      )
+    } else {
+      return this.infoStatus = HttpStatusCode.InternalServerError
+
+    }
   }
 
-  alteraSepul(){
-    this.sepultamento.sepulcodigo = this.sepulCodigo;
-    this.sepultamento.sepulfalecido = this.sepulFalecido;
-    this.sepultamento.sepulcpffal = this.sepulCPF;
-    this.sepultamento.sepdatasepultamento = this.sepulData;
-    this.sepultamento.sepdatafalecimento = this.sepulFale;
-    this.sepultamento.sepulcemiterio = this.sepulCemiterio;
-    this.sepultamento.sepulfuneraria = this.sepulFuneraria
-    this.sepultamento.sepulsepultura = this.sepulSepultura;
-    return this.sepultamentoService.alteraSepultamento(this.sepulCodigo,this.sepultamento).subscribe(
-      response =>{
-        if(response.status == 200){
-          this.infoStatus = HttpStatusCode.Ok
-        }else{
-          this.infoStatus = HttpStatusCode.InternalServerError
+  alteraSepul() {
+    if (this.form.valid) {
+      this.sepultamento.sepulcodigo = this.sepulCodigo;
+      this.sepultamento.sepulfalecido = this.sepulFalecido;
+      this.sepultamento.sepulcpffal = this.sepulCPF;
+      this.sepultamento.sepdatasepultamento = this.sepulData;
+      this.sepultamento.sepdatafalecimento = this.sepulFale;
+      this.sepultamento.sepulcemiterio = this.sepulCemiterio;
+      this.sepultamento.sepulfuneraria = this.sepulFuneraria
+      this.sepultamento.sepulsepultura = this.sepulSepultura;
+      return this.sepultamentoService.alteraSepultamento(this.sepulCodigo, this.sepultamento).subscribe(
+        response => {
+          if (response.status == 200) {
+            this.infoStatus = HttpStatusCode.Ok
+          } else {
+            this.infoStatus = HttpStatusCode.InternalServerError
+          }
         }
-      }
-    )
+      )
+    } else {
+      return this.infoStatus = HttpStatusCode.InternalServerError
+
+    }
   }
 
-  excludeSepul(){
+  excludeSepul() {
     return this.sepultamentoService.excludeSepultamento(this.sepulCodigo).subscribe(
-      response =>{
-        if(response.status == 200){
+      response => {
+        console.log(response.status)
+        if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Accepted
-          setTimeout(this.backWindow,1000)
-        }else{
+          setTimeout(this.backWindow, 1000)
+        } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
       }
@@ -189,14 +203,29 @@ export class CadSepultamentosComponent implements OnInit {
     )
   }
 
-  salvarBtn(){
-    if(this.idUrl == 0 || this.idUrl == undefined){
-      this.insertSepul()
-    }else{
-      this.alteraSepul()
+  salvarBtn() {
+    if (this.idUrl == 0 || this.idUrl == undefined) {
+        this.insertSepul()
+    } else {
+        this.alteraSepul()
     }
   }
-  backWindow(){
+
+  salvarFecharBtn() {
+    if (this.idUrl == 0 || this.idUrl == undefined) {
+      this.insertSepul()
+      if (this.form.valid) {
+        setTimeout(this.backWindow, 1000)
+      }
+    } else {
+      this.alteraSepul()
+      if (this.form.valid) {
+        setTimeout(this.backWindow, 1000)
+      }
+    }
+  }
+
+  backWindow() {
     window.history.back()
   }
 }
