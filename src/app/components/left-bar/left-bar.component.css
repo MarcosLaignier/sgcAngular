@@ -21,13 +21,13 @@
 .leftBarUl_active{
     align-items: flex-start!important;
     padding-left: 1rem !important;
-   
+
 }
 .logoSistema{
     width: 70px;
     height: 70px;
     align-self: center;
-    
+
 }
 
 .textMenuLeftBar{
@@ -37,6 +37,7 @@
 
 .logoMunicipioUl{
     justify-content: center;
+
 }
 
 .imgLogoMunicipio{

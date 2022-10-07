@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SepultamentoService} from "../Service/sepultamento.service";
 import {SepultamentoModel} from "../Model/sepultamentoModel";
 import {Route, Router} from "@angular/router";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-list-sepultamentos',
@@ -9,6 +10,11 @@ import {Route, Router} from "@angular/router";
   styleUrls: ['./list-sepultamentos.component.css']
 })
 export class ListSepultamentosComponent implements OnInit {
+
+  pessoaFilter:String='';
+  cpfFilter:String='';
+  cemiterioFilter:String='Cemiterio do Murtao';
+  dateSepultamento:Date=new Date();
 
   Filter:boolean = true
   idUrl : number | undefined;
@@ -20,7 +26,8 @@ export class ListSepultamentosComponent implements OnInit {
   }
 
   constructor(private sepultamentoService:SepultamentoService,
-              private route:Router
+              private route:Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +45,20 @@ export class ListSepultamentosComponent implements OnInit {
 public retornaIdUrl(idLinha:number){
     this.idUrl = idLinha
     return this.route.navigate([`/cadsepultamentos/${this.idUrl}`])
+}
+
+
+
+
+
+public filterCustom(){
+
+    return this.sepultamentoService.findCustomFilters(this.pessoaFilter,this.cpfFilter,this.cemiterioFilter).subscribe(
+      data=>{
+        console.log(data)
+        this.dadosCols=data
+      }
+    )
 }
 
 }
