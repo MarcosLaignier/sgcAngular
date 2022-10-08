@@ -3,7 +3,7 @@
 <form action="" class="border-bottom">
     <div class="d-flex flex-column p-2">
         <label for="">Nome Municipio</label>
-        <input type="text" name="" id="" class="d-flex w-25">
+        <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio" >
     </div>
     <button type="submit" class="btn btn-outline-secondary mx-1"> Salvar</button>
 </form>
@@ -11,15 +11,15 @@
 <form action="" class="border-bottom">
     <div class="d-flex flex-column p-2">
         <label for="">Brasao do Municipio</label>
-        <input type="file" name="" id="">
+        <input type="file" name="brasaoMunicipio"  >
     </div>
-    <button type="submit" class="btn btn-outline-secondary mx-1"> Enviar</button>
+    <button type="submit" class="btn btn-outline-secondary mx-1" > Enviar</button>
 </form>
 
 <form action="" class="border-bottom">
     <div class="d-flex flex-column p-2">
         <label for="">Imagem pagina inicial</label>
-        <input type="file" name="" id="">
+        <input type="file" name="imgPrincipal" id=""  >
     </div>
     <button type="submit" class="btn btn-outline-secondary mx-1"> Enviar</button>
 </form>

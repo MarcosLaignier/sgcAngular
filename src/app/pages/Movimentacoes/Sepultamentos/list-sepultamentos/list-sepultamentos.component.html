@@ -31,8 +31,9 @@
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="name_Cemiterio">Cemiterio</label>
-          <select id="name_Cemiterio" class="form-control" onclick="populaNomeCemiterio()" [(ngModel)]="cemiterioFilter" name="cemiterioFilters">
+          <select id="name_Cemiterio" class="form-control" (click)="getNameCemiterio()" [(ngModel)]="cemiterioFilter" name="cemiterioFilters">
             <option> </option>
+            <option *ngFor="let und of cemiteriosApi">{{und}} </option>
           </select>
 
         </div>

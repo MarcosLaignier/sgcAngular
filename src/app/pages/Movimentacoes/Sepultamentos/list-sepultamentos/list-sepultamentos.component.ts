@@ -13,7 +13,8 @@ export class ListSepultamentosComponent implements OnInit {
 
   pessoaFilter:String='';
   cpfFilter:String='';
-  cemiterioFilter:String='Cemiterio do Murtao';
+  cemiterioFilter:String='';
+  cemiteriosApi:String[]=[]
   dateSepultamento:Date=new Date();
 
   Filter:boolean = true
@@ -31,6 +32,7 @@ export class ListSepultamentosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getNameCemiterio()
   }
 
   public findAll(){
@@ -57,6 +59,14 @@ public filterCustom(){
       data=>{
         console.log(data)
         this.dadosCols=data
+      }
+    )
+}
+
+public getNameCemiterio(){
+    return this.sepultamentoService.findNameCem().subscribe(
+      data =>{
+        this.cemiteriosApi = data
       }
     )
 }
