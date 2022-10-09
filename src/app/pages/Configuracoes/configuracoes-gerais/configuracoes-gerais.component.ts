@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfiguracoesService} from "../service/configuracoes.service";
 import {ConfigModel} from "../Model/configModel";
 
@@ -9,26 +9,41 @@ import {ConfigModel} from "../Model/configModel";
 })
 export class ConfiguracoesGeraisComponent implements OnInit {
 
-  constructor(private configuracoesService:ConfiguracoesService) { }
+  constructor(private configuracoesService: ConfiguracoesService) {
+  }
 
-  dados:ConfigModel[]=[];
-  brasaoMunicipio:String='';
-  imgPrincipal:String='';
-nameMunicipio:String='';
+  dados: ConfigModel[] = [];
+  brasaoMunicipio: String = '';
+  imgPrincipal: String = '';
+  nameMunicipio: String = '';
+  codCliente: number = 1;
+
+  config:ConfigModel={
+    codcliente:0,
+    sgcmunicipio:'',
+    sgcpathlogo:'',
+    sgcpathimg:''
+  }
+
   ngOnInit(): void {
     this.findNameMunicipio()
   }
 
-  public findNameMunicipio(){
+  findNameMunicipio() {
     return this.configuracoesService.findNomeMunicipio().subscribe(
-      data =>{
-        console.log(data)
-        this.dados=data;
+      data => {
+        this.dados = data;
         this.nameMunicipio = data[0].sgcmunicipio
-        console.log(this.nameMunicipio)
-
       }
     )
   }
+
+  alterNameMunicipio() {
+    this.config.codcliente=this.codCliente;
+    this.config.sgcmunicipio=this.nameMunicipio;
+    console.log(this.config)
+    return this.configuracoesService.alterNomeMunicipio(this.codCliente, this.config).subscribe()
+  }
+
 
 }

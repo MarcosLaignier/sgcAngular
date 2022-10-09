@@ -25,10 +25,13 @@
         <ul class="leftbar d-flex p-0 m-0 align-items-center logoMunicipioUl">
             <li class="d-flex align-items-center flex-column ">
                 <img [src]="urlLogo" alt="Logo Municipio" class=" imgLogoMunicipio">
-                <span *ngIf="clickActive">Prefeitura Pedro Leopoldo</span>
+                <span *ngIf="clickActive" class="text-center nameMunicipio">{{nameMunicipio}}</span>
+              <span *ngIf="clickActive" class="text-center nameMunicipio">Versao 2.0</span>
+
             </li>
         </ul>
     </div>
+
 </aside>
 
 <aside [ngStyle]="{'background-color': submenuColor}"

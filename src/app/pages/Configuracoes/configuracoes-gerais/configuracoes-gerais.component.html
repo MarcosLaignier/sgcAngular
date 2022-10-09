@@ -1,25 +1,40 @@
 <app-toolbar></app-toolbar>
 <app-crud-toolbar-cad class="d-flex" titlePage="Configuracoes Gerais"></app-crud-toolbar-cad>
 <form action="" class="border-bottom">
-    <div class="d-flex flex-column p-2">
-        <label for="">Nome Municipio</label>
-        <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio" >
-    </div>
-    <button type="submit" class="btn btn-outline-secondary mx-1"> Salvar</button>
+
+  <div class="d-flex flex-column p-2">
+    <label for="">Tipo</label>
+    <select name="" id="" class="d-flex w-25">
+      <option value=""></option>
+      <option value="">Camara</option>
+      <option value="">Prefeitura</option>
+    </select>
+<!--    <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">-->
+  </div>
+  <div class="d-flex flex-column p-2">
+    <label for="">Nome Municipio</label>
+    <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">
+  </div>
+
+  <button type="submit" class="btn btn-outline-secondary mx-1" (click)="alterNameMunicipio()"> Salvar</button>
 </form>
 
-<form action="" class="border-bottom">
+<div class="d-flex flex-row align-content-between">
+  <form action="" class="border-bottom ">
     <div class="d-flex flex-column p-2">
-        <label for="">Brasao do Municipio</label>
-        <input type="file" name="brasaoMunicipio"  >
+      <label for="">Brasao do Municipio</label>
+      <input type="file" name="brasaoMunicipio">
     </div>
-    <button type="submit" class="btn btn-outline-secondary mx-1" > Enviar</button>
-</form>
 
-<form action="" class="border-bottom">
+    <button type="submit" class="btn btn-outline-secondary mx-1 d-flex align-items-end"> Enviar</button>
+
+  </form>
+
+  <form action="" class="border-bottom">
     <div class="d-flex flex-column p-2">
-        <label for="">Imagem pagina inicial</label>
-        <input type="file" name="imgPrincipal" id=""  >
+      <label for="">Imagem pagina inicial</label>
+      <input type="file" name="imgPrincipal" id="">
     </div>
     <button type="submit" class="btn btn-outline-secondary mx-1"> Enviar</button>
-</form>
+  </form>
+</div>
