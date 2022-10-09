@@ -1,25 +1,31 @@
 <app-toolbar></app-toolbar>
 <app-crud-toolbar-cad class="d-flex" titlePage="Configuracoes Gerais"></app-crud-toolbar-cad>
-<form action="" class="border-bottom">
+<div>
+  <button type="button" class="btn btn-light btn-outline-secondary" (click)="alterTelas()">Dados Municipio</button>
+  <button type="button" class="btn btn-light btn-outline-secondary" (click)="alterTelas()">Imagens Municipio</button>
+</div>
+<div *ngIf="dadosMun">
+  <form action="" class="border-bottom">
 
-  <div class="d-flex flex-column p-2">
-    <label for="">Tipo</label>
-    <select name="" id="" class="d-flex w-25">
-      <option value=""></option>
-      <option value="">Camara</option>
-      <option value="">Prefeitura</option>
-    </select>
-<!--    <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">-->
-  </div>
-  <div class="d-flex flex-column p-2">
-    <label for="">Nome Municipio</label>
-    <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">
-  </div>
+    <div class="d-flex flex-column p-2">
+      <label for="">Tipo</label>
+      <select name="" id="" class="d-flex w-25">
+        <option value=""></option>
+        <option value="">Camara</option>
+        <option value="">Prefeitura</option>
+      </select>
+      <!--    <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">-->
+    </div>
+    <div class="d-flex flex-column p-2">
+      <label for="">Nome Municipio</label>
+      <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">
+    </div>
 
-  <button type="submit" class="btn btn-outline-secondary mx-1" (click)="alterNameMunicipio()"> Salvar</button>
-</form>
+    <button type="submit" class="btn btn-outline-secondary mx-1" (click)="alterNameMunicipio()"> Salvar</button>
+  </form>
+</div>
 
-<div class="d-flex flex-row align-content-between">
+<div class="d-flex flex-row align-content-between" *ngIf="imgMun">
   <form action="" class="border-bottom ">
     <div class="d-flex flex-column p-2">
       <label for="">Brasao do Municipio</label>

@@ -18,6 +18,9 @@ export class ConfiguracoesGeraisComponent implements OnInit {
   nameMunicipio: String = '';
   codCliente: number = 1;
 
+  dadosMun:boolean=true;
+  imgMun:boolean=false;
+
   config:ConfigModel={
     codcliente:0,
     sgcmunicipio:'',
@@ -45,5 +48,10 @@ export class ConfiguracoesGeraisComponent implements OnInit {
     return this.configuracoesService.alterNomeMunicipio(this.codCliente, this.config).subscribe()
   }
 
+alterTelas(){
+    this.dadosMun=!this.dadosMun;
+    this.imgMun=!this.imgMun;
 
+    console.log( this.dadosMun +" - "+this.imgMun)
+}
 }
