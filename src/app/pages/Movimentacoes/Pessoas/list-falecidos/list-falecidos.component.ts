@@ -17,11 +17,17 @@ export class ListFalecidosComponent implements OnInit {
   dadosCols:pessoaModel[] =[];
   idUrl:number | undefined;
 
+  nomePessoa:String='';
+  sexoPessoa:String='';
+  dateNasc:String='';
+
+
   constructor(private pessoaService:PessoaService,
               private route:Router
   ) { }
 
   ngOnInit(): void {
+    // this.findCustom()
   }
 
   visibleFilter(filterComponent:boolean){
@@ -40,6 +46,16 @@ export class ListFalecidosComponent implements OnInit {
   public retornaIdUrl(idLinha:number){
     this.idUrl = idLinha
     return this.route.navigate([`/cadfalecidos/${this.idUrl}`])
+  }
+
+  findCustom(){
+    // let nome:String='Joana Mortinha'
+    //   let sexo:String=''
+    return this.pessoaService.filterCustom(this.nomePessoa,this.sexoPessoa).subscribe(
+      data =>{
+this.dadosCols=data
+      }
+    )
   }
 
 }
