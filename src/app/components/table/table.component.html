@@ -4,7 +4,9 @@
             <th scope="col" *ngFor="let cols of colunasTable">{{cols.name}}</th>
         </tr>
     </thead>
-    <tbody id='tbody'>
+
+  <tbody id='tbody'>
+
     <tr *ngFor="let dadoscols of dadosCols " id="{{dadoscols.undcodigo}}" (dblclick)="retornaId(dadoscols.undcodigo)"   >
       <th scope="row">{{dadoscols.undcodigo}}</th>
       <th scope="row">{{dadoscols.undnome}}</th>
@@ -14,4 +16,5 @@
 
     </tr>
     </tbody>
+
 </table>

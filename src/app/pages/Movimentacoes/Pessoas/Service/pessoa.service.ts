@@ -39,13 +39,16 @@ export class PessoaService {
   public getByNome(falnome:String){
     return this.Httpclient.get<pessoaModel[]>(`${this.API}/nameFal?falnome=${falnome}`)
   }
-  public filterCustom(nome:String,sexo:String){
+  public filterCustom(nome:String,sexo:String,dtNasc:any){
     let subquery:String='';
     if ( nome != ''){
       subquery+=`&nome=${nome}`
     }
     if (sexo != '' ){
       subquery+=`&sexo=${sexo}`
+    }
+    if(dtNasc!=undefined){
+      subquery+=`&dtNasc=${dtNasc}`
     }
     return this.Httpclient.get<pessoaModel[]>(`${this.API}/custom?${subquery}`)
   }

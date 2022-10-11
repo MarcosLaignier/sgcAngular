@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import{DatePipe} from "@angular/common";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -67,7 +67,8 @@ import { TableSepultamentoComponent } from './pages/Movimentacoes/Sepultamentos/
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
 
    ],
   providers: [],

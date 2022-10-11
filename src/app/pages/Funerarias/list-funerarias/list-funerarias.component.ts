@@ -22,7 +22,7 @@ export class ListFunerariasComponent implements OnInit {
   dadosCols:funerariaModel[]=[];
   idUrl:number=0;
 
-  codFun:any;
+  codFun:String='';
   nomeFun:String='';
   cidadeFun:String='';
 
@@ -31,7 +31,6 @@ export class ListFunerariasComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
   }
 
   public listFun(){
@@ -56,6 +55,15 @@ export class ListFunerariasComponent implements OnInit {
     this.cidadeFun=''
   }
 
+  findCustom(){
+
+    return this.funerariaService.findCustom(this.codFun,this.nomeFun,this.cidadeFun).subscribe(
+      data =>{
+        this.dadosCols=data;
+
+      }
+    )
+  }
 
 
 

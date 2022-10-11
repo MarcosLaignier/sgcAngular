@@ -15,13 +15,13 @@ export class ListSepulturasComponent implements OnInit {
     {name: 'Codigo'}, {name: 'Descricao'}, {name: 'Cemiterio'}
   ]
   dadosCols: sepulturaModel[] = [];
-  idRecebido:number = 0;
+  idRecebido: number = 0;
 
-  codSepultura:any;
-  descSepultura:String='';
-  cemiterioSepultura:String='';
+  codSepultura: String = '';
+  descSepultura: String = '';
+  cemiterioSepultura: String = '';
 
-  nameCemiterios:String[]=[];
+  nameCemiterios: String[] = [];
 
 
   filterVisible(filterComponent: boolean) {
@@ -44,22 +44,29 @@ export class ListSepulturasComponent implements OnInit {
   }
 
 
-
-  recebeId_Path(valor:number) {
-    this.idRecebido=valor;
-    this.router.navigate(['/cadsepulturas',valor])
+  recebeId_Path(valor: number) {
+    this.idRecebido = valor;
+    this.router.navigate(['/cadsepulturas', valor])
   };
 
-  clearInputs(){
-    this.codSepultura=null;
-    this.descSepultura='';
-    this.cemiterioSepultura='';
+  clearInputs() {
+    this.codSepultura = '';
+    this.descSepultura = '';
+    this.cemiterioSepultura = '';
   }
 
-  getNameCemiterios(){
+  getNameCemiterios() {
     this.sepulturaService.getCemiterios().subscribe(
-      data =>{
+      data => {
         this.nameCemiterios = data
+      }
+    )
+  }
+
+  findCustom() {
+    this.sepulturaService.findCustom(this.codSepultura, this.descSepultura, this.cemiterioSepultura).subscribe(
+      data => {
+        this.dadosCols = data
       }
     )
   }

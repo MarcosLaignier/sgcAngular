@@ -27,7 +27,7 @@ export class CemiteriosService {
   }
 
   deleteCemiterio(id: number) {
-    return this.httpClient.delete(this.API + id, {observe: 'response'})
+    return this.httpClient.delete(`${this.API}/${id}`, {observe: 'response'})
   }
 
 

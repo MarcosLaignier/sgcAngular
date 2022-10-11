@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {pessoaModel} from "../../Model/pessoaModel"
+import {DatePipe} from "@angular/common";
 @Component({
   selector: 'app-table-pessoa',
   templateUrl: './table-pessoa.component.html',
@@ -14,7 +15,7 @@ export class TablePessoaComponent implements OnInit {
   @Input() dadosCols!: pessoaModel[]
   @Output() idLinha = new EventEmitter<number>();
 
-
+date = new DatePipe('pt-BR')
 
   ngOnInit(): void {
 

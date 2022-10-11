@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {pessoaModel} from "../Model/pessoaModel";
 import {HttpStatusCode} from "@angular/common/http";
 import {FormBuilder, Validators} from "@angular/forms";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-cad-falecidos',
@@ -126,7 +127,6 @@ export class CadFalecidosComponent implements OnInit {
       return this.infoStatus = HttpStatusCode.InternalServerError
     }
   }
-
 
   alteraPessoa() {
     this.clicaSalvar = true

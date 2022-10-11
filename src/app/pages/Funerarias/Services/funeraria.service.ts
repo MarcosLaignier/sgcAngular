@@ -34,4 +34,19 @@ export class FunerariaService {
   public lastCod(){
     return this.Httpclient.get<number>(`${this.API}/codfun`)
   }
+
+  public findCustom(codigo:String,nome:String,cidade:String){
+    let subquery = "custom?";
+    if(codigo != '' ){
+      subquery+=`&codigo=${codigo}`
+    }
+    if (nome!=''){
+      subquery+=`&nome=${nome}`
+    }
+    if(cidade !=''){
+      subquery+=`&cidade=${cidade}`
+    }
+
+    return this.Httpclient.get<funerariaModel[]>(`${this.API}/${subquery}`)
+  }
 }

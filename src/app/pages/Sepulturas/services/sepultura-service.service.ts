@@ -41,5 +41,19 @@ export class SepulturaServiceService {
     return this.HttpClient.get<String[]>(`${this.API_Cemiterios}/nameCemiterios`)
   }
 
+  public findCustom(codigo:String,descricao:String,cemiterio:String){
+    let subquery = 'custom?'
+    if(codigo!=''){
+      subquery+=`&codigo=${codigo}`
+    }
+    if (descricao!=''){
+      subquery+=`&descricao=${descricao}`
+    }
+    if (cemiterio!=''){
+      subquery+=`&cemiterio=${cemiterio}`
+    }
+    return this.HttpClient.get<sepulturaModel[]>(`${this.API}/${subquery}`)
+  }
+
 
 }
