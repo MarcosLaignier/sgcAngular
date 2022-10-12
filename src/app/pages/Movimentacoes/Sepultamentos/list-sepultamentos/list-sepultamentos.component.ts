@@ -71,4 +71,11 @@ public getNameCemiterio(){
     )
 }
 
+clearInputs(){
+    this.pessoaFilter = '';
+    this.cpfFilter = '';
+    // this.dateSepultamento=undefined
+  this.cemiterioFilter=''
+}
+
 }

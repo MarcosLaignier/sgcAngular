@@ -51,18 +51,17 @@ export class ListFalecidosComponent implements OnInit {
   }
 
   findCustom() {
-
-    // let format = 'dd/MM/yyyy';
-    // let locale = 'pt-BR';
-    // let dataFormatada = formatDate(this.dateNasc, format,locale);
-    // let dataformatada = this.dateNasc.split('-').reverse().join('/');
-    // let format=new Date(dataformatada);
-
     return this.pessoaService.filterCustom(this.nomePessoa, this.sexoPessoa,this.dateNasc).subscribe(
       data => {
         this.dadosCols = data
       }
     )
+  }
+
+  clearInputs(){
+    this.nomePessoa='';
+    this.dateNasc='';
+    this.sexoPessoa='';
   }
 
 }

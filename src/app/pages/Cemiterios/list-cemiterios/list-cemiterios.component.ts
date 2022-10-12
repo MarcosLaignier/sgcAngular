@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { modelTable } from 'src/app/models/table-model';
+import {modelTable} from 'src/app/models/table-model';
 import {CemiteriosService} from "../service-cemiterios/cemiterios.service";
 import {Observable} from "rxjs";
 import {cemiterioModel} from "../../../models/cemiterio-model";
@@ -17,10 +17,11 @@ export class ListCemiteriosComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router) {
   }
-  cod_Cemiterio:any;
-  name_Cemiterio:string='';
-  resp_Cemiterio:string='';
-  cidade_Cemiterio:string='';
+
+  cod_Cemiterio: String = '';
+  name_Cemiterio: string = '';
+  resp_Cemiterio: string = '';
+  cidade_Cemiterio: string = '';
 
   colunasName = [
     {name: 'ID'}, {name: 'Nome'}, {name: 'Endereco'}, {name: 'Responsavel'}, {name: 'Ativo'}
@@ -34,7 +35,6 @@ export class ListCemiteriosComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
   }
 
@@ -43,18 +43,27 @@ export class ListCemiteriosComponent implements OnInit {
     this.Filter = false;
 
   }
-  idRec:number=0;
 
-  recebeId_Path(valor:number){
-    this.idRec=valor;
-    this.router.navigate(['/cadcemiterios',valor],)
+  idRec: number = 0;
+
+  recebeId_Path(valor: number) {
+    this.idRec = valor;
+    this.router.navigate(['/cadcemiterios', valor],)
   }
 
-  limparInput(){
-    this.cod_Cemiterio=null;
-    this.name_Cemiterio='';
-    this.resp_Cemiterio='';
-    this.cidade_Cemiterio='';
+  limparInput() {
+    this.cod_Cemiterio = '';
+    this.name_Cemiterio = '';
+    this.resp_Cemiterio = '';
+
+  }
+
+  findUndCustom() {
+    return this.cemiteriosService.findCustom(this.cod_Cemiterio, this.name_Cemiterio, this.resp_Cemiterio).subscribe(
+      data => {
+        this.dadosCols = data
+      }
+    )
   }
 
 

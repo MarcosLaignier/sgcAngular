@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { faChurch, faUserLarge, faPersonDigging, faFileLines, faGear, faWindowMaximize } from '@fortawesome/free-solid-svg-icons';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {
+  faChurch,
+  faUserLarge,
+  faPersonDigging,
+  faFileLines,
+  faGear,
+  faWindowMaximize
+} from '@fortawesome/free-solid-svg-icons';
 import {ConfiguracoesService} from "../../pages/Configuracoes/service/configuracoes.service";
 
 
@@ -21,30 +28,35 @@ export class LeftBarComponent implements OnInit {
   submenuColor = '#e8e8e8'
 
   urlLogo = '/assets/Images/LogoMunicipio.png';
+  urlLogoSgc = '/assets/Images/Logo_SGC_S_Fundo.png';
+
   idButton: String = '';
   openSideSubMenu: Boolean = false;
   menuCadastrosIniciais: Boolean = false;
   menuCadComum: Boolean = false;
   menuCadMovimentacoes: Boolean = false;
   menuConfig: Boolean = false;
-teste:String = '';
-nameMunicipio:String='';
+  teste: String = '';
+  nameMunicipio: String = '';
 
   @Input() clickActive: Boolean = false;
-  constructor( private configService:ConfiguracoesService) { }
+
+  constructor(private configService: ConfiguracoesService) {
+  }
 
   ngOnInit(): void {
     this.getNameMunicipio()
   }
+
   openAside() {
     this.getNameMunicipio()
-
       this.openSideSubMenu = !this.openSideSubMenu
+
 
   }
 
-
   openSubMenu() {
+
     if (this.idButton == 'CadInicial') {
       this.clearIdMenu()
       this.menuCadastrosIniciais = !this.menuCadastrosIniciais
@@ -64,7 +76,6 @@ nameMunicipio:String='';
     }
 
 
-
   }
 
   clearIdMenu() {
@@ -74,15 +85,15 @@ nameMunicipio:String='';
     this.menuConfig = false
   }
 
-  tt(){
+  tt() {
     this.teste = this.idButton
 
   }
 
-  getNameMunicipio(){
+  getNameMunicipio() {
     return this.configService.findNomeMunicipio().subscribe(
-      data =>{
-      this.nameMunicipio=data[0].sgcmunicipio;
+      data => {
+        this.nameMunicipio = data[0].sgcmunicipio;
       }
     )
   }

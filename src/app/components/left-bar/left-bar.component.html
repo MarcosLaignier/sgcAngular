@@ -2,7 +2,7 @@
     [ngClass]="{leftBar_active:clickActive ==true}">
     <div>
         <ul class="d-flex flex-column p-0 align-items-center pt-4" [ngClass]="{leftBarUl_active:clickActive==true}">
-            <img src="" alt="Logo Sistema Cemiterio" class="logoSistema">
+            <img [src]="urlLogoSgc" alt="Logo Sistema Cemiterio" class="logoSistema">
             <li (click)=" idButton= 'CadInicial';openSubMenu();openAside()">
                 <fa-icon [icon]="i_Cemiterio" class="icons_Menu"></fa-icon>
                 <span *ngIf="clickActive" class="textMenuLeftBar" id="CadInicial">Cadastros Iniciais</span>
