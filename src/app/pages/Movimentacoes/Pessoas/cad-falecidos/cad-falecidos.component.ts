@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,LOCALE_ID} from '@angular/core';
 import {PessoaService} from "../Service/pessoa.service";
 import {ActivatedRoute} from "@angular/router";
 import {pessoaModel} from "../Model/pessoaModel";
 import {HttpStatusCode} from "@angular/common/http";
 import {FormBuilder, Validators} from "@angular/forms";
-import {DatePipe} from "@angular/common";
+import {DatePipe, formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-cad-falecidos',
@@ -86,10 +86,14 @@ export class CadFalecidosComponent implements OnInit {
     this.causaMortis = true
   }
 
+
+
   pessoaById() {
     this.recebeIdUrl()
     return this.pessoaService.getPessoaId(this.idUrl).subscribe(
       data => {
+
+
         this.codFal = data.falcodigo
         this.nomeFal = data.falnome
         this.sexoFal = data.falsexo
@@ -104,6 +108,7 @@ export class CadFalecidosComponent implements OnInit {
 
   includePessoa() {
     this.clicaSalvar = true
+    console.log(this.form.valid)
     if (this.form.valid) {
       this.pessoa.falcodigo = this.codFal
       this.pessoa.falnome = this.nomeFal

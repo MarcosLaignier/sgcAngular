@@ -77,7 +77,7 @@
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="nascimento_Falecido">Nascimento</label>
-          <input type="date-local" id="nascimento_Falecido" class="form-control" [(ngModel)]="nascFal" name="nascFal" formControlName="falnascimento"/>
+          <input type="date" id="nascimento_Falecido" class="form-control" [(ngModel)]="nascFal" name="nascFal" formControlName="falnascimento"/>
         </div>
         <div *ngIf="form.get('falnascimento')?.errors && clicaSalvar" class="text-danger">
           *Nascimento Obrigatorio
@@ -101,7 +101,7 @@
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="date_Falecimento">Falecimento</label>
-          <input type="date-local" id="date_Falecimento" class="form-control" [(ngModel)]="falecimentoFal" name="falecimentoFal" formControlName="falfalecimento"/>
+          <input type="date" id="date_Falecimento" class="form-control" [(ngModel)]="falecimentoFal" name="falecimentoFal" formControlName="falfalecimento"/>
 
 
         </div>

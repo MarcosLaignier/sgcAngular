@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {modelTable} from 'src/app/models/table-model';
 import {CemiteriosService} from "../service-cemiterios/cemiterios.service";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 import {cemiterioModel} from "../../../models/cemiterio-model";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -21,7 +21,9 @@ export class ListCemiteriosComponent implements OnInit {
   cod_Cemiterio: String = '';
   name_Cemiterio: string = '';
   resp_Cemiterio: string = '';
-  cidade_Cemiterio: string = '';
+
+  spinner:boolean=false;
+
 
   colunasName = [
     {name: 'ID'}, {name: 'Nome'}, {name: 'Endereco'}, {name: 'Responsavel'}, {name: 'Ativo'}
@@ -59,9 +61,11 @@ export class ListCemiteriosComponent implements OnInit {
   }
 
   findUndCustom() {
+
     return this.cemiteriosService.findCustom(this.cod_Cemiterio, this.name_Cemiterio, this.resp_Cemiterio).subscribe(
       data => {
         this.dadosCols = data
+        console.log(data)
       }
     )
   }

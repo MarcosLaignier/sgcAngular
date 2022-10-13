@@ -6,5 +6,6 @@ export class cemiterioModel{
   undcidade!:String;
   undestado!:String;
   undresponsavel!:String;
+  status!:boolean;
 
 }

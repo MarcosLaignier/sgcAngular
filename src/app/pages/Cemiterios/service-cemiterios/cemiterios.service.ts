@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpStatusCode} from "@angular/common/http";
-import {first} from "rxjs";
+import {delay, first} from "rxjs";
 import {cemiterioModel} from "../../../models/cemiterio-model";
 
 @Injectable({
@@ -61,7 +61,7 @@ export class CemiteriosService {
     if (responsavel!=''){
       subquery+=`&responsavel=${responsavel}`
     }
-    return this.httpClient.get<cemiterioModel[]>(`${this.API}/${subquery}`)
+    return this.httpClient.get<cemiterioModel[]>(`${this.API}/${subquery}`).pipe(delay(500))
   }
 
 }

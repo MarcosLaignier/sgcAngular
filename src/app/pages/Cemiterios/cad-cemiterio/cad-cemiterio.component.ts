@@ -60,7 +60,8 @@ export class CadCemiterioComponent implements OnInit {
     undnumero: 0,
     undcidade: '',
     undestado: '',
-    undresponsavel: ''
+    undresponsavel: '',
+    status:true
   }
 
   insertCemiterio() {

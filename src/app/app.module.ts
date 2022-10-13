@@ -71,7 +71,7 @@ import { TableSepultamentoComponent } from './pages/Movimentacoes/Sepultamentos/
 
 
    ],
-  providers: [],
+  providers: [ DatePipe],
   bootstrap: [AppComponent]
 })
 

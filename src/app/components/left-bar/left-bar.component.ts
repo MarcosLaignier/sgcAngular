@@ -42,15 +42,17 @@ export class LeftBarComponent implements OnInit {
   @Input() clickActive: Boolean = false;
 
   constructor(private configService: ConfiguracoesService) {
+
   }
 
   ngOnInit(): void {
     this.getNameMunicipio()
+
   }
 
   openAside() {
     this.getNameMunicipio()
-      this.openSideSubMenu = !this.openSideSubMenu
+    this.openSideSubMenu = !this.openSideSubMenu
 
 
   }
