@@ -50,7 +50,7 @@ export class CemiteriosService {
     return this.httpClient.get<JSON>("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome",)
   }
 
-  findCustom(codigo:String,nome:String,responsavel:String){
+  findCustom(codigo:String,nome:String,responsavel:String,status:String){
     let subquery = 'custom?';
     if (codigo !=''){
       subquery+=`&codigo=${codigo}`
@@ -61,7 +61,10 @@ export class CemiteriosService {
     if (responsavel!=''){
       subquery+=`&responsavel=${responsavel}`
     }
-    return this.httpClient.get<cemiterioModel[]>(`${this.API}/${subquery}`).pipe(delay(500))
+    if(status!=''){
+      subquery+=`&status=${status}`
+    }
+    return this.httpClient.get<cemiterioModel[]>(`${this.API}/${subquery}`)
   }
 
 }

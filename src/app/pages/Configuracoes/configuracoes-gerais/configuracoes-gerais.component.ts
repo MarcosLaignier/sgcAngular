@@ -17,6 +17,7 @@ export class ConfiguracoesGeraisComponent implements OnInit {
   imgPrincipal: String = '';
   nameMunicipio: String = '';
   codCliente: number = 1;
+  tipoMunicipio:String='';
 
   dadosMun:boolean=true;
   imgMun:boolean=false;
@@ -25,7 +26,8 @@ export class ConfiguracoesGeraisComponent implements OnInit {
     codcliente:0,
     sgcmunicipio:'',
     sgcpathlogo:'',
-    sgcpathimg:''
+    sgcpathimg:'',
+    sgctipomunicipio:''
   }
 
   ngOnInit(): void {
@@ -37,6 +39,8 @@ export class ConfiguracoesGeraisComponent implements OnInit {
       data => {
         this.dados = data;
         this.nameMunicipio = data[0].sgcmunicipio
+        this.tipoMunicipio = data[0].sgctipomunicipio
+        console.log(this.tipoMunicipio)
       }
     )
   }
@@ -44,6 +48,7 @@ export class ConfiguracoesGeraisComponent implements OnInit {
   alterNameMunicipio() {
     this.config.codcliente=this.codCliente;
     this.config.sgcmunicipio=this.nameMunicipio;
+    this.config.sgctipomunicipio=this.tipoMunicipio;
     console.log(this.config)
     return this.configuracoesService.alterNomeMunicipio(this.codCliente, this.config).subscribe()
   }
@@ -51,7 +56,6 @@ export class ConfiguracoesGeraisComponent implements OnInit {
 alterTelas(){
     this.dadosMun=!this.dadosMun;
     this.imgMun=!this.imgMun;
-
-    console.log( this.dadosMun +" - "+this.imgMun)
-}
+  console.log(this.tipoMunicipio)
+  }
 }

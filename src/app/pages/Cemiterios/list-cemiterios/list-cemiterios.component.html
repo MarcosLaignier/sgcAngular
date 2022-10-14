@@ -25,7 +25,7 @@
   </div>
 
   <div class="row mb-1">
-    <div class="col-md-5">
+    <div class="col-md-3">
       <div class="form-outline">
         <label class="form-label" for="name_Responsavel">Responsavel</label>
         <input type="text" id="name_Responsavel" class="form-control" name="resp_Cemiterio"
@@ -33,7 +33,17 @@
 
       </div>
     </div>
+    <div class="col-md-2">
+      <div class="form-outline">
+        <label class="form-label" for="status_Cemiterio">Status</label>
+        <select name="status_Cemiterio" id="status_Cemiterio" class="form-select" [(ngModel)]="status_Cemiterio" >
+          <option ></option>
+          <option value="true">Ativo</option>
+          <option value="false">Inativo</option>
+        </select>
 
+      </div>
+    </div>
   </div>
 </form>
 

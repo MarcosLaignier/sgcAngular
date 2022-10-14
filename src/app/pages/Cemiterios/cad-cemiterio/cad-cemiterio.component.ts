@@ -25,7 +25,8 @@ export class CadCemiterioComponent implements OnInit {
       numero: [0, [Validators.required]],
       cidade: ['', [Validators.required]],
       estado: ['', [Validators.required]],
-      responsavel: ['', [Validators.required]]
+      responsavel: ['', [Validators.required]],
+      status:[true,[Validators.required]]
 
     })
     this.idUrl = 0
@@ -52,6 +53,7 @@ export class CadCemiterioComponent implements OnInit {
   estadoCemiterio: String = '';
   responsavelCemiterio: String = '';
   estados: any;
+  statusCemiterio: boolean = true;
 
   cemiterioInserido: cemiterioModel = {
     undcodigo: 0,
@@ -61,7 +63,7 @@ export class CadCemiterioComponent implements OnInit {
     undcidade: '',
     undestado: '',
     undresponsavel: '',
-    status:true
+    status: true
   }
 
   insertCemiterio() {
@@ -72,6 +74,7 @@ export class CadCemiterioComponent implements OnInit {
     this.cemiterioInserido.undcidade = this.cidadeCemiterio;
     this.cemiterioInserido.undestado = this.estadoCemiterio;
     this.cemiterioInserido.undresponsavel = this.responsavelCemiterio;
+    this.cemiterioInserido.status = this.statusCemiterio;
 
     return this.cemiteriosService.insertCemiterio(this.cemiterioInserido).subscribe(
       response => {
@@ -114,6 +117,7 @@ export class CadCemiterioComponent implements OnInit {
         this.cidadeCemiterio = data.undcidade
         this.estadoCemiterio = data.undestado
         this.responsavelCemiterio = data.undresponsavel
+        this.statusCemiterio=data.status
       }
     )
   }
@@ -126,6 +130,8 @@ export class CadCemiterioComponent implements OnInit {
     this.cemiterioInserido.undcidade = this.cidadeCemiterio;
     this.cemiterioInserido.undestado = this.estadoCemiterio;
     this.cemiterioInserido.undresponsavel = this.responsavelCemiterio;
+    this.cemiterioInserido.status = this.statusCemiterio;
+
     this.cemiteriosService.putCemiterio(this.idUrl, this.cemiterioInserido).pipe().subscribe(
       response => {
         if (response.status == 200) {
@@ -185,13 +191,14 @@ export class CadCemiterioComponent implements OnInit {
     return this.cemiteriosService.getEstadosBrasil().subscribe(
       dados => {
         this.estados = dados
-        // this.estados.sort(function (x: any, y: any) {
-        //   return x.sigla == y.sigla ? 0 : x.sigla > y.sigla ? 1 : -1
-        //
-        // })
+
       }
     )
 
+  }
+
+  statusBtn() {
+ this.statusCemiterio=!this.statusCemiterio;
   }
 
 

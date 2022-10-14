@@ -4,17 +4,16 @@
   <button type="button" class="btn btn-light btn-outline-secondary" (click)="alterTelas()">Dados Municipio</button>
   <button type="button" class="btn btn-light btn-outline-secondary" (click)="alterTelas()">Imagens Municipio</button>
 </div>
-<div *ngIf="dadosMun">
+<div *ngIf="dadosMun" class="">
   <form action="" class="border-bottom">
 
     <div class="d-flex flex-column p-2">
-      <label for="">Tipo</label>
-      <select name="" id="" class="d-flex w-25">
-        <option value=""></option>
-        <option value="">Camara</option>
-        <option value="">Prefeitura</option>
+      <label for="tpMunicipio">Tipo</label>
+      <select name="tipoMunicipio" id="tpMunicipio" class="d-flex w-25" [(ngModel)]="tipoMunicipio">
+        <option ></option>
+        <option >Camara</option>
+        <option >Prefeitura</option>
       </select>
-      <!--    <input type="text" name="nameMunicipio" class="d-flex w-25" [(ngModel)]="nameMunicipio">-->
     </div>
     <div class="d-flex flex-column p-2">
       <label for="">Nome Municipio</label>
@@ -25,8 +24,8 @@
   </form>
 </div>
 
-<div class="d-flex flex-row align-content-between" *ngIf="imgMun">
-  <form action="" class="border-bottom ">
+<div class="d-flex flex-column align-content-between " *ngIf="imgMun">
+  <form action="" class="p-2 border-bottom">
     <div class="d-flex flex-column p-2">
       <label for="">Brasao do Municipio</label>
       <input type="file" name="brasaoMunicipio">
@@ -36,7 +35,7 @@
 
   </form>
 
-  <form action="" class="border-bottom">
+  <form action="" class="p-2 border-bottom">
     <div class="d-flex flex-column p-2">
       <label for="">Imagem pagina inicial</label>
       <input type="file" name="imgPrincipal" id="">
@@ -44,3 +43,5 @@
     <button type="submit" class="btn btn-outline-secondary mx-1"> Enviar</button>
   </form>
 </div>
+
+

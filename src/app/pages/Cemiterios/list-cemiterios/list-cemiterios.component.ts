@@ -19,8 +19,9 @@ export class ListCemiteriosComponent implements OnInit {
   }
 
   cod_Cemiterio: String = '';
-  name_Cemiterio: string = '';
-  resp_Cemiterio: string = '';
+  name_Cemiterio: String = '';
+  resp_Cemiterio: String = '';
+  status_Cemiterio:String ='';
 
   spinner:boolean=false;
 
@@ -61,8 +62,8 @@ export class ListCemiteriosComponent implements OnInit {
   }
 
   findUndCustom() {
-
-    return this.cemiteriosService.findCustom(this.cod_Cemiterio, this.name_Cemiterio, this.resp_Cemiterio).subscribe(
+console.log(this.status_Cemiterio)
+    return this.cemiteriosService.findCustom(this.cod_Cemiterio, this.name_Cemiterio, this.resp_Cemiterio,this.status_Cemiterio).subscribe(
       data => {
         this.dadosCols = data
         console.log(data)
