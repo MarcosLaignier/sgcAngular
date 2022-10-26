@@ -58,7 +58,7 @@ export class ListSepulturasComponent implements OnInit {
   getNameCemiterios() {
     this.sepulturaService.getCemiterios().subscribe(
       data => {
-        this.nameCemiterios = data
+        // this.nameCemiterios = data
       }
     )
   }

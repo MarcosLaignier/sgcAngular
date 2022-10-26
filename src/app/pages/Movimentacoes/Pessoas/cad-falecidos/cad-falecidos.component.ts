@@ -38,7 +38,7 @@ export class CadFalecidosComponent implements OnInit {
   }
 
   form = this.formBuilder.group({
-    falcodigo: [0, [Validators.required]],
+    falcodigo: [0],
     falnome: ['', [Validators.required]],
     falsexo: ['', [Validators.required]],
     falnascimento: [Date, [Validators.required]],
@@ -54,7 +54,7 @@ export class CadFalecidosComponent implements OnInit {
   idUrl: number = 0;
   infoStatus: HttpStatusCode | undefined
   clicaSalvar: boolean = false;
-
+  msgError:String = '';
 
   constructor(private pessoaService: PessoaService,
               private route: ActivatedRoute,
@@ -65,7 +65,7 @@ export class CadFalecidosComponent implements OnInit {
   ngOnInit(): void {
     this.pessoaById()
     this.recebeIdUrl()
-    this.getLastCod()
+    // this.getLastCod()
   }
 
   activeDadosGerais() {
@@ -110,7 +110,7 @@ export class CadFalecidosComponent implements OnInit {
     this.clicaSalvar = true
     console.log(this.form.valid)
     if (this.form.valid) {
-      this.pessoa.falcodigo = this.codFal
+      // this.pessoa.falcodigo = this.codFal
       this.pessoa.falnome = this.nomeFal
       this.pessoa.falsexo = this.sexoFal
       this.pessoa.falfalecimento = this.falecimentoFal
@@ -125,6 +125,14 @@ export class CadFalecidosComponent implements OnInit {
             this.infoStatus = HttpStatusCode.Ok
           } else {
             this.infoStatus = HttpStatusCode.InternalServerError
+          }
+        },
+        error =>{
+          this.infoStatus = error.error.status
+          if (error.error.message.indexOf('unique') ){
+            this.msgError=`CPF: ${this.cpfFal} ja utilizado`
+          }else{
+            this.msgError=error.error.message
           }
         }
       )
@@ -170,6 +178,10 @@ export class CadFalecidosComponent implements OnInit {
         } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
+      },
+      error =>{
+        this.infoStatus = error.error.status
+        this.msgError=error.error.message
       }
     )
   }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {sepulturaModel} from "../sepulturaModel";
+import {cemiterioModel} from "../../../models/cemiterio-model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class SepulturaServiceService {
     return this.HttpClient.get<sepulturaModel>(`${this.API}/${id}`)
   }
 
-  public getLastId(){
-    return this.HttpClient.get(`${this.API}/cod`)
+  public getByDescricao(sepdescricao:String){
+    return this.HttpClient.get<sepulturaModel>(`${this.API}/nome/${sepdescricao}`)
   }
 
   public insertSepultura(dados:sepulturaModel){
@@ -38,7 +39,12 @@ export class SepulturaServiceService {
 
 
   public  getCemiterios(){
-    return this.HttpClient.get<String[]>(`${this.API_Cemiterios}/nameCemiterios`)
+    return this.HttpClient.get<cemiterioModel[]>(`${this.API_Cemiterios}`)
+  }
+
+
+  public  getCemiteriosNome(nome:String){
+    return this.HttpClient.get<cemiterioModel>(`${this.API_Cemiterios}/nome/${nome}`)
   }
 
   public findCustom(codigo:String,descricao:String,cemiterio:String){

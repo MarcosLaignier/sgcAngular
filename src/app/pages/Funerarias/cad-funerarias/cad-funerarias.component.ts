@@ -22,7 +22,7 @@ export class CadFunerariasComponent implements OnInit {
 
   infoStatus: HttpStatusCode | undefined;
   clicaSalvar: boolean = false;
-
+  msgError:String='';
   funeraria: funerariaModel = {
     funcodigo: 0,
     fundescricao: '',
@@ -39,8 +39,8 @@ export class CadFunerariasComponent implements OnInit {
   }
 
   form = this.formBuilder.group({
-    codFun: [0, [Validators.required]],
-    nameFun: ['', [Validators.required]],
+    codFun: [0],
+    nameFun:['',[Validators.required]],
     enderecoFun: ['', [Validators.required]],
     cidadeFun: ['', [Validators.required]],
     numeroFun: ['', [Validators.required]]
@@ -49,7 +49,7 @@ export class CadFunerariasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getById()
-    this.popCod()
+    // this.popCod()
   }
 
   public getById() {
@@ -68,7 +68,6 @@ export class CadFunerariasComponent implements OnInit {
 
   public insertFun() {
     if (this.form.valid) {
-      this.funeraria.funcodigo = this.codFun
       this.funeraria.fundescricao = this.nameFun
       this.funeraria.funendereco = this.enderecoFun
       this.funeraria.funcidade = this.cidadeFun
@@ -80,13 +79,22 @@ export class CadFunerariasComponent implements OnInit {
           } else (
             this.infoStatus = HttpStatusCode.InternalServerError
           )
+        },
+        error =>{
+          this.infoStatus = error.error.status
+          if (error.error.message.indexOf('unique') ){
+            this.msgError=`Nome: ${this.nameFun} ja utilizado`
+          }else{
+            this.msgError=error.error.message
+          }
         }
       )
-    } else {
+    }else {
       return this.infoStatus = HttpStatusCode.InternalServerError
 
     }
   }
+
 
   public alterFun() {
     if (this.form.valid) {
@@ -119,6 +127,10 @@ export class CadFunerariasComponent implements OnInit {
         } else (
           this.infoStatus = HttpStatusCode.InternalServerError
         )
+      },
+      error => {
+        this.infoStatus = error.error.status
+        this.msgError=error.error.message
       }
     )
   }

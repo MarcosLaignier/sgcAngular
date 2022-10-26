@@ -4,7 +4,6 @@ import {cemiterioModel} from "../../../models/cemiterio-model";
 import {ActivatedRoute} from "@angular/router";
 import {HttpStatusCode} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {delay, map} from "rxjs";
 
 @Component({
   selector: 'app-cad-cemiterio',
@@ -19,7 +18,7 @@ export class CadCemiterioComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
-      cod: [0, [Validators.required]],
+      cod: [0, []],
       nome: ['', [Validators.required]],
       endereco: ['', [Validators.required]],
       numero: [0, [Validators.required]],
@@ -35,7 +34,7 @@ export class CadCemiterioComponent implements OnInit {
 
   ngOnInit(): void {
     this.recebeIdUrl()
-    this.buscaCodCemiterio()
+    // this.buscaCodCemiterio()
     this.buscaEstadosBr()
 
   }
@@ -44,6 +43,7 @@ export class CadCemiterioComponent implements OnInit {
   infoStatus: HttpStatusCode | undefined;
   idUrl: number = 0;
   clickSalvar: boolean = false;
+  msgError:String='';
 
   codigoCemiterio: number = 0;
   nameCemiterio: String = '';
@@ -67,7 +67,7 @@ export class CadCemiterioComponent implements OnInit {
   }
 
   insertCemiterio() {
-    this.cemiterioInserido.undcodigo = this.codigoCemiterio;
+    // this.cemiterioInserido.undcodigo = this.codigoCemiterio;
     this.cemiterioInserido.undnome = this.nameCemiterio;
     this.cemiterioInserido.undendereco = this.enderecoCemiterio;
     this.cemiterioInserido.undnumero = this.numeroCemiterio;
@@ -80,25 +80,50 @@ export class CadCemiterioComponent implements OnInit {
       response => {
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Ok;
-          console.log(this.infoStatus)
+          this.findCodByName()
         } else {
           this.infoStatus = HttpStatusCode.InternalServerError
+        }
+      },
+      error =>{
+        this.infoStatus = error.error.status
+        if (error.error.message.indexOf('unique') ){
+          this.msgError=`Nome: ${this.nameCemiterio} ja utilizado`
+        }else{
+          this.msgError=error.error.message
         }
       }
     );
   }
 
   deleteCemiterio() {
+    // try {
+    //   this.cemiteriosService.deleteCemiterio(this.idUrl).subscribe(
+    //   response =>{
+    //     console.log("OK")
+    //   }
+    //     )
+    // } catch(e)
+    // {
+    //   console.log(e)
+    // }
     return this.cemiteriosService.deleteCemiterio(this.idUrl).subscribe(
       response => {
+
+
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Accepted;
           setTimeout(this.backWindow, 1000)
-        } else {
+        }else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
+      },
+      error =>{
+        this.infoStatus = error.error.status
+        this.msgError=error.error.message
       }
-    );
+    )
+      ;
   }
 
 
@@ -136,7 +161,7 @@ export class CadCemiterioComponent implements OnInit {
       response => {
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Ok;
-          console.log(this.infoStatus)
+          this.findCodByName()
         } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
@@ -175,16 +200,24 @@ export class CadCemiterioComponent implements OnInit {
     }
   }
 
-
-  buscaCodCemiterio() {
-    return this.cemiteriosService.getCodigo().subscribe(
-      data => {
-        if (typeof data === "number" && (this.idUrl == 0 || this.idUrl == undefined)) {
-          this.codigoCemiterio = data + 1
-        }
+  findCodByName(){
+    this.cemiteriosService.getCemiteriosNome(this.nameCemiterio).subscribe(
+      data=>{
+        this.codigoCemiterio = data.undcodigo
       }
     )
   }
+
+
+  // buscaCodCemiterio() {
+  //   return this.cemiteriosService.getCodigo().subscribe(
+  //     data => {
+  //       if (typeof data === "number" && (this.idUrl == 0 || this.idUrl == undefined)) {
+  //         this.codigoCemiterio = data + 1
+  //       }
+  //     }
+  //   )
+  // }
 
 
   buscaEstadosBr() {
@@ -198,7 +231,7 @@ export class CadCemiterioComponent implements OnInit {
   }
 
   statusBtn() {
- this.statusCemiterio=!this.statusCemiterio;
+    this.statusCemiterio=!this.statusCemiterio;
   }
 
 

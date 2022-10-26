@@ -35,10 +35,13 @@ export class PessoaService {
   public deletePessoa(falcodigo:number){
     return this.Httpclient.delete(`${this.API}/${falcodigo}`,{observe:'response'})
   }
-
+  public ByNome(falnome:String){
+    return this.Httpclient.get<pessoaModel>(`${this.API}/name/${falnome}`)
+  }
   public getByNome(falnome:String){
     return this.Httpclient.get<pessoaModel[]>(`${this.API}/nameFal?falnome=${falnome}`)
   }
+
   public filterCustom(nome:String,sexo:String,dtNasc:any){
     let subquery:String='';
     if ( nome != ''){

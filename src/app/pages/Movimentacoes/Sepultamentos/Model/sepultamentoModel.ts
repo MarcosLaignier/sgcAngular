@@ -1,3 +1,7 @@
+import {pessoaModel} from "../../Pessoas/Model/pessoaModel";
+import {cemiterioModel} from "../../../../models/cemiterio-model";
+import {funerariaModel} from "../../../Funerarias/funerariaModel";
+
 export class SepultamentoModel{
   sepulcodigo!:number;
   sepulfalecido!:String;
@@ -7,4 +11,7 @@ export class SepultamentoModel{
   sepulsepultura!:String;
   sepdatasepultamento!:Date;
   sepdatafalecimento!:Date;
+  pessoa!:pessoaModel;
+  cemiterio!:cemiterioModel
+  funeraria!:funerariaModel
 }

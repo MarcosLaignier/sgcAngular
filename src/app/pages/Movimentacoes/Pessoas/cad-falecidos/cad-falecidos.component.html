@@ -8,12 +8,9 @@
 
 </div>
 
-<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==500">
-
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==500" data-bs-dismiss="alert">
   <strong>Erro Inesperado ! </strong> Entre em contato com o suporte tecnico
-  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
-
-
+  <button type="button" class="btn-close btn-close-black" aria-label="Close" data-bs-dismiss="alert"></button>
 </div>
 
 <div class="alert alert-success alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==202">
@@ -21,6 +18,12 @@
   <strong>Registro EXCLUIDO com sucesso! </strong>
   <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
 
+
+</div>
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==409">
+
+  <strong>{{msgError}} </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
 
 </div>
 <form id="form_CFalecido" class="form_SGC" [formGroup]="form">
@@ -120,7 +123,7 @@
         <div class="form-outline">
           <label class="form-label" for="name_Falecido">CPF</label>
           <input type="text" id="cpf_Falecido" class="form-control" maxlength="11" minlength="11"
-            placeholder="000.000.000-00"  [(ngModel)]="cpfFal" name="cpfFal" formControlName="falcpf"/>
+                 placeholder="000.000.000-00"  [(ngModel)]="cpfFal" name="cpfFal" formControlName="falcpf"/>
         </div>
         <div *ngIf="form.get('falcpf')?.errors && clicaSalvar" class="text-danger">
           *CPF Obrigatorio

@@ -46,16 +46,16 @@ export class SepultamentoService {
   subQuery:String=`/Filter?`;
   findCustomFilters(fal?:String , cpf?:String,cemiterio?:String ){
     this.subQuery='/Filter?';
-      if(fal!=""){
-        this.subQuery += `pessoa=${fal}`
-      }
+    if(fal!=""){
+      this.subQuery += `pessoa=${fal}`
+    }
 
-      if(cpf !=""){
-        this.subQuery +=`&cpf=${cpf}`
-      }
-      if(cemiterio!=""){
-        this.subQuery +=`&Cemiterio=${cemiterio}`
-      }
+    if(cpf !=""){
+      this.subQuery +=`&cpf=${cpf}`
+    }
+    if(cemiterio!=""){
+      this.subQuery +=`&Cemiterio=${cemiterio}`
+    }
 
     return this.HttpClient.get<SepultamentoModel[]>(`${this.API}${this.subQuery}`)
   }

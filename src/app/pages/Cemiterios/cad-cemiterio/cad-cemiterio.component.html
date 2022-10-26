@@ -25,6 +25,12 @@
   <strong>Registro EXCLUIDO com sucesso! </strong>
   <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
 
+</div>
+
+<div class="alert alert-danger alert-dismissible fade show d-flex" role="alert" *ngIf="infoStatus==409">
+
+  <strong>{{msgError}} </strong>
+  <button type="button" class="btn-close btn-close-black" aria-label="Close"></button>
 
 </div>
 

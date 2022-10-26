@@ -22,8 +22,8 @@ export class CemiteriosService {
   insertCemiterio(dados: cemiterioModel) {
 
 
-      return this.httpClient.post(this.API, dados, {observe: 'response'}).pipe(
-      )
+    return this.httpClient.post(this.API, dados, {observe: 'response'}).pipe(
+    )
   }
 
   deleteCemiterio(id: number) {
@@ -33,6 +33,9 @@ export class CemiteriosService {
 
   findById(id: number) {
     return this.httpClient.get<cemiterioModel>(`${this.API}/${id}`)
+  }
+  public  getCemiteriosNome(nome:String){
+    return this.httpClient.get<cemiterioModel>(`${this.API}/nome/${nome}`)
   }
 
   putCemiterio(id: number, dados: cemiterioModel) {

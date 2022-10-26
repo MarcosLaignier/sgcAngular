@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {sepulturaModel} from "../sepulturaModel";
 import {HttpStatusCode} from "@angular/common/http";
 import {FormBuilder, Validators} from "@angular/forms";
+import {cemiterioModel} from "../../../models/cemiterio-model";
 
 
 @Component({
@@ -20,27 +21,30 @@ export class CadSepulturasComponent implements OnInit {
   }
 
   form = this.formBuilder.group({
-    codSepultura: [0, [Validators.required]],
+    codSepultura: [],
     descSepultura: ['', [Validators.required]],
     nomeCemiterio: ['', [Validators.required]]
   })
 
-  codSep: number = 0;
+  codSep: any;
   descSep: String = '';
   cemiterioSep: String = '';
+  cemiterioInserido: cemiterioModel = new cemiterioModel;
   idRoute: number = 0;
-  nameCemiterios: String[] = []
+  dadosCemiterio:cemiterioModel[]=[];
+
   sepulturaInserida: sepulturaModel = {
     sepcodigo: 0,
     sepdescricao: '',
-    sepcemiterio: ''
+    sepcemiterio: '',
+    cemiterio:this.cemiterioInserido
   }
   infoStatus: HttpStatusCode | undefined;
   clicaSalvar: boolean = false;
+  msgError:String='';
 
   ngOnInit(): void {
     this.getById()
-    this.getLastCod()
     this.getNameCemiterios()
   }
 
@@ -54,30 +58,36 @@ export class CadSepulturasComponent implements OnInit {
 
   }
 
-  getLastCod() {
-    if (this.idRoute == undefined || this.idRoute == 0) {
-      this.sepulturaService.getLastId().subscribe(
-        data => {
-          if (typeof data === "number") {
-            this.codSep = data + 1;
-          }
-        }
-      )
-    }
-
+  getByDescricao(){
+    return this.sepulturaService.getByDescricao(this.descSep).subscribe(
+      data =>{
+        this.codSep = data.sepcodigo
+      }
+    )
   }
+
 
   insertSep() {
     if (this.form.valid) {
-      this.sepulturaInserida.sepcodigo = this.codSep;
       this.sepulturaInserida.sepdescricao = this.descSep;
       this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
+      this.sepulturaInserida.cemiterio=this.cemiterioInserido;
       return this.sepulturaService.insertSepultura(this.sepulturaInserida).subscribe(
         response => {
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok;
+            this.getByDescricao();
+
           } else {
             this.infoStatus = HttpStatusCode.InternalServerError
+          }
+        },
+        error =>{
+          this.infoStatus = error.error.status
+          if (error.error.message.indexOf('unique') ){
+            this.msgError=`Sepultura: ${this.descSep} ja utilizado, Impossivel Nova Inclusão!`
+          }else{
+            this.msgError=error.error.message
           }
         }
       )
@@ -89,14 +99,15 @@ export class CadSepulturasComponent implements OnInit {
 
   alteraSep() {
     if (this.form.valid) {
-
-      this.sepulturaInserida.sepcodigo = this.codSep;
       this.sepulturaInserida.sepdescricao = this.descSep;
       this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
+      this.sepulturaInserida.cemiterio=this.cemiterioInserido;
       return this.sepulturaService.alteraSepultura(this.codSep, this.sepulturaInserida).subscribe(
         response => {
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok
+            this.getByDescricao();
+
           } else {
             this.infoStatus = HttpStatusCode.InternalServerError
           }
@@ -115,6 +126,10 @@ export class CadSepulturasComponent implements OnInit {
           this.infoStatus = HttpStatusCode.Accepted
           setTimeout(this.backWindow, 1000)
         }
+      },
+      error =>{
+        this.infoStatus = error.error.status
+        this.msgError=error.error.message
       }
     );
   }
@@ -122,8 +137,15 @@ export class CadSepulturasComponent implements OnInit {
   getNameCemiterios() {
     return this.sepulturaService.getCemiterios().subscribe(
       data => {
-        this.nameCemiterios = data
+        this.dadosCemiterio=data
+      }
+    )
+  }
 
+  getCemiterioSelecionado() {
+    return this.sepulturaService.getCemiteriosNome(this.cemiterioSep).subscribe(
+      data => {
+        this.cemiterioInserido=data
       }
     )
   }
@@ -143,7 +165,7 @@ export class CadSepulturasComponent implements OnInit {
     if (this.idRoute == undefined || this.idRoute == 0) {
       this.insertSep()
       if(this.form.valid){
-      setTimeout(this.backWindow,500)
+        setTimeout(this.backWindow,500)
       }
     } else {
       this.alteraSep()

@@ -35,6 +35,10 @@ export class FunerariaService {
     return this.Httpclient.get<number>(`${this.API}/codfun`)
   }
 
+  public findByName(fundescricao:String){
+    return this.Httpclient.get<funerariaModel>(`${this.API}/nome/${fundescricao}`)
+  }
+
   public findCustom(codigo:String,nome:String,cidade:String){
     let subquery = "custom?";
     if(codigo != '' ){

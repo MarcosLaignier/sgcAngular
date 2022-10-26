@@ -44,16 +44,16 @@ export class ListSepultamentosComponent implements OnInit {
   }
 
 
-public retornaIdUrl(idLinha:number){
+  public retornaIdUrl(idLinha:number){
     this.idUrl = idLinha
     return this.route.navigate([`/cadsepultamentos/${this.idUrl}`])
-}
+  }
 
 
 
 
 
-public filterCustom(){
+  public filterCustom(){
 
     return this.sepultamentoService.findCustomFilters(this.pessoaFilter,this.cpfFilter,this.cemiterioFilter).subscribe(
       data=>{
@@ -61,21 +61,21 @@ public filterCustom(){
         this.dadosCols=data
       }
     )
-}
+  }
 
-public getNameCemiterio(){
+  public getNameCemiterio(){
     return this.sepultamentoService.findNameCem().subscribe(
       data =>{
         this.cemiteriosApi = data
       }
     )
-}
+  }
 
-clearInputs(){
+  clearInputs(){
     this.pessoaFilter = '';
     this.cpfFilter = '';
     // this.dateSepultamento=undefined
-  this.cemiterioFilter=''
-}
+    this.cemiterioFilter=''
+  }
 
 }
