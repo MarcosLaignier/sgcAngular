@@ -22,7 +22,7 @@ export class CadSepulturasComponent implements OnInit {
 
   form = this.formBuilder.group({
     codSepultura: [],
-    descSepultura: ['', [Validators.required]],
+    descSepultura: [''],
     nomeCemiterio: ['', [Validators.required]]
   })
 
@@ -32,6 +32,9 @@ export class CadSepulturasComponent implements OnInit {
   cemiterioInserido: cemiterioModel = new cemiterioModel;
   idRoute: number = 0;
   dadosCemiterio:cemiterioModel[]=[];
+  quadraSep:String='';
+  loteSep:String='';
+  codigoSep:String=''
 
   sepulturaInserida: sepulturaModel = {
     sepcodigo: 0,
@@ -69,6 +72,7 @@ export class CadSepulturasComponent implements OnInit {
 
   insertSep() {
     if (this.form.valid) {
+      this.descSep=`${this.quadraSep}.${this.loteSep}.${this.codigoSep}`;
       this.sepulturaInserida.sepdescricao = this.descSep;
       this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
       this.sepulturaInserida.cemiterio=this.cemiterioInserido;

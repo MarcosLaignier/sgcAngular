@@ -10,6 +10,8 @@ import {CemiteriosService} from "../../../Cemiterios/service-cemiterios/cemiteri
 import {cemiterioModel} from "../../../../models/cemiterio-model";
 import {FunerariaService} from "../../../Funerarias/Services/funeraria.service";
 import {funerariaModel} from "../../../Funerarias/funerariaModel";
+import {SepulturaServiceService} from "../../../Sepulturas/services/sepultura-service.service";
+import {sepulturaModel} from "../../../Sepulturas/sepulturaModel";
 
 
 @Component({
@@ -48,7 +50,7 @@ export class CadSepultamentosComponent implements OnInit {
   funeraria: funerariaModel = new funerariaModel
 
   namesPessoas: pessoaModel[] = [];
-
+  dadosSepulturas:sepulturaModel[]=[]
 
   funNames: String[] = []
   cemNames: String[] = []
@@ -73,7 +75,8 @@ export class CadSepultamentosComponent implements OnInit {
               private formBuilder: FormBuilder,
               private pessoaService: PessoaService,
               private cemiterioService: CemiteriosService,
-              private funerariaService: FunerariaService
+              private funerariaService: FunerariaService,
+              private sepulturaService:SepulturaServiceService
               // private router: Router,
   ) {
 
@@ -84,6 +87,7 @@ export class CadSepultamentosComponent implements OnInit {
     this.populaFuneraria()
     this.populaCemiterio()
     this.getById()
+    this.getSepulturas()
 
   }
 
@@ -280,6 +284,14 @@ export class CadSepultamentosComponent implements OnInit {
         } else {
           this.sepulCodigo = this.sepulCodigo
         }
+      }
+    )
+  }
+
+  getSepulturas(){
+    return this.sepulturaService.getSepulturasByCemiterio(this.sepulCemiterio).subscribe(
+      data =>{
+        this.dadosSepulturas = data
       }
     )
   }
