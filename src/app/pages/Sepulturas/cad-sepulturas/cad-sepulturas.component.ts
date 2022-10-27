@@ -3,7 +3,7 @@ import {SepulturaServiceService} from "../services/sepultura-service.service";
 import {ActivatedRoute} from "@angular/router";
 import {sepulturaModel} from "../sepulturaModel";
 import {HttpStatusCode} from "@angular/common/http";
-import {FormBuilder, Validators} from "@angular/forms";
+import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {cemiterioModel} from "../../../models/cemiterio-model";
 
 
@@ -18,12 +18,15 @@ export class CadSepulturasComponent implements OnInit {
               private route: ActivatedRoute,
               private formBuilder: FormBuilder
   ) {
+
   }
 
-  form = this.formBuilder.group({
-    codSepultura: [],
-    descSepultura: [''],
-    nomeCemiterio: ['', [Validators.required]]
+
+form:FormGroup = this.formBuilder.group({
+    sepcodigo: [0],
+    sepdescricao: ['', [Validators.required]],
+    sepcemiterio: ['', [Validators.required]],
+  cemiterio:[cemiterioModel,[Validators.required]]
   })
 
   codSep: any;
@@ -36,12 +39,12 @@ export class CadSepulturasComponent implements OnInit {
   loteSep:String='';
   codigoSep:String=''
 
-  sepulturaInserida: sepulturaModel = {
-    sepcodigo: 0,
-    sepdescricao: '',
-    sepcemiterio: '',
-    cemiterio:this.cemiterioInserido
-  }
+  // sepulturaInserida: sepulturaModel = {
+  //   sepcodigo: 0,
+  //   sepdescricao: '',
+  //   sepcemiterio: '',
+  //   cemiterio:this.cemiterioInserido
+  // }
   infoStatus: HttpStatusCode | undefined;
   clicaSalvar: boolean = false;
   msgError:String='';
@@ -72,16 +75,15 @@ export class CadSepulturasComponent implements OnInit {
 
   insertSep() {
     if (this.form.valid) {
-      this.descSep=`${this.quadraSep}.${this.loteSep}.${this.codigoSep}`;
-      this.sepulturaInserida.sepdescricao = this.descSep;
-      this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
-      this.sepulturaInserida.cemiterio=this.cemiterioInserido;
-      return this.sepulturaService.insertSepultura(this.sepulturaInserida).subscribe(
-        response => {
-          if (response.status == 200) {
+
+      let novaSepultura = new sepulturaModel(this.form.value)
+      novaSepultura.cemiterio = this.cemiterioInserido
+      console.log(novaSepultura)
+      return this.sepulturaService.insertSepultura(novaSepultura).subscribe(
+      response => {
+          if (response.status == 201) {
             this.infoStatus = HttpStatusCode.Ok;
             this.getByDescricao();
-
           } else {
             this.infoStatus = HttpStatusCode.InternalServerError
           }
@@ -94,7 +96,7 @@ export class CadSepulturasComponent implements OnInit {
             this.msgError=error.error.message
           }
         }
-      )
+    )
     } else {
       return this.infoStatus = HttpStatusCode.InternalServerError
     }
@@ -103,11 +105,11 @@ export class CadSepulturasComponent implements OnInit {
 
   alteraSep() {
     if (this.form.valid) {
-      this.sepulturaInserida.sepdescricao = this.descSep;
-      this.sepulturaInserida.sepcemiterio = this.cemiterioSep;
-      this.sepulturaInserida.cemiterio=this.cemiterioInserido;
-      return this.sepulturaService.alteraSepultura(this.codSep, this.sepulturaInserida).subscribe(
+      let Sepultura = new sepulturaModel(this.form.value)
+     Sepultura.cemiterio = this.cemiterioInserido
+      return this.sepulturaService.alteraSepultura(this.codSep, Sepultura).subscribe(
         response => {
+          console.log("Q3")
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok
             this.getByDescricao();

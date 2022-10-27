@@ -6,4 +6,7 @@ export class sepulturaModel{
   sepcemiterio!:String;
   cemiterio!:cemiterioModel;
 
+  public constructor(init?: Partial<sepulturaModel>) {
+    Object.assign(this, init);
+  }
 }

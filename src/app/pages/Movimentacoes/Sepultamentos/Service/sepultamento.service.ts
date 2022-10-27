@@ -39,10 +39,6 @@ export class SepultamentoService {
     return this.HttpClient.get<String[]>(`${this.API}/nameCem`)
   }
 
-  findLastCod(){
-    return this.HttpClient.get<number>(`${this.API}/cod`)
-  }
-
   subQuery:String=`/Filter?`;
   findCustomFilters(fal?:String , cpf?:String,cemiterio?:String ){
     this.subQuery='/Filter?';

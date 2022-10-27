@@ -35,7 +35,7 @@
     <div class="col-md-2">
       <div class="form-outline">
         <label class="form-label" for="cod_Sepultura">Codigo</label>
-        <input type="text" id="cod_Sepultura" class="form-control" [(ngModel)]="codSep" name="codSepultura"  formControlName="codSepultura" readonly="true"/>
+        <input type="text" id="cod_Sepultura" class="form-control" [(ngModel)]="codSep" name="codSepultura"  formControlName="sepcodigo" readonly="true"/>
 
       </div>
     </div>
@@ -46,8 +46,8 @@
     <div class="col-md-1">
       <div class="form-outline">
         <label class="form-label" for="Quadra_Sepultura">Quadra</label>
-        <input type="text" id="Quadra_Sepultura" class="form-control" [(ngModel)]="quadraSep" name="descSepultura" formControlName="descSepultura"/>
-        <div *ngIf="form.get('descSepultura')?.errors && clicaSalvar" class="text-danger">
+        <input type="text" id="Quadra_Sepultura" class="form-control" [(ngModel)]="quadraSep" name="descSepultura" formControlName="sepdescricao"/>
+        <div *ngIf="form.get('sepdescricao')?.errors && clicaSalvar" class="text-danger">
           *Quadra Obrigatoria
         </div>
       </div>
@@ -55,8 +55,8 @@
     <div class="col-md-1">
       <div class="form-outline">
         <label class="form-label" for="Lote_Sepultura">Lote</label>
-        <input type="text" id="Lote_Sepultura" class="form-control" [(ngModel)]="loteSep" name="descSepultura" formControlName="descSepultura"/>
-        <div *ngIf="form.get('descSepultura')?.errors && clicaSalvar" class="text-danger">
+        <input type="text" id="Lote_Sepultura" class="form-control" [(ngModel)]="loteSep" name="descSepultura" formControlName="sepdescricao"/>
+        <div *ngIf="form.get('sepdescricao')?.errors && clicaSalvar" class="text-danger">
           *Lote Obrigatorio
         </div>
       </div>
@@ -64,8 +64,8 @@
     <div class="col-md-1">
       <div class="form-outline">
         <label class="form-label" for="codigo_Sepultura">Sepultura</label>
-        <input type="text" id="codigo_Sepultura" class="form-control" [(ngModel)]="codigoSep" name="descSepultura" formControlName="descSepultura"/>
-        <div *ngIf="form.get('descSepultura')?.errors && clicaSalvar" class="text-danger">
+        <input type="text" id="codigo_Sepultura" class="form-control" [(ngModel)]="codigoSep" name="descSepultura" formControlName="sepdescricao"/>
+        <div *ngIf="form.get('sepdescricao')?.errors && clicaSalvar" class="text-danger">
           *Sepultura Obrigatoria
         </div>
       </div>
@@ -76,11 +76,11 @@
     <div class="col-md-2">
       <div class="form-outline">
         <label class="form-label" for="name_Cemiterio">Cemiterio</label>
-        <select id="name_Cemiterio" class="form-control "  [(ngModel)]="cemiterioSep" name="nameCemiterio" formControlName="nomeCemiterio" (change)="getCemiterioSelecionado()">
+        <select id="name_Cemiterio" class="form-control "  [(ngModel)]="cemiterioSep" name="nameCemiterio" formControlName="sepcemiterio" (change)="getCemiterioSelecionado()">
           <option ></option>
           <option *ngFor="let cem of dadosCemiterio" >{{cem.undnome}}</option>
         </select>
-        <div *ngIf="form.get('nomeCemiterio')?.errors && clicaSalvar" class="text-danger">
+        <div *ngIf="form.get('sepcemiterio')?.errors && clicaSalvar" class="text-danger">
           *Nome do Cemiterio Obrigatorio
         </div>
       </div>

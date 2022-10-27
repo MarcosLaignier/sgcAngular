@@ -42,7 +42,7 @@
       <div class="form-outline">
         <label class="form-label" for="cod_Cemiterio">Codigo</label>
         <input type="text" id="cod_Cemiterio" class="form-control" name="codigoCemiterio"
-               [(ngModel)]="codigoCemiterio" formControlName="cod" readonly=true/>
+               [(ngModel)]="codigoCemiterio" formControlName="undcodigo" readonly=true/>
 
       </div>
 
@@ -63,9 +63,9 @@
     <div class="col-md-5">
       <div class="form-outline">
         <label class="form-label" for="name_Cemiterio">Nome</label>
-        <input type="text" class="form-control" name="nameCemiterio" [(ngModel)]="nameCemiterio"
-               formControlName="nome"/>
-        <div *ngIf="form.get('nome')?.errors && clickSalvar" class="text-danger">
+        <input type="text" id="name_Cemiterio" class="form-control" name="nameCemiterio" [(ngModel)]="nameCemiterio"
+               formControlName="undnome"/>
+        <div *ngIf="form.get('undnome')?.errors && clickSalvar" class="text-danger">
           *Nome Obrigatorio
         </div>
       </div>
@@ -76,8 +76,8 @@
       <div class="form-outline">
         <label class="form-label" for="endereco_Cemiterio">Endereço</label>
         <input type="text" id="endereco_Cemiterio" class="form-control" name="enderecoCemiterio"
-               [(ngModel)]="enderecoCemiterio" formControlName="endereco"/>
-        <div *ngIf="form.get('endereco')?.errors && clickSalvar" class="text-danger">
+               [(ngModel)]="enderecoCemiterio" formControlName="undendereco"/>
+        <div *ngIf="form.get('undendereco')?.errors && clickSalvar" class="text-danger">
           *Endereço Obrigatorio
         </div>
       </div>
@@ -86,8 +86,8 @@
       <div class="form-outline">
         <label class="form-label" for="number_Cemiterio">Numero</label>
         <input type="text" id="number_Cemiterio" class="form-control" name="numeroCemiterio"
-               [(ngModel)]="numeroCemiterio" formControlName="numero"/>
-        <div *ngIf="form.get('numero')?.errors && clickSalvar" class="text-danger">
+               [(ngModel)]="numeroCemiterio" formControlName="undnumero"/>
+        <div *ngIf="form.get('undnumero')?.errors && clickSalvar" class="text-danger">
           *Numero Obrigatorio
         </div>
       </div>
@@ -98,8 +98,8 @@
       <div class="form-outline">
         <label class="form-label" for="city_cemiterio">Cidade</label>
         <input type="text" id="city_Cemiterio" class="form-control" name="cidadeCemiterio" [(ngModel)]="cidadeCemiterio"
-               formControlName="cidade"/>
-        <div *ngIf="form.get('cidade')?.errors && clickSalvar" class="text-danger">
+               formControlName="undcidade"/>
+        <div *ngIf="form.get('undcidade')?.errors && clickSalvar" class="text-danger">
           *Cidade Obrigatorio
         </div>
       </div>
@@ -108,11 +108,11 @@
       <div class="form-outline">
         <label class="form-label" for="state_Cemiterio">Estado</label>
         <select id="state_Cemiterio" class="form-control " onclick="buscaEstados()" name="estadoCemiterio"
-                [(ngModel)]="estadoCemiterio" formControlName="estado">
+                [(ngModel)]="estadoCemiterio" formControlName="undestado">
           <option value=""></option>
           <option *ngFor="let est of estados">{{est.sigla}} </option>
         </select>
-        <div *ngIf="form.get('estado')?.errors && clickSalvar" class="text-danger">
+        <div *ngIf="form.get('undestado')?.errors && clickSalvar" class="text-danger">
           *Estado Obrigatorio
         </div>
       </div>
@@ -123,8 +123,8 @@
       <div class="form-outline">
         <label class="form-label" for="responsavel_Cemiterio">Responsavel</label>
         <input type="text" id="responsavel_Cemiterio" class="form-control" name="responsavelCemiterio"
-               [(ngModel)]="responsavelCemiterio" formControlName="responsavel"/>
-        <div *ngIf="form.get('responsavel')?.errors && clickSalvar" class="text-danger">
+               [(ngModel)]="responsavelCemiterio" formControlName="undresponsavel"/>
+        <div *ngIf="form.get('undresponsavel')?.errors && clickSalvar" class="text-danger">
           *Responsavel Obrigatorio
         </div>
       </div>

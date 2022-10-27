@@ -36,7 +36,7 @@
     <div class="col-md-2">
       <div class="form-outline">
         <label class="form-label" for="cod_Funeraria">Codigo</label>
-        <input type="text" id="cod_Funeraria" class="form-control" [(ngModel)]="codFun" name="codFun" formControlName="codFun" readonly="true" />
+        <input type="text" id="cod_Funeraria" class="form-control" [(ngModel)]="codFun" name="codFun" formControlName="funcodigo" readonly="true" />
 
       </div>
     </div>
@@ -47,23 +47,23 @@
     <div class="col-md-3">
       <div class="form-outline">
         <label class="form-label" for="name_Funeraria" >Nome</label>
-        <input type="text" id="name_Funeraria" class="form-control" [(ngModel)]="nameFun" name="nameFun" formControlName="nameFun"/>
+        <input type="text" id="name_Funeraria" class="form-control" [(ngModel)]="nameFun" name="nameFun" formControlName="fundescricao"/>
       </div>
-      <div *ngIf="form.get('nameFun')?.errors && clicaSalvar" class="text-danger">
+      <div *ngIf="form.get('fundescricao')?.errors && clicaSalvar" class="text-danger">
         *Nome Obrigatorio
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-outline">
         <label class="form-label" for="city_Funeraria">Cidade</label>
-        <select id="city_Funeraria" class="form-control" [(ngModel)]="cidadeFun" name="cidadeFun" formControlName="cidadeFun">
+        <select id="city_Funeraria" class="form-control" [(ngModel)]="cidadeFun" name="cidadeFun" formControlName="funcidade">
           <option selected>Escolher</option>
           <option>Lagoa Santa</option>
           <option>Pedro Leopoldo</option>
           <option>Vespasiano</option>
         </select>
       </div>
-      <div *ngIf="form.get('cidadeFun')?.errors && clicaSalvar" class="text-danger">
+      <div *ngIf="form.get('funcidade')?.errors && clicaSalvar" class="text-danger">
         *Cidade Obrigatoria
       </div>
     </div>
@@ -71,18 +71,18 @@
       <div class="col-md-3">
         <div class="form-outline">
           <label class="form-label" for="endereco_Funeraria">Endereco</label>
-          <input type="text" id="endereco_Funeraria" class="form-control" [(ngModel)]="enderecoFun" name="enderecoFun" formControlName="enderecoFun"/>
+          <input type="text" id="endereco_Funeraria" class="form-control" [(ngModel)]="enderecoFun" name="enderecoFun" formControlName="funendereco"/>
         </div>
-        <div *ngIf="form.get('enderecoFun')?.errors && clicaSalvar" class="text-danger">
+        <div *ngIf="form.get('funendereco')?.errors && clicaSalvar" class="text-danger">
           *Endereco Obrigatorio
         </div>
       </div>
       <div class="col-md-2">
         <div class="form-outline">
           <label class="form-label" for="number_Funeraria">Numero</label>
-          <input type="text" id="number_Funeraria" class="form-control" [(ngModel)]="numeroFun" name="numeroFun" formControlName="numeroFun"/>
+          <input type="text" id="number_Funeraria" class="form-control" [(ngModel)]="numeroFun" name="numeroFun" formControlName="funnumero"/>
         </div>
-        <div *ngIf="form.get('numeroFun')?.errors && clicaSalvar" class="text-danger">
+        <div *ngIf="form.get('funnumero')?.errors && clicaSalvar" class="text-danger">
           *Numero Obrigatorio
         </div>
       </div>

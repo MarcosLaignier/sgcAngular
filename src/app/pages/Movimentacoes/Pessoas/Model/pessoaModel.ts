@@ -7,4 +7,8 @@ export class pessoaModel{
   falnaturalidade!:String;
   falfalecimento!:Date;
   falmedresp!:String;
+
+  public constructor(init?: Partial<pessoaModel>) {
+    Object.assign(this, init);
+  }
 }

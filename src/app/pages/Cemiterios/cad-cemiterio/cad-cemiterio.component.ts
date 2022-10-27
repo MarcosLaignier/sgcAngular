@@ -17,17 +17,7 @@ export class CadCemiterioComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
-    this.form = this.formBuilder.group({
-      cod: [0, []],
-      nome: ['', [Validators.required]],
-      endereco: ['', [Validators.required]],
-      numero: [0, [Validators.required]],
-      cidade: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
-      responsavel: ['', [Validators.required]],
-      status:[true,[Validators.required]]
 
-    })
     this.idUrl = 0
 
   }
@@ -39,11 +29,22 @@ export class CadCemiterioComponent implements OnInit {
 
   }
 
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    undcodigo: [0],
+    undnome: ['', [Validators.required]],
+    undendereco: ['', [Validators.required]],
+    undnumero: [0, [Validators.required]],
+    undcidade: ['', [Validators.required]],
+    undestado: ['', [Validators.required]],
+    undresponsavel: ['', [Validators.required]],
+    status: [true, [Validators.required]]
+
+  })
+
   infoStatus: HttpStatusCode | undefined;
   idUrl: number = 0;
   clickSalvar: boolean = false;
-  msgError:String='';
+  msgError: String = '';
 
   codigoCemiterio: number = 0;
   nameCemiterio: String = '';
@@ -67,60 +68,42 @@ export class CadCemiterioComponent implements OnInit {
   }
 
   insertCemiterio() {
-    // this.cemiterioInserido.undcodigo = this.codigoCemiterio;
-    this.cemiterioInserido.undnome = this.nameCemiterio;
-    this.cemiterioInserido.undendereco = this.enderecoCemiterio;
-    this.cemiterioInserido.undnumero = this.numeroCemiterio;
-    this.cemiterioInserido.undcidade = this.cidadeCemiterio;
-    this.cemiterioInserido.undestado = this.estadoCemiterio;
-    this.cemiterioInserido.undresponsavel = this.responsavelCemiterio;
-    this.cemiterioInserido.status = this.statusCemiterio;
-
-    return this.cemiteriosService.insertCemiterio(this.cemiterioInserido).subscribe(
+    let novoCemiterio = new cemiterioModel(this.form.value)
+    novoCemiterio.undcodigo = 0;
+    console.log(novoCemiterio)
+    return this.cemiteriosService.insertCemiterio(novoCemiterio).subscribe(
       response => {
-        if (response.status == 200) {
+        if (response.status == 201) {
           this.infoStatus = HttpStatusCode.Ok;
           this.findCodByName()
         } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
       },
-      error =>{
+      error => {
         this.infoStatus = error.error.status
-        if (error.error.message.indexOf('unique') ){
-          this.msgError=`Nome: ${this.nameCemiterio} ja utilizado`
-        }else{
-          this.msgError=error.error.message
+        if (error.error.message.indexOf('unique')) {
+          this.msgError = `Nome: ${this.nameCemiterio} ja utilizado`
+        } else {
+          this.msgError = error.error.message
         }
       }
     );
   }
 
   deleteCemiterio() {
-    // try {
-    //   this.cemiteriosService.deleteCemiterio(this.idUrl).subscribe(
-    //   response =>{
-    //     console.log("OK")
-    //   }
-    //     )
-    // } catch(e)
-    // {
-    //   console.log(e)
-    // }
     return this.cemiteriosService.deleteCemiterio(this.idUrl).subscribe(
       response => {
-
-
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Accepted;
           setTimeout(this.backWindow, 1000)
-        }else {
+        } else {
           this.infoStatus = HttpStatusCode.InternalServerError
         }
       },
-      error =>{
+      error => {
         this.infoStatus = error.error.status
-        this.msgError=error.error.message
+        this.msgError = error.error.message
       }
     )
       ;
@@ -142,22 +125,14 @@ export class CadCemiterioComponent implements OnInit {
         this.cidadeCemiterio = data.undcidade
         this.estadoCemiterio = data.undestado
         this.responsavelCemiterio = data.undresponsavel
-        this.statusCemiterio=data.status
+        this.statusCemiterio = data.status
       }
     )
   }
 
   alterCemiterio() {
-    this.cemiterioInserido.undcodigo = this.codigoCemiterio;
-    this.cemiterioInserido.undnome = this.nameCemiterio;
-    this.cemiterioInserido.undendereco = this.enderecoCemiterio;
-    this.cemiterioInserido.undnumero = this.numeroCemiterio;
-    this.cemiterioInserido.undcidade = this.cidadeCemiterio;
-    this.cemiterioInserido.undestado = this.estadoCemiterio;
-    this.cemiterioInserido.undresponsavel = this.responsavelCemiterio;
-    this.cemiterioInserido.status = this.statusCemiterio;
-
-    this.cemiteriosService.putCemiterio(this.idUrl, this.cemiterioInserido).pipe().subscribe(
+    let Cemiterio = new cemiterioModel(this.form.value)
+    this.cemiteriosService.putCemiterio(this.idUrl, Cemiterio).pipe().subscribe(
       response => {
         if (response.status == 200) {
           this.infoStatus = HttpStatusCode.Ok;
@@ -200,24 +175,13 @@ export class CadCemiterioComponent implements OnInit {
     }
   }
 
-  findCodByName(){
+  findCodByName() {
     this.cemiteriosService.getCemiteriosNome(this.nameCemiterio).subscribe(
-      data=>{
+      data => {
         this.codigoCemiterio = data.undcodigo
       }
     )
   }
-
-
-  // buscaCodCemiterio() {
-  //   return this.cemiteriosService.getCodigo().subscribe(
-  //     data => {
-  //       if (typeof data === "number" && (this.idUrl == 0 || this.idUrl == undefined)) {
-  //         this.codigoCemiterio = data + 1
-  //       }
-  //     }
-  //   )
-  // }
 
 
   buscaEstadosBr() {
@@ -231,7 +195,7 @@ export class CadCemiterioComponent implements OnInit {
   }
 
   statusBtn() {
-    this.statusCemiterio=!this.statusCemiterio;
+    this.statusCemiterio = !this.statusCemiterio;
   }
 
 

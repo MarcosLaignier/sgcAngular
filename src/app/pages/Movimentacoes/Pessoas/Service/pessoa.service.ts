@@ -20,10 +20,6 @@ export class PessoaService {
     return this.Httpclient.get<pessoaModel>(`${this.API}/${falcodigo}`)
   }
 
-  public getLastCod(){
-    return this.Httpclient.get<number>(`${this.API}/cod`)
-  }
-
   public includePessoa(dados:pessoaModel){
     return this.Httpclient.post(this.API,dados,{observe:'response'})
   }

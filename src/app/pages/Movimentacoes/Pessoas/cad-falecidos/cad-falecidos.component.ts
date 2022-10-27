@@ -3,7 +3,7 @@ import {PessoaService} from "../Service/pessoa.service";
 import {ActivatedRoute} from "@angular/router";
 import {pessoaModel} from "../Model/pessoaModel";
 import {HttpStatusCode} from "@angular/common/http";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DatePipe, formatDate} from "@angular/common";
 
 @Component({
@@ -37,7 +37,15 @@ export class CadFalecidosComponent implements OnInit {
     falnaturalidade: ''
   }
 
-  form = this.formBuilder.group({
+
+
+
+  idUrl: number = 0;
+  infoStatus: HttpStatusCode | undefined
+  clicaSalvar: boolean = false;
+  msgError:String = '';
+
+ form:FormGroup = this.formBuilder.group({
     falcodigo: [0],
     falnome: ['', [Validators.required]],
     falsexo: ['', [Validators.required]],
@@ -50,22 +58,16 @@ export class CadFalecidosComponent implements OnInit {
     falCausaMortis: ['']
   })
 
-
-  idUrl: number = 0;
-  infoStatus: HttpStatusCode | undefined
-  clicaSalvar: boolean = false;
-  msgError:String = '';
-
   constructor(private pessoaService: PessoaService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder
   ) {
+
   }
 
   ngOnInit(): void {
     this.pessoaById()
     this.recebeIdUrl()
-    // this.getLastCod()
   }
 
   activeDadosGerais() {
@@ -108,20 +110,12 @@ export class CadFalecidosComponent implements OnInit {
 
   includePessoa() {
     this.clicaSalvar = true
-    console.log(this.form.valid)
     if (this.form.valid) {
-      // this.pessoa.falcodigo = this.codFal
-      this.pessoa.falnome = this.nomeFal
-      this.pessoa.falsexo = this.sexoFal
-      this.pessoa.falfalecimento = this.falecimentoFal
-      this.pessoa.falnaturalidade = this.nacionalidadeFal
-      this.pessoa.falnascimento = this.nascFal
-      this.pessoa.falcpf = this.cpfFal
-      this.pessoa.falmedresp = this.medResponsavel
-      return this.pessoaService.includePessoa(this.pessoa).subscribe(
+      let novaPessoa = new pessoaModel(this.form.value)
+      return this.pessoaService.includePessoa(novaPessoa).subscribe(
         response => {
           console.log(response.status)
-          if (response.status == 200) {
+          if (response.status == 201) {
             this.infoStatus = HttpStatusCode.Ok
           } else {
             this.infoStatus = HttpStatusCode.InternalServerError
@@ -144,15 +138,8 @@ export class CadFalecidosComponent implements OnInit {
   alteraPessoa() {
     this.clicaSalvar = true
     if (this.form.valid) {
-      this.pessoa.falcodigo = this.codFal
-      this.pessoa.falnome = this.nomeFal
-      this.pessoa.falsexo = this.sexoFal
-      this.pessoa.falfalecimento = this.falecimentoFal
-      this.pessoa.falnaturalidade = this.nacionalidadeFal
-      this.pessoa.falnascimento = this.nascFal
-      this.pessoa.falcpf = this.cpfFal
-      this.pessoa.falmedresp = this.medResponsavel
-      this.pessoaService.alterPessoa(this.codFal, this.pessoa).subscribe(
+      let Pessoa = new pessoaModel(this.form.value)
+      this.pessoaService.alterPessoa(this.codFal, Pessoa).subscribe(
         response => {
           console.log(response.status)
           if (response.status == 200) {
@@ -189,20 +176,6 @@ export class CadFalecidosComponent implements OnInit {
   recebeIdUrl() {
     this.route.params.subscribe(params => this.idUrl = params['id'])
   }
-
-  getLastCod() {
-    return this.pessoaService.getLastCod().subscribe(
-      data => {
-        if (this.idUrl == 0 || this.idUrl == undefined) {
-          this.codFal = data + 1
-        } else {
-          this.codFal = this.idUrl
-        }
-
-      }
-    )
-  }
-
 
   salvarBtn() {
     if (this.idUrl == 0 || this.idUrl == undefined) {

@@ -14,4 +14,8 @@ export class SepultamentoModel{
   pessoa!:pessoaModel;
   cemiterio!:cemiterioModel
   funeraria!:funerariaModel
+
+  public constructor(init?: Partial<SepultamentoModel>) {
+    Object.assign(this, init);
+  }
 }

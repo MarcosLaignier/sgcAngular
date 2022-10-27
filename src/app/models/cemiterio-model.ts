@@ -8,4 +8,10 @@ export class cemiterioModel{
   undresponsavel!:String;
   status!:boolean;
 
+  public constructor(dados?: Partial<cemiterioModel>) {
+    Object.assign(this, dados);
+  }
+
+
+
 }

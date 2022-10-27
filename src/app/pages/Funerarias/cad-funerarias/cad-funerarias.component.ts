@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {funerariaModel} from "../funerariaModel";
 import {HttpStatusCode} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {cemiterioModel} from "../../../models/cemiterio-model";
 
 @Component({
   selector: 'app-cad-funerarias',
@@ -36,20 +37,21 @@ export class CadFunerariasComponent implements OnInit {
               private route: ActivatedRoute,
               private formBuilder: FormBuilder
   ) {
-  }
 
-  form = this.formBuilder.group({
-    codFun: [0],
-    nameFun:['',[Validators.required]],
-    enderecoFun: ['', [Validators.required]],
-    cidadeFun: ['', [Validators.required]],
-    numeroFun: ['', [Validators.required]]
+  }
+form:FormGroup = this.formBuilder.group({
+    funcodigo: [0],
+    fundescricao:['',[Validators.required]],
+    funendereco: ['', [Validators.required]],
+    funcidade: ['', [Validators.required]],
+    funnumero: ['', [Validators.required]]
 
   })
 
+
+
   ngOnInit(): void {
     this.getById()
-    // this.popCod()
   }
 
   public getById() {
@@ -67,14 +69,12 @@ export class CadFunerariasComponent implements OnInit {
   }
 
   public insertFun() {
+    console.log(this.form.valid)
     if (this.form.valid) {
-      this.funeraria.fundescricao = this.nameFun
-      this.funeraria.funendereco = this.enderecoFun
-      this.funeraria.funcidade = this.cidadeFun
-      this.funeraria.funnumero = this.numeroFun
-      return this.funerariaService.insertFun(this.funeraria).subscribe(
+      let novaFuneraria = new funerariaModel(this.form.value)
+      return this.funerariaService.insertFun(novaFuneraria).subscribe(
         response => {
-          if (response.status == 200) {
+          if (response.status == 201) {
             this.infoStatus = HttpStatusCode.Ok
           } else (
             this.infoStatus = HttpStatusCode.InternalServerError
@@ -98,12 +98,8 @@ export class CadFunerariasComponent implements OnInit {
 
   public alterFun() {
     if (this.form.valid) {
-      this.funeraria.funcodigo = this.codFun
-      this.funeraria.fundescricao = this.nameFun
-      this.funeraria.funendereco = this.enderecoFun
-      this.funeraria.funcidade = this.cidadeFun
-      this.funeraria.funnumero = this.numeroFun
-      return this.funerariaService.alteraFun(this.funeraria.funcodigo, this.funeraria).subscribe(
+      let funeraria = new funerariaModel(this.form.value)
+      return this.funerariaService.alteraFun(this.funeraria.funcodigo, funeraria).subscribe(
         response => {
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok
@@ -160,20 +156,6 @@ export class CadFunerariasComponent implements OnInit {
       }
     }
   }
-
-  public popCod() {
-    if (this.idUrl == undefined || this.idUrl == 0) {
-      return this.funerariaService.lastCod().subscribe(
-        data => {
-          this.codFun = data + 1
-
-        }
-      )
-    } else {
-      return this.codFun = this.idUrl
-    }
-  }
-
 
 
   backWindow() {

@@ -37,7 +37,7 @@
       <div class="form-outline">
         <label class="form-label" for="cod_Sepultamento">Codigo</label>
         <input type="text" id="cod_Sepultamento" class="form-control" [(ngModel)]="sepulCodigo"
-               formControlName="sepulCodigo" name="sepulCodigo" readonly="true"/>
+               formControlName="sepulcodigo" name="sepulCodigo" readonly="true"/>
 
       </div>
     </div>
@@ -49,9 +49,9 @@
       <div class="form-outline">
         <label class="form-label" for="name_Pessoa">Pessoa</label>
         <input type="text" id="name_Pessoa" class="form-control" [(ngModel)]="sepulFalecido" name="sepulFalecido"
-               formControlName="sepulFalecido"
+               formControlName="sepulfalecido"
                (keyup)="dadosFalecidos()"/>
-        <div *ngIf="form.get('sepulFalecido')?.errors && clicaSalvar" class="text-danger">
+        <div *ngIf="form.get('sepulfalecido')?.errors && clicaSalvar" class="text-danger">
           *Falecido Obrigatorio
         </div>
         <div>
@@ -68,8 +68,8 @@
       <div class="form-outline">
         <label class="form-label" for="cpf_Pessoa">CPF</label>
         <input type="text" id="cpf_Pessoa" class="form-control" [(ngModel)]="sepulCPF" name="sepulCPF"
-               formControlName="sepulCPF" readonly="true"/>
-        <div *ngIf="form.get('sepulCPF')?.errors && clicaSalvar" class="text-danger">
+               formControlName="sepulcpffal" readonly="true"/>
+        <div *ngIf="form.get('sepulcpffal')?.errors && clicaSalvar" class="text-danger">
           *CPF Obrigatorio
         </div>
       </div>
@@ -80,11 +80,11 @@
       <div class="form-outline">
         <label class="form-label" for="name_Funeraria">Funeraria</label>
         <select id="name_Funeraria" class="form-control" [(ngModel)]="sepulFuneraria" name="sepulFuneraria"
-                formControlName="sepulFuneraria" (change)="getDadosFunerariaNome()">
+                formControlName="sepulfuneraria" (change)="getDadosFunerariaNome()">
           <option></option>
           <option *ngFor="let funName of funNames">{{funName}}</option>
         </select>
-        <div *ngIf="form.get('sepulFuneraria')?.errors && clicaSalvar" class="text-danger">
+        <div *ngIf="form.get('sepulfuneraria')?.errors && clicaSalvar" class="text-danger">
           *Funeraria Obrigatoria
         </div>
       </div>
@@ -93,8 +93,8 @@
       <div class="form-outline">
         <label class="form-label" for="date_Sepultamento">Data Sepultamento</label>
         <input type="date" id="date_Sepultamento" class="form-control" [(ngModel)]="sepulData" name="SepulData"
-               formControlName="sepulData"/>
-        <div *ngIf="form.get('sepulData')?.errors && clicaSalvar" class="text-danger">
+               formControlName="sepdatasepultamento"/>
+        <div *ngIf="form.get('sepdatasepultamento')?.errors && clicaSalvar" class="text-danger">
           *Data de Falecimento Obrigatoria
         </div>
 
@@ -106,12 +106,12 @@
       <div class="form-outline">
         <label class="form-label" for="name_Cemiterio">Cemiterio</label>
         <select id="name_Cemiterio" class="form-control" [(ngModel)]="sepulCemiterio" name="sepulCemiterio"
-                formControlName="sepulCemiterio" (change)="getDadosCemiterioNome();getSepulturas()">
+                formControlName="sepulcemiterio" (change)="getDadosCemiterioNome();getSepulturas()">
           <option></option>
           <option *ngFor="let cemName of cemNames">{{cemName}}</option>
 
         </select>
-        <div *ngIf="form.get('sepulCemiterio')?.errors && clicaSalvar" class="text-danger">
+        <div *ngIf="form.get('sepulcemiterio')?.errors && clicaSalvar" class="text-danger">
           *Cemiterio Obrigatorio
         </div>
       </div>
@@ -120,9 +120,9 @@
       <div class="form-outline">
         <label class="form-label" for="date_Falecimento">Falecimento</label>
         <input type="date" id="date_Falecimento" class="form-control" [(ngModel)]="sepulFale" name="sepultFal"
-               formControlName="sepulFale" readonly="true"/>
+               formControlName="sepdatafalecimento" readonly="true"/>
       </div>
-      <div *ngIf="form.get('sepulFale')?.errors && clicaSalvar" class="text-danger">
+      <div *ngIf="form.get('sepdatafalecimento')?.errors && clicaSalvar" class="text-danger">
         *Data de Falecimento Obrigatoria
       </div>
     </div>
@@ -132,12 +132,12 @@
       <div class="form-outline">
         <label class="form-label" for="name_Sepultura">Sepultura</label>
         <select id="name_Sepultura" class="form-control" [(ngModel)]="sepulSepultura" name="sepulSepultura"
-                formControlName="sepulSepultura" >
+                formControlName="sepulsepultura" >
           <option> </option>
         <option *ngFor="let sepulturas of dadosSepulturas">{{sepulturas.sepdescricao}}</option>
         </select>
       </div>
-      <div *ngIf="form.get('sepulSepultura')?.errors && clicaSalvar" class="text-danger">
+      <div *ngIf="form.get('sepulsepultura')?.errors && clicaSalvar" class="text-danger">
         *Sepultura Obrigatoria
       </div>
     </div>

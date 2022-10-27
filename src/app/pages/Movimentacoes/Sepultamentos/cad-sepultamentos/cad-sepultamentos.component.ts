@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SepultamentoService} from "../Service/sepultamento.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Form, FormBuilder, Validators} from "@angular/forms";
+import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PessoaService} from "../../Pessoas/Service/pessoa.service";
 import {pessoaModel} from "../../Pessoas/Model/pessoaModel";
 import {SepultamentoModel} from "../Model/sepultamentoModel";
@@ -26,16 +26,7 @@ export class CadSepultamentosComponent implements OnInit {
   clicaSalvar: boolean = false;
   msgError:String = '';
 
-  form = this.formBuilder.group({
-    sepulCodigo: [],
-    sepulFalecido: ['', [Validators.required]],
-    sepulCPF: ['', [Validators.required]],
-    sepulData: [Date, [Validators.required]],
-    sepulFale: [Date, [Validators.required]],
-    sepulFuneraria: [''],
-    sepulCemiterio: ['', [Validators.required]],
-    sepulSepultura: ['', [Validators.required]]
-  })
+
 
   sepulCodigo: any;
   sepulFalecido: String = '';
@@ -81,7 +72,19 @@ export class CadSepultamentosComponent implements OnInit {
   ) {
 
   }
-
+ form:FormGroup = this.formBuilder.group({
+   sepulcodigo: [],
+   sepulfalecido: ['', [Validators.required]],
+   sepulcpffal: ['', [Validators.required]],
+   sepdatasepultamento: [Date, [Validators.required]],
+   sepdatafalecimento: [Date, [Validators.required]],
+   sepulfuneraria: [''],
+   sepulcemiterio: ['', [Validators.required]],
+   sepulsepultura: ['', [Validators.required]],
+   pessoa:[pessoaModel,[Validators.required]],
+   cemiterio:[cemiterioModel,[Validators.required]],
+   funeraria:[funerariaModel,[Validators.required]]
+  })
 
   ngOnInit(): void {
     this.populaFuneraria()
@@ -151,22 +154,15 @@ export class CadSepultamentosComponent implements OnInit {
 
     this.clicaSalvar = true
     if (this.form.valid) {
-      this.sepultamento.sepulfalecido = this.sepulFalecido;
-      this.sepultamento.sepulcpffal = this.sepulCPF;
-      this.sepultamento.sepdatasepultamento = this.sepulData;
-      this.sepultamento.sepdatafalecimento = this.sepulFale;
-      this.sepultamento.sepulcemiterio = this.sepulCemiterio;
-      this.sepultamento.sepulfuneraria = this.sepulFuneraria
-      this.sepultamento.sepulsepultura = this.sepulSepultura;
-      this.sepultamento.pessoa = this.pessoaF
-      this.sepultamento.cemiterio = this.cemiterio
-      this.sepultamento.funeraria = this.funeraria
-      console.log(this.sepultamento)
+      let novoSepultamento = new SepultamentoModel(this.form.value)
+      novoSepultamento.pessoa=this.pessoaF
+      novoSepultamento.cemiterio=this.cemiterio
+      novoSepultamento.funeraria=this.funeraria
       return new Promise(() => {
           if (response.success) {
-            this.sepultamentoService.insertSepultamento(this.sepultamento).subscribe(
+            this.sepultamentoService.insertSepultamento(novoSepultamento).subscribe(
               response => {
-                if (response.status == 200) {
+                if (response.status == 201){
                   this.infoStatus = HttpStatusCode.Ok
                 } else {
                   this.infoStatus = HttpStatusCode.InternalServerError
@@ -195,18 +191,11 @@ export class CadSepultamentosComponent implements OnInit {
   alteraSepul() {
 
     if (this.form.valid) {
-      this.sepultamento.sepulfalecido = this.sepulFalecido;
-      this.sepultamento.sepulcpffal = this.sepulCPF;
-      this.sepultamento.sepdatasepultamento = this.sepulData;
-      this.sepultamento.sepdatafalecimento = this.sepulFale;
-      this.sepultamento.sepulcemiterio = this.sepulCemiterio;
-      this.sepultamento.sepulfuneraria = this.sepulFuneraria
-      this.sepultamento.sepulsepultura = this.sepulSepultura;
-      this.sepultamento.pessoa = this.pessoaF
-      this.sepultamento.cemiterio = this.cemiterio
-      this.sepultamento.funeraria = this.funeraria
-
-      return this.sepultamentoService.alteraSepultamento(this.sepulCodigo, this.sepultamento).subscribe(
+      let Sepultamento = new SepultamentoModel(this.form.value)
+      Sepultamento.pessoa=this.pessoaF
+      Sepultamento.cemiterio=this.cemiterio
+      Sepultamento.funeraria=this.funeraria
+      return this.sepultamentoService.alteraSepultamento(this.sepulCodigo, Sepultamento).subscribe(
         response => {
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok
@@ -272,18 +261,6 @@ export class CadSepultamentosComponent implements OnInit {
         this.sepulFalecido = data.falnome
         this.sepulCPF = data.falcpf
         this.sepulFale = data.falfalecimento
-      }
-    )
-  }
-
-  lastCod() {
-    return this.sepultamentoService.findLastCod().subscribe(
-      data => {
-        if (this.sepulCodigo == 0 || this.sepulCodigo == undefined) {
-          this.sepulCodigo = data + 1;
-        } else {
-          this.sepulCodigo = this.sepulCodigo
-        }
       }
     )
   }

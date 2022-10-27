@@ -43,12 +43,6 @@ export class CemiteriosService {
 
   }
 
-  getCodigo(){
-    return this.httpClient.get(`${this.API}/cod`).pipe(
-
-    )
-  }
-
   getEstadosBrasil(){
     return this.httpClient.get<JSON>("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome",)
   }

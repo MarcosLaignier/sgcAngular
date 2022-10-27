@@ -6,5 +6,8 @@ export class funerariaModel{
   funcidade!:String;
   funnumero!:number;
 
+  public constructor(init?: Partial<funerariaModel>) {
+    Object.assign(this, init);
+  }
 
 }

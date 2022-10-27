@@ -31,9 +31,6 @@ export class FunerariaService {
     return this.Httpclient.delete(`${this.API}/${funcodigo}`,{observe:'response'})
   }
 
-  public lastCod(){
-    return this.Httpclient.get<number>(`${this.API}/codfun`)
-  }
 
   public findByName(fundescricao:String){
     return this.Httpclient.get<funerariaModel>(`${this.API}/nome/${fundescricao}`)
