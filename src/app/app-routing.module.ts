@@ -12,6 +12,8 @@ import { CadSepulturasComponent } from './pages/Sepulturas/cad-sepulturas/cad-se
 import { CadFalecidosComponent } from './pages/Movimentacoes/Pessoas/cad-falecidos/cad-falecidos.component';
 import { CadSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/cad-sepultamentos/cad-sepultamentos.component';
 import { CadFunerariasComponent } from './pages/Funerarias/cad-funerarias/cad-funerarias.component';
+import {ListagemUnidadesComponent} from "./pages/Cemiterios/Relatorios/listagem-unidades/listagem-unidades.component";
+import {ListagemFunerariasComponent} from "./pages/Funerarias/Relatorios/listagem-funerarias/listagem-funerarias.component";
 
 const routes: Routes = [
   {
@@ -63,7 +65,11 @@ const routes: Routes = [
   },
   {
     path:'cadsepultamentos/:id',component:CadSepultamentosComponent
-  },
+  },{
+  path:'rel/listagemUnidades',component:ListagemUnidadesComponent
+  },{
+    path:'rel/listagemFunerarias',component:ListagemFunerariasComponent
+  }
 ];
 
 @NgModule({

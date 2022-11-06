@@ -46,12 +46,10 @@
 }
 
 .leftBar-submenu{
-    width: 220px;
+    width: 250px;
     height: 94vh;
     align-items: flex-start;
     float: left;
-
-
 }
 .leftBar-subMenuUl{
     border-bottom:1px solid lightgray ;

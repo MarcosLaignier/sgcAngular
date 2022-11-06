@@ -22,11 +22,11 @@ export class CadSepulturasComponent implements OnInit {
   }
 
 
-form:FormGroup = this.formBuilder.group({
+  form: FormGroup = this.formBuilder.group({
     sepcodigo: [0],
     sepdescricao: ['', [Validators.required]],
     sepcemiterio: ['', [Validators.required]],
-  cemiterio:[cemiterioModel,[Validators.required]]
+    cemiterio: [cemiterioModel, [Validators.required]]
   })
 
   codSep: any;
@@ -34,10 +34,10 @@ form:FormGroup = this.formBuilder.group({
   cemiterioSep: String = '';
   cemiterioInserido: cemiterioModel = new cemiterioModel;
   idRoute: number = 0;
-  dadosCemiterio:cemiterioModel[]=[];
-  quadraSep:String='';
-  loteSep:String='';
-  codigoSep:String=''
+  dadosCemiterio: cemiterioModel[] = [];
+  quadraSep: String = '';
+  loteSep: String = '';
+  codigoSep: String = ''
 
   // sepulturaInserida: sepulturaModel = {
   //   sepcodigo: 0,
@@ -47,7 +47,7 @@ form:FormGroup = this.formBuilder.group({
   // }
   infoStatus: HttpStatusCode | undefined;
   clicaSalvar: boolean = false;
-  msgError:String='';
+  msgError: String = '';
 
   ngOnInit(): void {
     this.getById()
@@ -57,16 +57,19 @@ form:FormGroup = this.formBuilder.group({
   getById() {
     this.route.params.subscribe(params => this.idRoute = params['id'])
     this.sepulturaService.getByIdSepultura(this.idRoute).subscribe(data => {
+      let dadosSep = data.sepdescricao.split('.')
       this.codSep = data.sepcodigo;
-      this.descSep = data.sepdescricao;
+      this.quadraSep = dadosSep[0];
+      this.loteSep= dadosSep[1];
+      this.codigoSep=dadosSep[2];
       this.cemiterioSep = data.sepcemiterio
     })
 
   }
 
-  getByDescricao(){
+  getByDescricao() {
     return this.sepulturaService.getByDescricao(this.descSep).subscribe(
-      data =>{
+      data => {
         this.codSep = data.sepcodigo
       }
     )
@@ -77,10 +80,11 @@ form:FormGroup = this.formBuilder.group({
     if (this.form.valid) {
 
       let novaSepultura = new sepulturaModel(this.form.value)
+      novaSepultura.sepdescricao = `${this.quadraSep}+${this.loteSep}+${this.loteSep}`
       novaSepultura.cemiterio = this.cemiterioInserido
       console.log(novaSepultura)
       return this.sepulturaService.insertSepultura(novaSepultura).subscribe(
-      response => {
+        response => {
           if (response.status == 201) {
             this.infoStatus = HttpStatusCode.Ok;
             this.getByDescricao();
@@ -88,15 +92,15 @@ form:FormGroup = this.formBuilder.group({
             this.infoStatus = HttpStatusCode.InternalServerError
           }
         },
-        error =>{
+        error => {
           this.infoStatus = error.error.status
-          if (error.error.message.indexOf('unique') ){
-            this.msgError=`Sepultura: ${this.descSep} ja utilizado, Impossivel Nova Inclusão!`
-          }else{
-            this.msgError=error.error.message
+          if (error.error.message.indexOf('unique')) {
+            this.msgError = `Sepultura: ${this.descSep} ja utilizado, Impossivel Nova Inclusão!`
+          } else {
+            this.msgError = error.error.message
           }
         }
-    )
+      )
     } else {
       return this.infoStatus = HttpStatusCode.InternalServerError
     }
@@ -106,7 +110,8 @@ form:FormGroup = this.formBuilder.group({
   alteraSep() {
     if (this.form.valid) {
       let Sepultura = new sepulturaModel(this.form.value)
-     Sepultura.cemiterio = this.cemiterioInserido
+      Sepultura.cemiterio = this.cemiterioInserido
+      Sepultura.sepdescricao = `${this.quadraSep}.${this.loteSep}.${this.loteSep}`
       return this.sepulturaService.alteraSepultura(this.codSep, Sepultura).subscribe(
         response => {
           console.log("Q3")
@@ -133,9 +138,9 @@ form:FormGroup = this.formBuilder.group({
           setTimeout(this.backWindow, 1000)
         }
       },
-      error =>{
+      error => {
         this.infoStatus = error.error.status
-        this.msgError=error.error.message
+        this.msgError = error.error.message
       }
     );
   }
@@ -143,7 +148,7 @@ form:FormGroup = this.formBuilder.group({
   getNameCemiterios() {
     return this.sepulturaService.getCemiterios().subscribe(
       data => {
-        this.dadosCemiterio=data
+        this.dadosCemiterio = data
       }
     )
   }
@@ -151,7 +156,7 @@ form:FormGroup = this.formBuilder.group({
   getCemiterioSelecionado() {
     return this.sepulturaService.getCemiteriosNome(this.cemiterioSep).subscribe(
       data => {
-        this.cemiterioInserido=data
+        this.cemiterioInserido = data
       }
     )
   }
@@ -170,13 +175,13 @@ form:FormGroup = this.formBuilder.group({
     this.clicaSalvar = true
     if (this.idRoute == undefined || this.idRoute == 0) {
       this.insertSep()
-      if(this.form.valid){
-        setTimeout(this.backWindow,500)
+      if (this.form.valid) {
+        setTimeout(this.backWindow, 500)
       }
     } else {
       this.alteraSep()
-      if(this.form.valid){
-        setTimeout(this.backWindow,500)
+      if (this.form.valid) {
+        setTimeout(this.backWindow, 500)
       }
     }
   }

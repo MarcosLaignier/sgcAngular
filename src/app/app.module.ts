@@ -29,6 +29,9 @@ import { TableSepulturasComponent } from './pages/Sepulturas/Components/table-se
 import { TableFunerariasComponent } from './pages/Funerarias/Components/table-funerarias/table-funerarias.component';
 import { TablePessoaComponent } from './pages/Movimentacoes/Pessoas/Components/table-pessoa/table-pessoa.component';
 import { TableSepultamentoComponent } from './pages/Movimentacoes/Sepultamentos/Components/table-sepultamento/table-sepultamento.component';
+import { ListagemUnidadesComponent } from './pages/Cemiterios/Relatorios/listagem-unidades/listagem-unidades.component';
+import { CrudRelatoriosComponent } from './components/crud-relatorios/crud-relatorios.component';
+import { ListagemFunerariasComponent } from './pages/Funerarias/Relatorios/listagem-funerarias/listagem-funerarias.component';
 
 
 @NgModule({
@@ -58,6 +61,9 @@ import { TableSepultamentoComponent } from './pages/Movimentacoes/Sepultamentos/
     TableFunerariasComponent,
     TablePessoaComponent,
     TableSepultamentoComponent,
+    ListagemUnidadesComponent,
+    CrudRelatoriosComponent,
+    ListagemFunerariasComponent,
 
 
   ],

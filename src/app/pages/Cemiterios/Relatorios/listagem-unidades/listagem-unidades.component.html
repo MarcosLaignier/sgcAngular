@@ -1,0 +1,25 @@
+<app-toolbar></app-toolbar>
+<app-crud-relatorios class="d-flex my-2" (clickE)="geraRelatorio()" titlePage="Listagem de Unidades Analitico"></app-crud-relatorios>
+<div class="d-flex flex-column px-2">
+    <div class="d-flex">
+      <label for="relGerar">Relatorio a gerar:</label>
+      <select name="relGerar" id="relGerar" class="selects custom-select">
+        <option value="">Listagem de Unidades Analitico</option>
+      </select>
+
+    </div>
+  <div class="d-flex my-2">
+    <div>
+      <label for="formatRel">Formato a gerar : </label>
+      <select name="formatRel" id="formatRel" class="selects custom-select">
+        <option value="">PDF (Portable Document Format)</option>
+      </select>
+    </div>
+
+    <div class="mx-5">
+      <input type="checkbox" class="custom-control-input mx-lg-1" id="geraNewAba" checked>
+      <label class="custom-control-label" for="geraNewAba">Gerar em nova aba</label>
+    </div>
+  </div>
+</div>
+

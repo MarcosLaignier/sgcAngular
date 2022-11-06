@@ -53,17 +53,31 @@ export class LeftBarComponent implements OnInit {
   openAside() {
     this.getNameMunicipio()
     this.openSideSubMenu = !this.openSideSubMenu
-
+    // if (this.idButton!=this.anterior){
+    //   console.log(this.idButton + ' '+ this.anterior)
+    //   this.openSideSubMenu=false
+    // }else {
+    //   this.openSideSubMenu= !this.openSideSubMenu
+    //   console.log(this.idButton + ' '+ this.anterior)
+    //
+    // }
 
   }
+
+  anterior: String = ''
 
   openSubMenu() {
 
     if (this.idButton == 'CadInicial') {
+      this.anterior = 'CadInicial';
       this.clearIdMenu()
       this.menuCadastrosIniciais = !this.menuCadastrosIniciais
 
     } else if (this.idButton == 'CadComum') {
+      console.log(this.idButton)
+      console.log(this.anterior)
+      this.anterior = 'CadComum';
+
       this.clearIdMenu()
       this.menuCadComum = !this.menuCadComum
 
@@ -73,7 +87,6 @@ export class LeftBarComponent implements OnInit {
     } else if (this.idButton == 'Config') {
       this.clearIdMenu()
       this.menuConfig = true
-
 
     }
 

@@ -3,7 +3,7 @@
     <div>
         <ul class="d-flex flex-column p-0 align-items-center pt-4" [ngClass]="{leftBarUl_active:clickActive==true}">
             <img [src]="urlLogoSgc" alt="Logo Sistema Cemiterio" class="logoSistema">
-            <li (click)=" idButton= 'CadInicial';openSubMenu();openAside()">
+            <li (click)=" idButton= 'CadInicial';openSubMenu();openAside();">
                 <fa-icon [icon]="i_Cemiterio" class="icons_Menu"></fa-icon>
                 <span *ngIf="clickActive" class="textMenuLeftBar" id="CadInicial">Cadastros Iniciais</span>
             </li>
@@ -57,6 +57,23 @@
             </li>
 
         </ul>
+
+      <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+        <span>Relatorios</span>
+        <li>
+          <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+          <span class="textMenuLeftBar" [routerLink]="['rel/listagemUnidades']" (click)="openAside()">Listagem de Unidades</span>
+        </li>
+        <li>
+          <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+          <span class="textMenuLeftBar" [routerLink]="['rel/listagemUnidades']" (click)="openAside()">Listagem de Sepulturas</span>
+        </li>
+        <li>
+          <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+          <span class="textMenuLeftBar" [routerLink]="['rel/listagemFunerarias']" (click)="openAside()">Listagem de Funerarias</span>
+        </li>
+
+      </ul>
     </div>
 
     <div *ngIf="menuCadComum" class="w-100">
