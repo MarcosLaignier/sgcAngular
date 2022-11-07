@@ -39,6 +39,7 @@ export class LeftBarComponent implements OnInit {
   teste: String = '';
   nameMunicipio: String = '';
 
+
   @Input() clickActive: Boolean = false;
 
   constructor(private configService: ConfiguracoesService) {

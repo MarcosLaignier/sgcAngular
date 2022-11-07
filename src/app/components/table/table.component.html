@@ -1,22 +1,22 @@
-<table class="table table-hover ">
+<div class="divTable">  <table class="table table-hover ">
     <thead>
-        <tr >
-            <th scope="col" *ngFor="let cols of colunasTable">{{cols.name}}</th>
-        </tr>
+    <tr>
+      <th scope="col" *ngFor="let cols of colunasTable">{{cols.name}}</th>
+    </tr>
     </thead>
 
-  <tbody id='tbody'>
+    <tbody id='tbody'>
 
-    <tr *ngFor="let dadoscols of dadosCols " id="{{dadoscols.undcodigo}}" (dblclick)="retornaId(dadoscols.undcodigo)"   >
+    <tr *ngFor="let dadoscols of dadosCols " id="{{dadoscols.undcodigo}}" (dblclick)="retornaId(dadoscols.undcodigo)">
       <th scope="row">{{dadoscols.undcodigo}}</th>
       <th scope="row">{{dadoscols.undnome}}</th>
-      <th scope="row">{{dadoscols.undendereco}} , {{ dadoscols.undnumero}} , {{dadoscols.undcidade}} - {{dadoscols.undestado}}</th>
+      <th scope="row">{{dadoscols.undendereco}} , {{ dadoscols.undnumero}} , {{dadoscols.undcidade}}
+        - {{dadoscols.undestado}}</th>
       <th scope="row">{{dadoscols.undresponsavel}}</th>
       <th scope="row">{{dadoscols.status}}</th>
-
 
 
     </tr>
     </tbody>
 
-</table>
+  </table>

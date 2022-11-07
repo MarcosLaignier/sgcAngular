@@ -1,113 +1,129 @@
 <aside [ngStyle]="{'background-color': bckColor}" class="leftBar d-flex flex-column float-left justify-content-between "
-    [ngClass]="{leftBar_active:clickActive ==true}">
-    <div>
-        <ul class="d-flex flex-column p-0 align-items-center pt-4" [ngClass]="{leftBarUl_active:clickActive==true}">
-            <img [src]="urlLogoSgc" alt="Logo Sistema Cemiterio" class="logoSistema">
-            <li (click)=" idButton= 'CadInicial';openSubMenu();openAside();">
-                <fa-icon [icon]="i_Cemiterio" class="icons_Menu"></fa-icon>
-                <span *ngIf="clickActive" class="textMenuLeftBar" id="CadInicial">Cadastros Iniciais</span>
-            </li>
-            <li (click)=" idButton= 'CadComum';openSubMenu();openAside()">
-                <fa-icon [icon]="i_Person" class="icons_Menu"></fa-icon>
-                <span *ngIf="clickActive" class="textMenuLeftBar">Cadastros</span>
-            </li>
-            <li (click)=" idButton= 'CadMovimentacoes';openSubMenu();openAside()">
-                <fa-icon [icon]="i_Sepul" class="icons_Menu"></fa-icon>
-                <span *ngIf="clickActive" class="textMenuLeftBar">Movimentacoes</span>
-            </li>
-            <li (click)=" idButton= 'Config';openSubMenu();openAside()">
-                <fa-icon [icon]="i_Config" class="icons_Menu"></fa-icon>
-                <span *ngIf="clickActive" class="textMenuLeftBar">Configuracoes</span>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <ul class="leftbar d-flex p-0 m-0 align-items-center logoMunicipioUl">
-            <li class="d-flex align-items-center flex-column ">
-                <img [src]="urlLogo" alt="Logo Municipio" class=" imgLogoMunicipio">
-                <span *ngIf="clickActive" class="text-center nameMunicipio">{{nameMunicipio}}</span>
-              <span *ngIf="clickActive" class="text-center nameMunicipio">Versao 2.0</span>
+       [ngClass]="{leftBar_active:clickActive ==true}">
+  <div>
+    <ul class="d-flex flex-column p-0 align-items-center pt-4" [ngClass]="{leftBarUl_active:clickActive==true}">
+      <img [src]="urlLogoSgc" alt="Logo Sistema Cemiterio" class="logoSistema">
+      <li (click)=" idButton= 'CadInicial';openSubMenu();openAside();">
+        <fa-icon [icon]="i_Cemiterio" class="icons_Menu"></fa-icon>
+        <span *ngIf="clickActive" class="textMenuLeftBar" id="CadInicial">Cadastros Iniciais</span>
+      </li>
+      <li (click)=" idButton= 'CadComum';openSubMenu();openAside()">
+        <fa-icon [icon]="i_Person" class="icons_Menu"></fa-icon>
+        <span *ngIf="clickActive" class="textMenuLeftBar">Cadastros</span>
+      </li>
+      <li (click)=" idButton= 'CadMovimentacoes';openSubMenu();openAside()">
+        <fa-icon [icon]="i_Sepul" class="icons_Menu"></fa-icon>
+        <span *ngIf="clickActive" class="textMenuLeftBar">Movimentacoes</span>
+      </li>
+      <li (click)=" idButton= 'Config';openSubMenu();openAside()">
+        <fa-icon [icon]="i_Config" class="icons_Menu"></fa-icon>
+        <span *ngIf="clickActive" class="textMenuLeftBar">Configuracoes</span>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul class="leftbar d-flex p-0 m-0 align-items-center logoMunicipioUl">
+      <li class="d-flex align-items-center flex-column ">
+        <img [src]="urlLogo" alt="Logo Municipio" class=" imgLogoMunicipio">
+        <span *ngIf="clickActive" class="text-center nameMunicipio">{{nameMunicipio}}</span>
+        <span *ngIf="clickActive" class="text-center nameMunicipio">Versao 2.0</span>
 
-            </li>
-        </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 
 </aside>
 
 <aside [ngStyle]="{'background-color': submenuColor}"
-    class="leftBar-submenu d-flex flex-column float-left justify-content-between border border-light"
-    *ngIf="openSideSubMenu">
-    <div *ngIf="menuCadastrosIniciais" class="w-100">
-        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
-            <span>Cemiterios</span>
-            <li>
-                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['/listcemiterios']" (click)="openAside()">Cemiterio</span>
-            </li>
-            <li>
-                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['/listsepulturas']" (click)="openAside()">Sepulturas</span>
-            </li>
-        </ul>
-        <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
-            <span>Funerarias</span>
-            <li>
-                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['listfunerarias']" (click)="openAside()">Funeraria</span>
-            </li>
+       class="leftBar-submenu d-flex flex-column float-left justify-content-between border border-light"
+       *ngIf="openSideSubMenu">
+  <div *ngIf="menuCadastrosIniciais" class="w-100">
+    <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
+      <span>Cemiterios</span>
+      <li>
+        <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['/listcemiterios']" (click)="openAside()">Cemiterio</span>
+      </li>
+      <li>
+        <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['/listsepulturas']" (click)="openAside()">Sepulturas</span>
+      </li>
+    </ul>
+    <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+      <span>Funerarias</span>
+      <li>
+        <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['listfunerarias']" (click)="openAside()">Funeraria</span>
+      </li>
 
-        </ul>
+    </ul>
 
-      <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+    <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+      <span>Relatorios</span>
+      <li>
+        <fa-icon [icon]="i_Relatorio" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['rel/listagemUnidades']"
+              (click)="openAside()">Listagem de Unidades</span>
+      </li>
+      <li>
+        <fa-icon [icon]="i_Relatorio" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['rel/listagemSepulturas']" (click)="openAside()">Listagem de Sepulturas</span>
+      </li>
+      <li>
+        <fa-icon [icon]="i_Relatorio" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['rel/listagemFunerarias']" (click)="openAside()">Listagem de Funerarias</span>
+      </li>
+
+    </ul>
+  </div>
+
+  <div *ngIf="menuCadComum" class="w-100">
+    <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+      <span>Falecidos</span>
+      <li>
+        <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['listfalecidos']" (click)="openAside()">Pessoa</span>
+      </li>
+    </ul>
+
+    <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
         <span>Relatorios</span>
         <li>
-          <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-          <span class="textMenuLeftBar" [routerLink]="['rel/listagemUnidades']" (click)="openAside()">Listagem de Unidades</span>
+          <fa-icon [icon]="i_Relatorio" class="iconSubMenu"></fa-icon>
+          <span class="textMenuLeftBar" [routerLink]="['rel/listagemPessoas']"
+                (click)="openAside()">Listagem de Pessoas</span>
         </li>
-        <li>
-          <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-          <span class="textMenuLeftBar" [routerLink]="['rel/listagemUnidades']" (click)="openAside()">Listagem de Sepulturas</span>
-        </li>
-        <li>
-          <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-          <span class="textMenuLeftBar" [routerLink]="['rel/listagemFunerarias']" (click)="openAside()">Listagem de Funerarias</span>
-        </li>
-
       </ul>
-    </div>
+  </div>
 
-    <div *ngIf="menuCadComum" class="w-100">
-        <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
-            <span>Falecidos</span>
-            <li>
-                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['listfalecidos']" (click)="openAside()">Pessoa</span>
-            </li>
+  <div *ngIf="menuCadMovimentacoes" class="w-100">
+    <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
+      <span>Cadastros</span>
+      <li>
+        <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['listsepultamentos']"
+              (click)="openAside()">Sepultamento</span>
+      </li>
+    </ul>
+    <ul class="d-flex flex-column pt-4 pl-2 leftBar-subMenuUl">
+      <span>Relatorios</span>
+      <li>
+        <fa-icon [icon]="i_Relatorio" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['rel/listagemSepultamentos']" (click)="openAside()">Listagem Sepultamentos</span>
+      </li>
 
-        </ul>
-    </div>
+    </ul>
+  </div>
 
-    <div *ngIf="menuCadMovimentacoes" class="w-100">
-        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
-            <span>Cadastros</span>
-            <li>
-                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['listsepultamentos']"
-                    (click)="openAside()">Sepultamento</span>
-            </li>
-
-        </ul>
-    </div>
-
-    <div *ngIf="menuConfig" class="w-100">
-        <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
-            <span>Configuracoes</span>
-            <li>
-                <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
-                <span class="textMenuLeftBar" [routerLink]="['configuracoesgerais']" (click)="openAside()">Configuracao
+  <div *ngIf="menuConfig" class="w-100">
+    <ul class="d-flex flex-column pt-4 leftBar-subMenuUl">
+      <span>Configuracoes</span>
+      <li>
+        <fa-icon [icon]="i_SubMenu" class="iconSubMenu"></fa-icon>
+        <span class="textMenuLeftBar" [routerLink]="['configuracoesgerais']" (click)="openAside()">Configuracao
                     Geral</span>
-            </li>
+      </li>
 
-        </ul>
-    </div>
+    </ul>
+  </div>
 </aside>

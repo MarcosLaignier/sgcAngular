@@ -14,6 +14,9 @@ import { CadSepultamentosComponent } from './pages/Movimentacoes/Sepultamentos/c
 import { CadFunerariasComponent } from './pages/Funerarias/cad-funerarias/cad-funerarias.component';
 import {ListagemUnidadesComponent} from "./pages/Cemiterios/Relatorios/listagem-unidades/listagem-unidades.component";
 import {ListagemFunerariasComponent} from "./pages/Funerarias/Relatorios/listagem-funerarias/listagem-funerarias.component";
+import {ListagemSepulturasComponent} from "./pages/Sepulturas/Relatorios/listagem-sepulturas/listagem-sepulturas.component";
+import {ListagemPessoasComponent} from "./pages/Movimentacoes/Pessoas/Relatorios/listagem-pessoas/listagem-pessoas.component";
+import {ListagemSepultamentosComponent} from "./pages/Movimentacoes/Sepultamentos/Relatorios/listagem-sepultamentos/listagem-sepultamentos.component";
 
 const routes: Routes = [
   {
@@ -69,6 +72,12 @@ const routes: Routes = [
   path:'rel/listagemUnidades',component:ListagemUnidadesComponent
   },{
     path:'rel/listagemFunerarias',component:ListagemFunerariasComponent
+  },{
+    path:'rel/listagemSepulturas',component:ListagemSepulturasComponent
+  },{
+    path:'rel/listagemPessoas',component:ListagemPessoasComponent
+  },{
+    path:'rel/listagemSepultamentos',component:ListagemSepultamentosComponent
   }
 ];
 
