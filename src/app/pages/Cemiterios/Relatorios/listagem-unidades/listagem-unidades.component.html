@@ -3,8 +3,8 @@
 <div class="d-flex flex-column px-2">
     <div class="d-flex">
       <label for="relGerar">Relatorio a gerar:</label>
-      <select name="relGerar" id="relGerar" class="selects custom-select">
-        <option value="">Listagem de Unidades Analitico</option>
+      <select name="relGerar" id="relGerar" class="selects custom-select" (change)="tt()">
+        <option value="ListagemCemiteriosAnalitico" [(ngModel)]="nameRel">Listagem de Unidades Analitico</option>
       </select>
 
     </div>

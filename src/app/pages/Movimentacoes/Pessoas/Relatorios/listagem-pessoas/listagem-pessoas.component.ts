@@ -13,7 +13,7 @@ export class ListagemPessoasComponent implements OnInit {
   }
 
   geraRelatorio(){
-    return this.cemiterioService.gerarRelatorio()
+    // return this.cemiterioService.gerarRelatorio()
   }
 
 }

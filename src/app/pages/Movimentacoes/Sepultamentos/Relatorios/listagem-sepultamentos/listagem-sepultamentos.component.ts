@@ -14,6 +14,6 @@ export class ListagemSepultamentosComponent implements OnInit {
   }
 
   geraRelatorio(){
-    return this.cemiterioService.gerarRelatorio()
+    // return this.cemiterioService.gerarRelatorio()
   }
 }

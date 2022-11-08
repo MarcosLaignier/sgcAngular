@@ -64,14 +64,6 @@ export class CemiteriosService {
     return this.httpClient.get<cemiterioModel[]>(`${this.API}/${subquery}`)
   }
 
-  gerarRelatorio(){
-    return this.httpClient.get(`${this.API}/relatorio/pdf/jr1/01/v`,{responseType:"arraybuffer"}).subscribe(
-      data=> {
-        var file = new Blob([data], {type: 'application/pdf'});
-        var fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
-      }
-    )
-  }
+
 
 }
