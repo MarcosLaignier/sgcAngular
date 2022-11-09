@@ -3,7 +3,7 @@
 <div class="d-flex flex-column px-2">
     <div class="d-flex">
       <label for="relGerar">Relatorio a gerar:</label>
-      <select name="relGerar" id="relGerar" class="selects custom-select" (change)="tt()">
+      <select name="relGerar" id="relGerar" class="selects custom-select" >
         <option value="ListagemCemiteriosAnalitico" [(ngModel)]="nameRel">Listagem de Unidades Analitico</option>
       </select>
 
@@ -17,8 +17,8 @@
     </div>
 
     <div class="mx-5">
-      <input type="checkbox" class="custom-control-input mx-lg-1" id="geraNewAba" checked>
-      <label class="custom-control-label" for="geraNewAba">Gerar em nova aba</label>
+      <input type="checkbox" class="custom-control-input mx-lg-1" id="geraNewAba" checked [(ngModel)]="geraNovaAba">
+      <label class="custom-control-label" for="geraNewAba" >Gerar em nova aba</label>
     </div>
   </div>
 </div>

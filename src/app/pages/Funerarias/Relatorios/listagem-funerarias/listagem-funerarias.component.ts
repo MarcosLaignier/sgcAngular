@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {JasperService} from "../../../../Services/Jasper/jasper.service";
 
 @Component({
   selector: 'app-listagem-funerarias',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListagemFunerariasComponent implements OnInit {
 
-  constructor() { }
+  nameRel:String='ListagemFunerariasAnalitico'
+  geraNovaAba:boolean=true
+  options:String=''
+
+  constructor(private jasperService:JasperService) { }
 
   ngOnInit(): void {
+  }
+
+  verificaOptions(){
+    if (this.geraNovaAba == true){
+      this.options='s'
+    }else {
+      this.options='n'
+    }
+  }
+
+  geraRelatorio(){
+    this.verificaOptions()
+    return this.jasperService.gerarRelatorio(this.nameRel,this.options)
   }
 
 }

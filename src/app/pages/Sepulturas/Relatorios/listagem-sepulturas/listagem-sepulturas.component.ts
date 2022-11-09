@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CemiteriosService} from "../../../Cemiterios/service-cemiterios/cemiterios.service";
+import {JasperService} from "../../../../Services/Jasper/jasper.service";
 
 @Component({
   selector: 'app-listagem-sepulturas',
@@ -8,12 +9,24 @@ import {CemiteriosService} from "../../../Cemiterios/service-cemiterios/cemiteri
 })
 export class ListagemSepulturasComponent implements OnInit {
 
-  constructor(private  cemiterioService:CemiteriosService) { }
+  nameRel:String='ListagemAnaliticaSepulturas'
+  geraNovaAba:boolean=true;
+  optionNovaAba:String='';
+
+  constructor(private  jasperService:JasperService) { }
 
   ngOnInit(): void {
   }
 
+  verificaParametros() {
+    if (this.geraNovaAba) {
+      this.optionNovaAba = 's'
+    } else {
+      this.optionNovaAba = 'n'
+    }
+  }
+
   geraRelatorio(){
-    // return this.cemiterioService.gerarRelatorio()
+    return this.jasperService.gerarRelatorio(this.nameRel,'s')
   }
 }

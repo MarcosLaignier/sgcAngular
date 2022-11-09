@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<app-crud-relatorios class="d-flex my-2"  titlePage="Listagem de Funerarias Analitico"></app-crud-relatorios>
+<app-crud-relatorios class="d-flex my-2"  titlePage="Listagem de Funerarias Analitico" (clickE)="geraRelatorio()"></app-crud-relatorios>
 <div class="d-flex flex-column px-2">
   <div class="d-flex">
     <label for="relGerar">Relatorio a gerar:</label>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="mx-5">
-      <input type="checkbox" class="custom-control-input mx-lg-1" id="geraNewAba" checked>
+      <input type="checkbox" class="custom-control-input mx-lg-1" id="geraNewAba" [(ngModel)]="geraNovaAba" checked>
       <label class="custom-control-label" for="geraNewAba">Gerar em nova aba</label>
     </div>
   </div>

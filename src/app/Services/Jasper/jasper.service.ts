@@ -11,7 +11,7 @@ export class JasperService {
   private API='/api/reports'
 
   gerarRelatorio(nameRel:String,options:String){
-    return this.httpClient.get(`${this.API}/rel/listagemCemiterio/${nameRel}/${options}`,{responseType:"arraybuffer"}).subscribe(
+    return this.httpClient.get(`${this.API}/rel/${nameRel}/${options}`,{responseType:"arraybuffer"}).subscribe(
       data=> {
         var file = new Blob([data], {type: 'application/pdf'});
         var fileURL = URL.createObjectURL(file);

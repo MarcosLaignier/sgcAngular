@@ -16,7 +16,7 @@ export class ConfiguracoesGeraisComponent implements OnInit {
   brasaoMunicipio: String = '';
   imgPrincipal: String = '';
   nameMunicipio: String = '';
-  codCliente: number = 1;
+  codCliente: number = 1914;
   tipoMunicipio:String='';
 
   dadosMun:boolean=true;

@@ -10,19 +10,24 @@ import {JasperService} from "../../../../Services/Jasper/jasper.service";
 export class ListagemUnidadesComponent implements OnInit {
 
   nameRel:String='';
-  geraNovaAba:String='';
+  geraNovaAba:boolean=true;
+  optionNovaAba:String='';
 
   constructor(private  jasperService:JasperService) { }
 
   ngOnInit(): void {
   }
 
-tt(){
-    console.log(this.nameRel)
+verificaParametros(){
+    if (this.geraNovaAba){
+      this.optionNovaAba='s'
+    }else{
+      this.optionNovaAba='n'
+    }
 }
 
   geraRelatorio(){
-    console.log(this.nameRel)
-    return this.jasperService.gerarRelatorio('ListagemCemiterioAnalitico',"s")
+    this.verificaParametros();
+    return this.jasperService.gerarRelatorio('ListagemCemiterioAnalitico',this.optionNovaAba)
   }
 }
