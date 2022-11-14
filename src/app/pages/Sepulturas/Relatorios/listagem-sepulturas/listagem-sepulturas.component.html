@@ -26,13 +26,15 @@
     <legend>Filtros</legend>
     <div class="d-flex m-2">
       <label for="sepulturaRel">Sepultura :</label>
-      <input type="text" class="selects" id="sepulturaRel" >
+      <input type="text" class="selects" id="sepulturaRel" [(ngModel)]="filterSepultura">
     </div>
     <div class="d-flex m-2">
       <label for="cemiterioRel">Cemiterio :</label>
-      <select name="cemiterioRel" id="cemiterioRel" class="selects custom-select">
-        <option value=""> </option>
+      <select name="cemiterioRel" id="cemiterioRel" class="selects custom-select" [(ngModel)]="filterCemiterio">
+        <option value=""></option>
+        <option *ngFor="let nameCemiterio of listCemiterios"> {{nameCemiterio.undnome}} </option>
       </select>
+<!--      <input type="text" class="selects custom-select" [(ngModel)]="filterCemiterio">-->
     </div>
   </div>
 </div>

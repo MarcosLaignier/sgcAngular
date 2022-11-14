@@ -25,6 +25,8 @@ export class CadSepulturasComponent implements OnInit {
   form: FormGroup = this.formBuilder.group({
     sepcodigo: [0],
     sepdescricao: ['', [Validators.required]],
+    seplote:[''],
+    codsep:[''],
     sepcemiterio: ['', [Validators.required]],
     cemiterio: [cemiterioModel, [Validators.required]]
   })
@@ -59,6 +61,7 @@ export class CadSepulturasComponent implements OnInit {
     this.sepulturaService.getByIdSepultura(this.idRoute).subscribe(data => {
       let dadosSep = data.sepdescricao.split('.')
       this.codSep = data.sepcodigo;
+      console.log(dadosSep[1])
       this.quadraSep = dadosSep[0];
       this.loteSep= dadosSep[1];
       this.codigoSep=dadosSep[2];
@@ -80,7 +83,7 @@ export class CadSepulturasComponent implements OnInit {
     if (this.form.valid) {
 
       let novaSepultura = new sepulturaModel(this.form.value)
-      novaSepultura.sepdescricao = `${this.quadraSep}+${this.loteSep}+${this.loteSep}`
+      novaSepultura.sepdescricao = `${this.quadraSep}.${this.loteSep}.${this.loteSep}`
       novaSepultura.cemiterio = this.cemiterioInserido
       console.log(novaSepultura)
       return this.sepulturaService.insertSepultura(novaSepultura).subscribe(

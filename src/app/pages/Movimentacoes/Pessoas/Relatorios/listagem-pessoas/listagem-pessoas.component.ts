@@ -11,7 +11,8 @@ export class ListagemPessoasComponent implements OnInit {
   nameRel:String='ListagemPessoasAnalitico'
   geraNovaAba:boolean=true;
   optionNovaAba:String='';
-
+  namePessoa:String=''
+  cpfPessoa:String=''
   constructor(private  jasperService:JasperService) { }
 
   ngOnInit(): void {
@@ -26,7 +27,9 @@ export class ListagemPessoasComponent implements OnInit {
   }
 
   geraRelatorio(){
-return this.jasperService.gerarRelatorio(this.nameRel,'s')
+    console.log(this.namePessoa)
+
+return this.jasperService.gerarRelatorio2(this.nameRel,'s','NOME_PESSOA',this.namePessoa)
   }
 
 }

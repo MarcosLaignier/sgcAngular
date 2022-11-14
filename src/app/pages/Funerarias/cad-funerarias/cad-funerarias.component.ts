@@ -24,14 +24,14 @@ export class CadFunerariasComponent implements OnInit {
   infoStatus: HttpStatusCode | undefined;
   clicaSalvar: boolean = false;
   msgError:String='';
-  funeraria: funerariaModel = {
-    funcodigo: 0,
-    fundescricao: '',
-    funendereco: '',
-    funcidade: '',
-    funnumero: 0
-
-  };
+  // funeraria: funerariaModel = {
+  //   funcodigo: 0,
+  //   fundescricao: '',
+  //   funendereco: '',
+  //   funcidade: '',
+  //   funnumero: 0
+  //
+  // };
 
   constructor(private funerariaService: FunerariaService,
               private route: ActivatedRoute,
@@ -99,7 +99,7 @@ form:FormGroup = this.formBuilder.group({
   public alterFun() {
     if (this.form.valid) {
       let funeraria = new funerariaModel(this.form.value)
-      return this.funerariaService.alteraFun(this.funeraria.funcodigo, funeraria).subscribe(
+      return this.funerariaService.alteraFun(funeraria.funcodigo, funeraria).subscribe(
         response => {
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok
@@ -161,4 +161,5 @@ form:FormGroup = this.formBuilder.group({
   backWindow() {
     window.history.back()
   }
+
 }

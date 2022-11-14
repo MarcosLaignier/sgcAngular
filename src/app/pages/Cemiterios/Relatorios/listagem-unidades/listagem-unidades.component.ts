@@ -12,6 +12,7 @@ export class ListagemUnidadesComponent implements OnInit {
   nameRel:String='';
   geraNovaAba:boolean=true;
   optionNovaAba:String='';
+  filter:String=''
 
   constructor(private  jasperService:JasperService) { }
 
@@ -28,6 +29,6 @@ verificaParametros(){
 
   geraRelatorio(){
     this.verificaParametros();
-    return this.jasperService.gerarRelatorio('ListagemCemiterioAnalitico',this.optionNovaAba)
+    return this.jasperService.gerarRelatorio('ListagemCemiterioAnalitico',this.optionNovaAba,this.filter)
   }
 }

@@ -55,7 +55,7 @@
     <div class="col-md-1">
       <div class="form-outline">
         <label class="form-label" for="Lote_Sepultura">Lote</label>
-        <input type="text" id="Lote_Sepultura" class="form-control" [(ngModel)]="loteSep" name="descSepultura" formControlName="sepdescricao"/>
+        <input type="text" id="Lote_Sepultura" class="form-control" [(ngModel)]="loteSep" name="seplote" formControlName="seplote"/>
         <div *ngIf="form.get('sepdescricao')?.errors && clicaSalvar" class="text-danger">
           *Lote Obrigatorio
         </div>
@@ -64,7 +64,7 @@
     <div class="col-md-1">
       <div class="form-outline">
         <label class="form-label" for="codigo_Sepultura">Sepultura</label>
-        <input type="text" id="codigo_Sepultura" class="form-control" [(ngModel)]="codigoSep" name="descSepultura" formControlName="sepdescricao"/>
+        <input type="text" id="codigo_Sepultura" class="form-control" [(ngModel)]="codigoSep" name="codsep" formControlName="codsep"/>
         <div *ngIf="form.get('sepdescricao')?.errors && clicaSalvar" class="text-danger">
           *Sepultura Obrigatoria
         </div>

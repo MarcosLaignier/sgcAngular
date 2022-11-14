@@ -11,6 +11,7 @@ export class ListagemFunerariasComponent implements OnInit {
   nameRel:String='ListagemFunerariasAnalitico'
   geraNovaAba:boolean=true
   options:String=''
+  filter:String=''
 
   constructor(private jasperService:JasperService) { }
 
@@ -27,7 +28,7 @@ export class ListagemFunerariasComponent implements OnInit {
 
   geraRelatorio(){
     this.verificaOptions()
-    return this.jasperService.gerarRelatorio(this.nameRel,this.options)
+    return this.jasperService.gerarRelatorio(this.nameRel,this.options,this.filter)
   }
 
 }
