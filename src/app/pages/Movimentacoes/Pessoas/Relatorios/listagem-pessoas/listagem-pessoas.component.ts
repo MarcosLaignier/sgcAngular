@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CemiteriosService} from "../../../../Cemiterios/service-cemiterios/cemiterios.service";
 import {JasperService} from "../../../../../Services/Jasper/jasper.service";
+import {RelatorioModel} from "../../../../../models/relatorio-model";
 
 @Component({
   selector: 'app-listagem-pessoas',
@@ -13,6 +14,13 @@ export class ListagemPessoasComponent implements OnInit {
   optionNovaAba:String='';
   namePessoa:String=''
   cpfPessoa:String=''
+
+  filter:RelatorioModel[]=
+    [{
+      nameFilter: '',
+      nameRelatorio:''
+    }]
+
   constructor(private  jasperService:JasperService) { }
 
   ngOnInit(): void {
@@ -27,9 +35,18 @@ export class ListagemPessoasComponent implements OnInit {
   }
 
   geraRelatorio(){
-    console.log(this.namePessoa)
+    this.filter=[
+      {
+        nameFilter:"NOME_PESSOA",
+        nameRelatorio:this.namePessoa
+      },
+      {nameFilter:"FILTER_CPF",
+        nameRelatorio:this.cpfPessoa
 
-return this.jasperService.gerarRelatorio2(this.nameRel,'s','NOME_PESSOA',this.namePessoa)
+      }
+    ]
+
+return this.jasperService.gerarRelatorio4(this.nameRel,'s',this.filter)
   }
 
 }

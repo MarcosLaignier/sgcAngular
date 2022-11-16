@@ -214,7 +214,7 @@ export class CadSepultamentosComponent implements OnInit {
     return this.sepultamentoService.excludeSepultamento(this.sepulCodigo).subscribe(
       response => {
         console.log(response.status)
-        if (response.status == 200) {
+        if (response.status == 202) {
           this.infoStatus = HttpStatusCode.Accepted
           setTimeout(this.backWindow, 1000)
         } else {
@@ -300,6 +300,7 @@ export class CadSepultamentosComponent implements OnInit {
     }
     if (this.idUrl == 0 || this.idUrl == undefined) {
       await this.insertSepul(resultBuscaPessoa)
+      console.log(this.form.valid)
       if (this.form.valid) {
         setTimeout(this.backWindow, 1000)
       }

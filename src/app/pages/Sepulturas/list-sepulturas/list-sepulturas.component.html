@@ -27,7 +27,7 @@
                 <label class="form-label" for="name_Cemiterio">Cemiterio</label>
                 <select id="name_Cemiterio" class="form-control" [(ngModel)]="cemiterioSepultura" name="name_Cemiterio" (click)="getNameCemiterios()">
                     <option> </option>
-                  <option *ngFor="let cem of this.nameCemiterios">{{cem}}</option>
+                  <option *ngFor="let cem of this.nameCemiterios">{{cem.undnome}}</option>
                 </select>
 
             </div>

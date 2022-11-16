@@ -32,7 +32,7 @@
       <label for="cemiterioRel">Cemiterio :</label>
       <select name="cemiterioRel" id="cemiterioRel" class="selects custom-select" [(ngModel)]="nameCemiterio">
         <option value=""> </option>
-        <option value="CEMITERIO NOVO">CEMITERIO NOVO</option>
+        <option *ngFor="let cemiterios of listCemiterios">{{cemiterios.undnome}}</option>
       </select>
     </div>
   </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {JasperService} from "../../../../../Services/Jasper/jasper.service";
 import {RelatorioModel} from "../../../../../models/relatorio-model";
+import {CemiteriosService} from "../../../../Cemiterios/service-cemiterios/cemiterios.service";
+import {cemiterioModel} from "../../../../../models/cemiterio-model";
 
 @Component({
   selector: 'app-listagem-sepultamentos',
@@ -13,11 +15,13 @@ export class ListagemSepultamentosComponent implements OnInit {
   optionNovaAba:String='';
   namePessoa:String='';
   nameCemiterio:String='';
+  listCemiterios:cemiterioModel[]=[]
 
   constructor(private  jasperService:JasperService,
-              ) { }
+              private cemiterioService:CemiteriosService) { }
 
   ngOnInit(): void {
+    this.buscaCemiterio()
   }
 
   // filter:[{nameFilter:String,nameRel:String}]=[{
@@ -39,8 +43,13 @@ filter:RelatorioModel[]=
       this.optionNovaAba = 'n'
     }
   }
-  pegaid(){
 
+  buscaCemiterio() {
+    return this.cemiterioService.listCemiterio().subscribe(
+      data => {
+        this.listCemiterios=data
+      }
+    )
   }
 
   geraRelatorio(){

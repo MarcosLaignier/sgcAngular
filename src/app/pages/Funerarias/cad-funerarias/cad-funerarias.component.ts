@@ -117,7 +117,7 @@ form:FormGroup = this.formBuilder.group({
   public deleteFun() {
     return this.funerariaService.deleteFun(this.codFun).subscribe(
       response => {
-        if (response.status == 200) {
+        if (response.status == 202) {
           this.infoStatus = HttpStatusCode.Accepted
           setTimeout(this.backWindow, 1000)
         } else (

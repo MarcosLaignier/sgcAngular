@@ -3,6 +3,8 @@ import {filter} from 'rxjs';
 import {SepulturaServiceService} from "../services/sepultura-service.service";
 import {sepulturaModel} from "../sepulturaModel";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CemiteriosService} from "../../Cemiterios/service-cemiterios/cemiterios.service";
+import {cemiterioModel} from "../../../models/cemiterio-model";
 
 @Component({
   selector: 'app-list-sepulturas',
@@ -21,7 +23,7 @@ export class ListSepulturasComponent implements OnInit {
   descSepultura: String = '';
   cemiterioSepultura: String = '';
 
-  nameCemiterios: String[] = [];
+  nameCemiterios: cemiterioModel[] = [];
 
 
   filterVisible(filterComponent: boolean) {
@@ -30,11 +32,13 @@ export class ListSepulturasComponent implements OnInit {
 
   constructor(
     private sepulturaService: SepulturaServiceService,
-    private router: Router
+    private router: Router,
+    private cemiterioService:CemiteriosService
   ) {
   }
 
   ngOnInit(): void {
+    this.listCemiterios()
   }
 
   listSepultura() {
@@ -43,6 +47,13 @@ export class ListSepulturasComponent implements OnInit {
 
   }
 
+listCemiterios(){
+    return this.cemiterioService.listCemiterio().subscribe(
+      data =>{
+        this.nameCemiterios = data
+      }
+    )
+}
 
   recebeId_Path(valor: number) {
     this.idRecebido = valor;

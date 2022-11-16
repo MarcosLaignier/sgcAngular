@@ -71,6 +71,7 @@ export class CadSepulturasComponent implements OnInit {
   }
 
   getByDescricao() {
+    this.descSep=`${this.quadraSep}.${this.loteSep}.${this.loteSep}`
     return this.sepulturaService.getByDescricao(this.descSep).subscribe(
       data => {
         this.codSep = data.sepcodigo
@@ -114,16 +115,23 @@ export class CadSepulturasComponent implements OnInit {
     if (this.form.valid) {
       let Sepultura = new sepulturaModel(this.form.value)
       Sepultura.cemiterio = this.cemiterioInserido
-      Sepultura.sepdescricao = `${this.quadraSep}.${this.loteSep}.${this.loteSep}`
+      Sepultura.sepdescricao = `${this.quadraSep}.${this.loteSep}.${this.codigoSep}`
       return this.sepulturaService.alteraSepultura(this.codSep, Sepultura).subscribe(
         response => {
-          console.log("Q3")
           if (response.status == 200) {
             this.infoStatus = HttpStatusCode.Ok
             this.getByDescricao();
 
           } else {
             this.infoStatus = HttpStatusCode.InternalServerError
+          }
+        },
+        error => {
+          this.infoStatus = error.error.status
+          if (error.error.message.indexOf('unique')) {
+            this.msgError = `Sepultura: ${this.descSep} ja utilizado, Impossivel Nova Inclusão!`
+          } else {
+            this.msgError = error.error.message
           }
         }
       )
@@ -136,7 +144,7 @@ export class CadSepulturasComponent implements OnInit {
   deleteSep() {
     return this.sepulturaService.deleteSepulturas(this.codSep).subscribe(
       response => {
-        if (response.status == 200) {
+        if (response.status == 202) {
           this.infoStatus = HttpStatusCode.Accepted
           setTimeout(this.backWindow, 1000)
         }

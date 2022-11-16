@@ -159,7 +159,7 @@ export class CadFalecidosComponent implements OnInit {
     return this.pessoaService.deletePessoa(this.codFal).subscribe(
       response => {
         console.log(response.status)
-        if (response.status == 200) {
+        if (response.status == 202) {
           this.infoStatus = HttpStatusCode.Accepted
           setTimeout(this.backWindow, 1000)
         } else {
